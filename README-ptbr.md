@@ -1,4 +1,4 @@
-# Julius
+# Julius - FULL
 
 Robo que captura os dados dos Portais da Transparência e aplica métricas e tipologias conhecidas para averiguar indicadores de improbidade administrativa (pessoas com dois cargos públicos - além do que é assegurado por lei - contratos e compras com preços elevados, etc) ou práticas ruims de portais.
 
@@ -37,7 +37,7 @@ Working on it...
 # Como fazer rodar
 O Julius pode rodar em dois formatos:
 1 - Algoritmo completo que executa as funções de pipeline e ETL, focado em aprendizado e teste, pois necessita apenas de um compilador de Python e dos pacotes.
-2 - Códigos separados orquestrados pelo Airflow, facilitando o uso por instituições públicas e ONGs.
+2 - Códigos separados orquestrados pelo Airflow, facilitando o uso por instituições públicas e ONGs. Pode ser acompanhado em:
 
 
 ## Authors

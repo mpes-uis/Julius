@@ -41,7 +41,7 @@ import time
 1 - Full Extract
 2 - Multithreading (in implementation)"""
 
-way = 2
+way = 1
 start = time.time()
 
 def main():

@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 """Date of begin and end of extracted data"""
 
-initialdate = date(2019,1,1)
+initialdate = date(2021,1,1)
 finaldate = date.today() + relativedelta(months=-2)
 print('Data inicial de busca: ' + str(initialdate) + ' Ano-Mês-Dia')
 print('Data final de busca: ' + str(finaldate))
