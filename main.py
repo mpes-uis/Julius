@@ -26,10 +26,27 @@ Insira a API da sua cidade e colabore para unificar as fontes de dados públicos
 
 """All starts here"""
 
+import pandas as pd
+import sqlite3
 
 def main():
     
     print('Hello World')
+    
+    # Conecte-se ao banco de dados SQLite
+    conn = sqlite3.connect('exemplo.db')
+
+    # Crie um DataFrame pandas contendo a frase "Hello world!"
+    df = pd.DataFrame({'mensagem': ['Hello world!']})
+
+    # Escreva os dados na tabela do banco de dados usando o método to_sql()
+    df.to_sql('mensagens', conn, if_exists='append', index=False)
+
+    # Feche a conexão com o banco de dados
+    conn.close()
+    
+    print('fechou')
+
 
 if __name__ == "__main__":
     main()
