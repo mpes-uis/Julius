@@ -4,9 +4,13 @@ Robo que captura os dados dos Portais da Transparência e aplica métricas e tip
 
 # Sobre o Projeto
 
-Esse projeto começou uma iniciativa dos servidores da Unidade de Inovação do Ministério Público do Estado do Espírito Santo, visando capturar dados para ampliar as possibilidades de investigação de improbidade administrativa, avaliar os dados disponibilizados pelos portais (nos conformes da Lei 12.527/2011) e aplicar tipologias que dão indícios de práticas de corrupção. O nome "Julius" faz referência e homenagem ao personagem Julius da série "Todo Mundo Odeia o Cris", pois a primeira tipologia testada era a verificação de pessoas com dois empregos (porém no caso, acumulação indevida de cargos públicos), e também por conta do segundo nome do primeiro colaborador do projeto, o dev Fabrício Julio Correia de Almeida.
+Esse projeto iniciou como uma iniciativa dos servidores da Unidade de Inovação do Ministério Público do Estado do Espírito Santo para aplicar tecnicas de ciências de dados e automação, ainda em 2018. A ideia era extrair dados dos portais para ampliar possibilidades de investigação de improbidade administrativa, avaliar os dados disponibilizados pelos portais (nos conformes da Lei 12.527/2011) e aplicar tipologias que dão indícios de práticas de corrupção.
 
-Por ser ferramenta de aprendizado e por utilizar exclusivamente dados públicos governamentais, optamos recomeçar o projeto um iniciativa aberta, recomeçando o desenvolvimento dele de forma desvinculada de qualquer instituição e disponibilizando os códigos aqui no Github. A ideia é a partir do que já funciona, testar, aprimorar, criar e aperfeiçoar os códigos e funções com técnicas de Engenharia de Dados, Inteligência Artificial e boas prátivas de desenvolvimento. Por isso também o Readme e toda documentação (até os comentários dos códigos) estarem em inglês como lingua padrão, aprender inglês sempre é bom.
+O nome "Julius" faz referência e homenagem ao personagem Julius da série "Todo Mundo Odeia o Cris", pois a primeira tipologia testada era a verificação de pessoas com dois empregos (porém no caso, acumulação indevida de cargos públicos), e também por coincidentemente ser o segundo nome do primeiro colaborador do projeto, o dev Fabrício Julius Correia de Almeida.
+
+Por ser uma ferramenta de útil aprendizado e por utilizar exclusivamente dados públicos governamentais, optamos recomeçar o projeto um iniciativa aberta, recomeçando o desenvolvimento de forma desvinculada de burocracias e disponibilizando os códigos aqui no Github. A ideia é a partir do que já funciona, testar, aprimorar, criar e aperfeiçoar os códigos e funções com técnicas de Engenharia de Dados, Inteligência Artificial e boas prátivas de desenvolvimento.
+
+Os códigos são simples e as ferramentas são as mais básicas disponíveis para engenharia de dados, possibilitando que seja simples de replicar e um ambiente de aprendizagem para quem quiser aprender, seja ele servidor público, universitário, aluno de algum curso online ou só um entusiasta.
 
 # Como funciona?
 
@@ -19,6 +23,9 @@ Em tese, quando todos municípios e entidades governamentais atingirem um "níve
 Nem todos os dados são estruturados. Contratos, editais, atas e notas de empenho são exemplos de dados não estruturados. Daí que cresce a complexidade. Cresce o desafio. Mas trabalhar em cima disso agrega valor aos dados e as ferramentas. Dados não estruturados podem ser armazenados em bancos NoSQL, seus textos podem ser extraídos para utilização e alimentação de aplicações de LPN, por exemplo.
 
 O Julius consome as APIs de todos portais da transparência implementados (até o momento, os 78 municípios do estado do Espírito Santo) e armazena eles em um banco de dados. Esse banco fica disponível para utilização dentro do container docker. Daí você pode fazer download, compartilhar, consumir em suas aplicações ou utilizar como achar melhor.
+
+![image](https://user-images.githubusercontent.com/98188778/235966779-ca954c0f-3407-4c7c-b548-2feb677fe1fc.png)
+
 
 # Resultados esperados
 
@@ -42,15 +49,25 @@ Faça download do arquivo Dockerfile presente na raiz do diretório github.
 
 Coloque o arquivo no diretório que gostar mais.
 
-Execute o seguinte comando:
+Ative seu o seu shell de linha de comando (Bash, PowerShell, CMD) no diretório em que está o dockerfile.
 
-    YYYYY  Inserir comando docker aqui - FAZER YYYYY
+Execute o seguinte comando para criar um volume compartilhado, onde poderá posteriormente salvar/cambiar arquivos com o aplicativo:
+
+    docker volume create dados
+
+Crie a imagem do container a partir do dockerfile:
+
+    docker build -t julius-img .
+    
+E finalmente, coloque o container em operação:
+
+    docker run -d --name julius julius-img
 
 Ponto!
 
-O container criado irá fazer download dos códigos necessários e iniciar sua execução. Em seu storage você poderá encontrar o banco de dados SQLite.
+O container criado fara do download dos códigos necessários e iniciará a execução do aplicativo. Em seu storage você poderá encontrar o banco de dados SQLite. Agora é só aguardar algumas horas e os dados estarão salvos no banco.
 
-# Desafios
+# Desafio
 
 Não existe um padrão universal ou regra de outro para funcionamento ou formato dos portais da transparência. O mesmo vale para suas APIs de consumo. Ou seja, mesmo que todo portal tenha que disponibilizar os dados exigidos na LAI, poderá disponibilizar na forma que quiser, ou lhe for mais prático.
 
@@ -58,8 +75,9 @@ Por exemplo: A API da prefeitura X retorna os dados referentes a folha de pagame
 
 Nenhum dos casos acima fere a LAI, já que os dados estão disponibilizados. Porém exige que seja feita uma engenharia de dados caso você queira fazer um comparativo ou inserir todos dados em uma mesma base. É esse o quebra cabeça que queremos resolver.
 
-A boa notícia? COMPLEMENTAR TEXTO
+A boa notícia? por sorte ou acaso, poucas empresas/formatos são aplicados a diversos portais. No estado do Espírito Santo, por exemplo, temos 3 modelos de portais para os 78 municípios. Então basta escrever o código para puxar os dados da API de um município, que você consegue replicar para uma dezena deles.
 
+*Queremos completar o Brasil. Já temos 78 municípios, faltam só 5.490! Bora trabalhar juntos nessa?*
 
 # FAQ Portais da Transparência
 
@@ -71,47 +89,46 @@ Os dados contidos em portais são estruturados (tabelas de salários, pagamentos
 
 Os itens abaixo são comumente encontrados nos portais da transparência, e cada um deles representa uma seção específica com informações sobre determinado assunto relacionado às atividades de uma entidade governamental:
 
-Licitações: são processos administrativos que visam selecionar a melhor proposta para a contratação de serviços, obras ou fornecimento de bens. As informações sobre licitações geralmente incluem datas, modalidades, valores, empresas participantes e vencedoras.
+- Licitações: são processos administrativos que visam selecionar a melhor proposta para a contratação de serviços, obras ou fornecimento de bens. As informações sobre licitações geralmente incluem datas, modalidades, valores, empresas participantes e vencedoras.
 
-Contratos: são acordos formais firmados entre uma entidade governamental e um terceiro, seja ele uma pessoa física ou jurídica, para a prestação de serviços, obras ou fornecimento de bens. As informações sobre contratos geralmente incluem valores, objeto do contrato, prazos e condições.
+- Contratos: são acordos formais firmados entre uma entidade governamental e um terceiro, seja ele uma pessoa física ou jurídica, para a prestação de serviços, obras ou fornecimento de bens. As informações sobre contratos geralmente incluem valores, objeto do contrato, prazos e condições.
 
-Atas: são documentos que registram os principais fatos e decisões de uma reunião ou sessão pública. As informações sobre atas geralmente incluem datas, horários, pauta e resoluções.
+- Atas: são documentos que registram os principais fatos e decisões de uma reunião ou sessão pública. As informações sobre atas geralmente incluem datas, horários, pauta e resoluções.
 
-Ordem de compras: são documentos emitidos para a aquisição de materiais ou serviços. As informações sobre ordem de compras geralmente incluem datas, valores, fornecedores e descrição dos itens adquiridos.
+- Ordem de compras: são documentos emitidos para a aquisição de materiais ou serviços. As informações sobre ordem de compras geralmente incluem datas, valores, fornecedores e descrição dos itens adquiridos.
 
-Materiais entradas: são registros dos materiais recebidos pela entidade governamental, seja por meio de compras, doações ou outras formas de aquisição. As informações sobre materiais entradas geralmente incluem datas, valores, fornecedores e descrição dos itens.
+- Materiais entradas: são registros dos materiais recebidos pela entidade governamental, seja por meio de compras, doações ou outras formas de aquisição. As informações sobre materiais entradas geralmente incluem datas, valores, fornecedores e descrição dos itens.
 
-Materiais saídas: são registros dos materiais que deixaram a entidade governamental, seja por meio de transferências, descartes ou outras formas de baixa. As informações sobre materiais saídas geralmente incluem datas, valores e destino dos itens.
+- Materiais saídas: são registros dos materiais que deixaram a entidade governamental, seja por meio de transferências, descartes ou outras formas de baixa. As informações sobre materiais saídas geralmente incluem datas, valores e destino dos itens.
 
-Bens consolidado: é um registro dos bens patrimoniais da entidade governamental, tanto móveis quanto imóveis. As informações sobre bens consolidado geralmente incluem descrição, valor, localização e situação dos bens.
+- Bens consolidado: é um registro dos bens patrimoniais da entidade governamental, tanto móveis quanto imóveis. As informações sobre bens consolidado geralmente incluem descrição, valor, localização e situação dos bens.
 
-Bens móveis: são registros dos bens patrimoniais da entidade governamental que podem ser movidos, como veículos, equipamentos e mobiliário. As informações sobre bens móveis geralmente incluem descrição, valor, número de série e data de aquisição.
+- Bens móveis: são registros dos bens patrimoniais da entidade governamental que podem ser movidos, como veículos, equipamentos e mobiliário. As informações sobre bens móveis geralmente incluem descrição, valor, número de série e data de aquisição.
 
-Bens imóveis: são registros dos bens patrimoniais da entidade governamental que não podem ser movidos, como terrenos e prédios. As informações sobre bens imóveis geralmente incluem descrição, valor, localização e área construída.
+- Bens imóveis: são registros dos bens patrimoniais da entidade governamental que não podem ser movidos, como terrenos e prédios. As informações sobre bens imóveis geralmente incluem descrição, valor, localização e área construída.
 
-Frota de veículos: é um registro dos veículos utilizados pela entidade governamental, seja para transporte de pessoas, mercadorias ou serviços públicos. As informações sobre frota de veículos geralmente incluem modelo, placa, ano de fabricação e quilometragem.
+- Frota de veículos: é um registro dos veículos utilizados pela entidade governamental, seja para transporte de pessoas, mercadorias ou serviços públicos. As informações sobre frota de veículos geralmente incluem modelo, placa, ano de fabricação e quilometragem.
 
-Orçamento de receitas: é um registro das previsões de receitas da entidade governamental para um determinado período. As informações sobre orçamento de receitas geralmente incluem fontes de arrecadação, valores e período de vigência.
+- Orçamento de receitas: é um registro das previsões de receitas da entidade governamental para um determinado período. As informações sobre orçamento de receitas geralmente incluem fontes de arrecadação, valores e período de vigência.
 
-Execução de receitas: é um registro das receitas efetivamente arrecadadas pela entidade governamental em um determinado período. As informações sobre execução de receitas geralmente incluem fontes de arrecadação, valores e período de referência.
+- Execução de receitas: é um registro das receitas efetivamente arrecadadas pela entidade governamental em um determinado período. As informações sobre execução de receitas geralmente incluem fontes de arrecadação, valores e período de referência.
 
-Orçamento de Despesas: é a previsão dos gastos que um órgão público terá durante um período determinado. No portal da transparência, essa informação é detalhada por categoria de despesa, programa e unidade orçamentária, possibilitando que o cidadão tenha uma visão ampla dos recursos que serão utilizados e para quais finalidades.
+- Orçamento de Despesas: é a previsão dos gastos que um órgão público terá durante um período determinado. No portal da transparência, essa informação é detalhada por categoria de despesa, programa e unidade orçamentária, possibilitando que o cidadão tenha uma visão ampla dos recursos que serão utilizados e para quais finalidades.
 
-Empenhos: são o registro de um compromisso de gastos assumido pelo órgão público, que será pago posteriormente. Essa informação é importante para que o cidadão possa acompanhar os gastos realizados pelo órgão e verificar se estão dentro do orçamento previsto.
+- Empenhos: são o registro de um compromisso de gastos assumido pelo órgão público, que será pago posteriormente. Essa informação é importante para que o cidadão possa acompanhar os gastos realizados pelo órgão e verificar se estão dentro do orçamento previsto.
 
-Liquidações: são a confirmação de que uma despesa prevista foi efetivamente realizada pelo órgão público. Essa informação é importante para que o cidadão possa verificar se o recurso público foi utilizado conforme o previsto e se a execução do gasto foi adequada.
+- Liquidações: são a confirmação de que uma despesa prevista foi efetivamente realizada pelo órgão público. Essa informação é importante para que o cidadão possa verificar se o recurso público foi utilizado conforme o previsto e se a execução do gasto foi adequada.
 
-Pagamentos: são o registro do efetivo pagamento de uma despesa realizada pelo órgão público. Essa informação é importante para que o cidadão possa acompanhar se os gastos foram pagos dentro do prazo estabelecido e se o valor efetivamente pago corresponde ao valor previsto.
+- Pagamentos: são o registro do efetivo pagamento de uma despesa realizada pelo órgão público. Essa informação é importante para que o cidadão possa acompanhar se os gastos foram pagos dentro do prazo estabelecido e se o valor efetivamente pago corresponde ao valor previsto.
 
-Transferências Extraorçamentárias: são as transferências de recursos financeiros entre entidades governamentais que não estão previstas no orçamento anual. Essa informação é importante para que o cidadão possa verificar se essas transferências estão sendo realizadas de forma adequada e transparente.
+- Transferências Extraorçamentárias: são as transferências de recursos financeiros entre entidades governamentais que não estão previstas no orçamento anual. Essa informação é importante para que o cidadão possa verificar se essas transferências estão sendo realizadas de forma adequada e transparente.
 
-Transferências Intraorçamentárias: são as transferências de recursos financeiros entre unidades orçamentárias dentro do mesmo órgão governamental. Essa informação é importante para que o cidadão possa acompanhar como estão sendo distribuídos os recursos dentro do órgão e se estão sendo utilizados de forma eficiente.
+- Transferências Intraorçamentárias: são as transferências de recursos financeiros entre unidades orçamentárias dentro do mesmo órgão governamental. Essa informação é importante para que o cidadão possa acompanhar como estão sendo distribuídos os recursos dentro do órgão e se estão sendo utilizados de forma eficiente.
 
-Servidores: são as informações sobre os funcionários públicos que trabalham no órgão governamental. No portal da transparência, é possível encontrar dados sobre a estrutura organizacional do órgão, a quantidade de servidores por cargo e os seus salários, entre outras informações. Essa informação é importante para que o cidadão possa avaliar a eficiência e a qualidade dos serviços prestados pelo órgão.
+- Servidores: são as informações sobre os funcionários públicos que trabalham no órgão governamental. No portal da transparência, é possível encontrar dados sobre a estrutura organizacional do órgão, a quantidade de servidores por cargo e os seus salários, entre outras informações. Essa informação é importante para que o cidadão possa avaliar a eficiência e a qualidade dos serviços prestados pelo órgão.
 
 
-
-## Authors
+## Colaboradores
 
 | [<img src="https://github.com/pedropberger.png?size=115" width=115><br><sub>@pedropberger</sub>](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115><br><sub>@mwildemberg</sub>](https://github.com/mwildemberg) |
 | :---: | :---: |
