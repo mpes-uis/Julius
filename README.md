@@ -85,13 +85,15 @@ A boa notícia? por sorte ou acaso, poucas empresas/formatos são aplicados a di
 
 Você é dev? ajude a gente a resolver esses problemas.
 
-Multithreading: Levam algumas boas horas para concluir a extração de dados. Isso pq limitamos do dados a partir de 2020. Multithreading, processos paralelos e outras formas de execução de código em paralelo aparentemente seriam a solução. Mas quando tentei implementar tivemos o IP bloqueado obviamente por muitos requests oriundos de uma mesma fonte.
+- Multithreading: Levam algumas boas horas para concluir a extração de dados. Isso pq limitamos do dados a partir de 2020. Multithreading, processos paralelos e outras formas de execução de código em paralelo aparentemente seriam a solução. Mas quando tentei implementar tivemos o IP bloqueado obviamente por muitos requests oriundos de uma mesma fonte.
 
-Organização do código: Ainda estamos aprendendo a escrever códigos lindos e legíveis. Qualquer implementação (ou dica) que aprimore a estética e leitura do código é bem vinda. Até organizar as pastas de forma eficiente foi difícil de decidir.
+- Organização do código: Ainda estamos aprendendo a escrever códigos lindos e legíveis. Qualquer implementação (ou dica) que aprimore a estética e leitura do código é bem vinda. Até organizar as pastas de forma eficiente foi difícil de decidir.
 
-Colaboração: Merge, branch, pull, tudo isso é novidade para a gente. Precisamos de boas almas para nos guiar em como fazer isso melhor para evoluirmos a ferramenta.
+- Colaboração: Merge, branch, pull, tudo isso é novidade para a gente. Precisamos de boas almas para nos guiar em como fazer isso melhor para evoluirmos a ferramenta.
 
-Modularização: O projeto se inicia com 78 portais de 4 formatos diferentes. Como podemos otimizar o código de forma que as pessoas possam adicionar mais portais e formatos e incluir isso na aplicação sem bagunçar o funcionamento? Temos um plano, mas sei que tem pessoas bem mais preparadas e experientes para isso.
+- Modularização: O projeto se inicia com 78 portais de 4 formatos diferentes. Como podemos otimizar o código de forma que as pessoas possam adicionar mais portais e formatos e incluir isso na aplicação sem bagunçar o funcionamento? Temos um plano, mas sei que tem pessoas bem mais preparadas e experientes para isso.
+
+- Dados não estruturados: Alguns portais trazem arquivos em pdf, word e texto para disponibilizar na íntegra os contratos, editais de licitação, notas de empenho, etc. Isso é um mundo para ser explorado. Seja aplicando um algoritmo de OCR para extrair texto de pdfs ou em pensar e decidir a melhor forma de armazenar e trabalhar com esses dados.
 
 # Todo
 
