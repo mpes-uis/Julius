@@ -44,7 +44,7 @@ Coloque o arquivo no diretório que gostar mais.
 
 Execute o seguinte comando:
 
-YYYYY  Inserir comando docker aqui - FAZER YYYYY
+  YYYYY  Inserir comando docker aqui - FAZER YYYYY
 
 Ponto!
 
