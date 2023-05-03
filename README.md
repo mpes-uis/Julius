@@ -1,6 +1,6 @@
 # Julius
 
-Robo que captura os dados dos Portais da Transparência e aplica métricas e tipologias conhecidas para averiguar indicadores de improbidade administrativa (pessoas com dois cargos públicos - além do que é assegurado por lei - contratos e compras com preços elevados, etc) ou práticas ruims de portais.
+Ferramenta que captura os dados dos Portais da Transparência e aplica métricas e tipologias conhecidas para averiguar indicadores de improbidade administrativa (pessoas com dois cargos públicos - além do que é assegurado por lei - contratos e compras com preços elevados, etc) ou práticas ruims de portais.
 
 # Sobre o Projeto
 
@@ -63,9 +63,11 @@ E finalmente, coloque o container em operação:
 
     docker run -d --name julius julius-img
 
-Ponto!
+Pronto!
 
 O container criado fara do download dos códigos necessários e iniciará a execução do aplicativo. Em seu storage você poderá encontrar o banco de dados SQLite. Agora é só aguardar algumas horas e os dados estarão salvos no banco.
+
+Os comandos acima não são uma regra, você pode personalizar o volume, a imagem e o containter utilizando outros comandos docker que achar interessantes.
 
 # Desafio
 
@@ -78,6 +80,22 @@ Nenhum dos casos acima fere a LAI, já que os dados estão disponibilizados. Por
 A boa notícia? por sorte ou acaso, poucas empresas/formatos são aplicados a diversos portais. No estado do Espírito Santo, por exemplo, temos 3 modelos de portais para os 78 municípios. Então basta escrever o código para puxar os dados da API de um município, que você consegue replicar para uma dezena deles.
 
 *Queremos completar o Brasil. Já temos 78 municípios, faltam só 5.490! Bora trabalhar juntos nessa?*
+
+# Desafios computacionais
+
+Você é dev? ajude a gente a resolver esses problemas.
+
+Multithreading: Levam algumas boas horas para concluir a extração de dados. Isso pq limitamos do dados a partir de 2020. Multithreading, processos paralelos e outras formas de execução de código em paralelo aparentemente seriam a solução. Mas quando tentei implementar tivemos o IP bloqueado obviamente por muitos requests oriundos de uma mesma fonte.
+
+Organização do código: Ainda estamos aprendendo a escrever códigos lindos e legíveis. Qualquer implementação (ou dica) que aprimore a estética e leitura do código é bem vinda. Até organizar as pastas de forma eficiente foi difícil de decidir.
+
+Colaboração: Merge, branch, pull, tudo isso é novidade para a gente. Precisamos de boas almas para nos guiar em como fazer isso melhor para evoluirmos a ferramenta.
+
+Modularização: O projeto se inicia com 78 portais de 4 formatos diferentes. Como podemos otimizar o código de forma que as pessoas possam adicionar mais portais e formatos e incluir isso na aplicação sem bagunçar o funcionamento? Temos um plano, mas sei que tem pessoas bem mais preparadas e experientes para isso.
+
+# Todo
+
+Migrando pro Projects
 
 # FAQ Portais da Transparência
 
@@ -132,3 +150,5 @@ Os itens abaixo são comumente encontrados nos portais da transparência, e cada
 
 | [<img src="https://github.com/pedropberger.png?size=115" width=115><br><sub>@pedropberger</sub>](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115><br><sub>@mwildemberg</sub>](https://github.com/mwildemberg) |
 | :---: | :---: |
+
+Ajude a gente a evoluir e entre pro grupo.
