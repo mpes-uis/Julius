@@ -22,25 +22,11 @@ prefeiturasURLS=pd.read_csv('prefeituras.csv')
 #read csv assuntos
 assuntos_tectrilha=pd.read_csv('assuntos_tectrilha.csv')
 
-#falta licitações
-assuntos=[
-    "receitas",
-    "pessoal",
-    "despesa",
-    "diarias",
-    "convenios",
-    "captacoes",
-    "bensmoveis",
-    "passagens",
-    "bensImoveis",
-    "contratos",
-]
-
 anos=[
-    2018,
-    2019,
-    2020,
-    2021,
+    #2018,
+    #2019,
+    #2020,
+    #2021,
     2022,
     2023
 ]
