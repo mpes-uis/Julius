@@ -1,0 +1,11 @@
+id,assunto,parametros
+1,receitas,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
+2,pessoal,?exercicio={exercicio}&periodo={periodo}
+3,despesa,?exercicio={exercicio}
+4,diarias,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
+5,convenios,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
+6,captacoes,?exercicio={exercicio}
+7,bensmoveis,?exercicio={exercicio}
+8,passagens,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
+9,bensImoveis,	
+10,contratos,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
