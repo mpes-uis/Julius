@@ -22,6 +22,9 @@ prefeiturasURLS=pd.read_csv('prefeituras.csv')
 #read csv assuntos
 assuntos_tectrilha=pd.read_csv('assuntos_tectrilha.csv')
 
+#read csv meses
+meses=pd.read_csv('meses.csv')
+
 anos=[
     #2018,
     #2019,
@@ -31,26 +34,32 @@ anos=[
     2023
 ]
 
-error_list = []
+#error_list = []
 
 #Cria a tabela leituras no banco (se for a primeira vez: cria a tabela; se a tabela já existir, não insere nenhuma informação)
-colunas = ['url', 'assunto', 'prefeitura', 'ano', 'sucess', 'erro', 'data_leitura']
+colunas = ['url', 'assunto', 'prefeitura', 'ano', 'periodo', 'sucess', 'erro', 'data_leitura']
 leituras = pd.DataFrame(columns=colunas)
 leituras.to_sql('leituras', conn_tectrilha, if_exists='append', index=False)
 
-def readData_tectrilha(url, assunto, ano, prefeitura, parametro, unidadegestora):
+def readData_tectrilha(url, assunto, ano, periodo, prefeitura, parametro, unidadegestora, readAgain):
     sucess=True
     erro=''
     parametro=parametro.replace("{unidadeGestoraId}",str(int(unidadegestora)))
     parametro=parametro.replace("{exercicio}",str(ano))
+    parametro=parametro.replace("{periodo}",str(periodo))
     urlcompleta=url + assunto + parametro
     print(urlcompleta)
-    print(url)
-    print(assunto)
-    print(str(ano))
-    print(prefeitura)
-    print(parametro)
-    print(str(int(unidadegestora)))
+    #print(urlcompleta)
+    #print(url)
+    #print(assunto)
+    #print(str(ano))
+    #print(prefeitura)
+    #print(parametro)
+    #print(str(int(unidadegestora)))
+    if (readAgain == False): #verifica se a url já foi lida, se sim, não lê novamente
+        alreadyRead = pd.read_sql(f"SELECT * FROM leituras WHERE url = '{urlcompleta}'", conn_tectrilha)
+        if (not alreadyRead.empty):
+            return
     try:
         #read url
         response = requests.get(urlcompleta)
@@ -60,9 +69,9 @@ def readData_tectrilha(url, assunto, ano, prefeitura, parametro, unidadegestora)
         datanew=pd.read_json(data) 
         df=pd.DataFrame(datanew)
         df.insert(0,"prefeitura",prefeitura)
-        print(df)
+        #print(df)
         
-     #verifica se o dado já existe no banco
+        #cria dataframe do dado que já existe no banco (da prefeitura e assunto em questão)
         try:
             existing_data = pd.read_sql(f"SELECT * FROM {assunto} WHERE prefeitura = '{prefeitura}'", conn_tectrilha)
         except pd.io.sql.DatabaseError:
@@ -70,7 +79,6 @@ def readData_tectrilha(url, assunto, ano, prefeitura, parametro, unidadegestora)
             existing_data = pd.DataFrame(columns=df.columns)
         
         #Faz a junção dos dataframes com a opção indicator=True
-        #print(existing_data)
         new_data = df.merge(existing_data, on=list(existing_data.columns), how='left', indicator=True)
 
         # Seleciona apenas os registros que estão presentes apenas no segundo dataframe (existing_data)
@@ -79,29 +87,30 @@ def readData_tectrilha(url, assunto, ano, prefeitura, parametro, unidadegestora)
         # Remove a coluna _merge que foi adicionada durante a junção
         new_data = new_data.drop(columns='_merge')
 
-        #Insere dados lidos no banco quando não existe informação, quando ela existe apenas adiciona as novas informações (replace)
-        if existing_data.empty:
-            new_data.to_sql(assunto, conn_tectrilha, if_exists='replace', index=False)
-        else:
-            new_data.to_sql(assunto, conn_tectrilha, if_exists='append', index=False)
-
+        #Insere novos dados da api no banco;
+        #quando não existe a tabela, ela é criada automaticamente
+        #se os dados já estão presentes no banco, uma tabela vazia será adicionada (nada muda)
+        new_data.to_sql(assunto, conn_tectrilha, if_exists='append', index=False)
+        
+        readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, periodo, sucess, erro) #salva a url lida com sucesso
     except Exception as e:
         sucess=False 
         erro=str(e) #mensagem de erro da leitura da url
         print(f"Error reading data from {urlcompleta}")
-        error_list.append(f"Error reading data from {urlcompleta}")
-        readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, sucess, erro) #salva a url e o respectivo erro
+        #error_list.append(f"Error reading data from {urlcompleta}")
+        readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, periodo, sucess, erro) #salva a url e o respectivo erro
 
-    readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, sucess, erro) #salva a url lida com sucesso
-
+    
 # Lê e salva url e os respectivos resultados
-def readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, sucess, erro):
-    colunas = ['url','assunto','prefeitura', 'ano','sucess','erro','data_leitura']
+def readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, periodo, sucess, erro):
+    colunas = ['url','assunto','prefeitura', 'ano', 'periodo', 'sucess','erro','data_leitura']
     leituras = pd.DataFrame(columns=colunas)
     registro={
          "url":urlcompleta,
          "assunto":assunto,
          "prefeitura":prefeitura,
+         "ano": ano,
+         "periodo": periodo,
          "sucess": sucess,
          "erro": erro,
          "data_leitura": date.today()
@@ -110,14 +119,20 @@ def readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, sucess, erro):
     leituras.to_sql("leituras", conn_tectrilha, if_exists='append', index=False)
 
 
-
 def readData_tectrilha_Total():
     for prefeituraId in prefeiturasURLS.index:
         for assuntoid in assuntos_tectrilha.index:
-            for ano in anos:
+            if assuntos_tectrilha["assunto"][assuntoid]=="pessoal":
+                for ano in anos:
+                    for periodoid in meses.index:
+                        if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":
+                           readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, meses["mes"][periodoid], prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False)
+            if assuntos_tectrilha["assunto"][assuntoid] in ["despesa", "captacoes", "bensmoveis","receitas", "diarias", "convenios", "passagens", "contratos"]:
+                for ano in anos:
                     if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":
-                        readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId])
+                        readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, 0, prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False)
+            if assuntos_tectrilha["assunto"][assuntoid]=="bensimoveis":
+                if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":
+                    readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], 0, 0, prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False)
 
-
-
-#readData_tectrilha_Total()
+readData_tectrilha_Total()
