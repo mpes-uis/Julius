@@ -27,13 +27,14 @@ Insira a API da sua cidade e colabore para unificar as fontes de dados públicos
 """All starts here"""
 
 
-import tectrilha
+#import tectrilha
 import agape
+import sqlite3
 #import portaltp
 
 def main():
     empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 1: Tectrilha \n 2: Ágape \n 3: Todas \n'))
-    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script \n 2: Rodar apenas as leituras com erro \n3'))
+    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script \n 2: Rodar apenas as leituras com erro \n'))
 
     if(empresa_escolhida=='1'):
         if(funcao_escolhida=='1'):
