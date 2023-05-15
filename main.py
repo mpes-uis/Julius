@@ -42,13 +42,27 @@ def main():
             print("Função em construção")
     if(empresa_escolhida=='2'):
         if(funcao_escolhida=='1'):
-            agape.readData_Agape_Total()
+            conn=sqlite3.connect('agape.db')
+            type(conn)
+            cur = conn.cursor()
+            type(cur)
+            print('Database Connected!')
+            agape.readData_Agape_Total(conn)
+            conn.close()
         if(funcao_escolhida=='2'):
             print("Função em construção")
     if(empresa_escolhida=='3'):
         if(funcao_escolhida=='1'):
+            #Conexão com o banco Agape
+            conn=sqlite3.connect('agape.db')
+            type(conn)
+            cur = conn.cursor()
+            type(cur)
+            print('Database Connected!')
+            agape.readData_Agape_Total(conn)
+            conn.close()
             tectrilha.readData_tectrilha_Total()
-            agape.readData_Agape_Total()
+            
         if(funcao_escolhida=='2'):
             print("Função em construção")
   
