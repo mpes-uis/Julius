@@ -30,11 +30,11 @@ Insira a API da sua cidade e colabore para unificar as fontes de dados públicos
 import tectrilha
 import agape
 import sqlite3
-#import portaltp
+import portaltp
 
 def main():
-    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 1: Tectrilha \n 2: Ágape \n 3: Todas \n'))
-    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script \n 2: Rodar apenas as leituras com erro \n'))
+    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n 4: Todas \n'))
+    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script (lê apenas urls que não foram lidas ainda) \n 2: Rodar apenas as leituras com erro \n'))
 
     if(empresa_escolhida=='1'):
         if(funcao_escolhida=='1'):
@@ -43,7 +43,7 @@ def main():
             type(conn_tectrilha)
             cur = conn_tectrilha.cursor()
             type(cur)
-            print('Database Connected!')
+            print('Tectrilha Connected!')
             tectrilha.readData_tectrilha_Total(conn_tectrilha)
             conn_tectrilha.close()
         if(funcao_escolhida=='2'):
@@ -55,19 +55,31 @@ def main():
             type(conn_agape)
             cur = conn_agape.cursor()
             type(cur)
-            print('Database Connected!')
+            print('Agape Connected!')
             agape.readData_Agape_Total(conn_agape)
             conn_agape.close()
         if(funcao_escolhida=='2'):
             print("Função em construção")
     if(empresa_escolhida=='3'):
         if(funcao_escolhida=='1'):
+            #Conexão com o banco portaltp
+            conn_portaltp=sqlite3.connect('portaltp.db')
+            type(conn_portaltp)
+            cur = conn_portaltp.cursor()
+            type(cur)
+            print('Portaltp Connected!')
+            portaltp.readData_portaltp_Total(conn_portaltp)
+            conn_portaltp.close()
+        if(funcao_escolhida=='2'):
+            print("Função em construção")
+    if(empresa_escolhida=='4'):
+        if(funcao_escolhida=='1'):
             #Conexão com o banco Agape
             conn_agape=sqlite3.connect('agape.db')
             type(conn_agape)
             cur = conn_agape.cursor()
             type(cur)
-            print('Database Connected!')
+            print('Agape Connected!')
             agape.readData_Agape_Total(conn_agape)
             conn_agape.close()
 
@@ -76,9 +88,18 @@ def main():
             type(conn_tectrilha)
             cur = conn_tectrilha.cursor()
             type(cur)
-            print('Database Connected!')
+            print('Tectrilha Connected!')
             tectrilha.readData_tectrilha_Total(conn_tectrilha)
             conn_tectrilha.close()
+
+            #Conexão com o banco portaltp
+            conn_portaltp=sqlite3.connect('portaltp.db')
+            type(conn_portaltp)
+            cur = conn_portaltp.cursor()
+            type(cur)
+            print('Portaltp Connected!')
+            portaltp.readData_portaltp_Total(conn_portaltp)
+            conn_portaltp.close()
             
         if(funcao_escolhida=='2'):
             print("Função em construção")
