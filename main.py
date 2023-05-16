@@ -27,7 +27,7 @@ Insira a API da sua cidade e colabore para unificar as fontes de dados públicos
 """All starts here"""
 
 
-#import tectrilha
+import tectrilha
 import agape
 import sqlite3
 #import portaltp
@@ -38,31 +38,47 @@ def main():
 
     if(empresa_escolhida=='1'):
         if(funcao_escolhida=='1'):
-            tectrilha.readData_tectrilha_Total()
+            #Conexão com o banco tectrilha
+            conn_tectrilha=sqlite3.connect('tectrilha.db')
+            type(conn_tectrilha)
+            cur = conn_tectrilha.cursor()
+            type(cur)
+            print('Database Connected!')
+            tectrilha.readData_tectrilha_Total(conn_tectrilha)
+            conn_tectrilha.close()
         if(funcao_escolhida=='2'):
             print("Função em construção")
     if(empresa_escolhida=='2'):
         if(funcao_escolhida=='1'):
-            conn=sqlite3.connect('agape.db')
-            type(conn)
-            cur = conn.cursor()
+            #Conexão com o banco Agape
+            conn_agape=sqlite3.connect('agape.db')
+            type(conn_agape)
+            cur = conn_agape.cursor()
             type(cur)
             print('Database Connected!')
-            agape.readData_Agape_Total(conn)
-            conn.close()
+            agape.readData_Agape_Total(conn_agape)
+            conn_agape.close()
         if(funcao_escolhida=='2'):
             print("Função em construção")
     if(empresa_escolhida=='3'):
         if(funcao_escolhida=='1'):
             #Conexão com o banco Agape
-            conn=sqlite3.connect('agape.db')
-            type(conn)
-            cur = conn.cursor()
+            conn_agape=sqlite3.connect('agape.db')
+            type(conn_agape)
+            cur = conn_agape.cursor()
             type(cur)
             print('Database Connected!')
-            agape.readData_Agape_Total(conn)
-            conn.close()
-            tectrilha.readData_tectrilha_Total()
+            agape.readData_Agape_Total(conn_agape)
+            conn_agape.close()
+
+            #Conexão com o banco tectrilha
+            conn_tectrilha=sqlite3.connect('tectrilha.db')
+            type(conn_tectrilha)
+            cur = conn_tectrilha.cursor()
+            type(cur)
+            print('Database Connected!')
+            tectrilha.readData_tectrilha_Total(conn_tectrilha)
+            conn_tectrilha.close()
             
         if(funcao_escolhida=='2'):
             print("Função em construção")
