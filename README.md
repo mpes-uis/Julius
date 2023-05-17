@@ -8,7 +8,7 @@ Esse projeto iniciou como uma iniciativa dos servidores da Unidade de Inovação
 
 O nome "Julius" faz referência e homenagem ao personagem Julius da série "Todo Mundo Odeia o Cris", pois a primeira tipologia testada era a verificação de pessoas com dois empregos (porém no caso, acumulação indevida de cargos públicos), e também por coincidentemente ser o segundo nome do primeiro colaborador do projeto, o dev Fabrício Julius Correia de Almeida.
 
-Por ser uma ferramenta de útil aprendizado e por utilizar exclusivamente dados públicos governamentais, optamos recomeçar o projeto um iniciativa aberta, recomeçando o desenvolvimento de forma desvinculada de burocracias e disponibilizando os códigos aqui no Github. A ideia é a partir do que já funciona, testar, aprimorar, criar e aperfeiçoar os códigos e funções com técnicas de Engenharia de Dados, Inteligência Artificial e boas prátivas de desenvolvimento.
+Por ser uma ferramenta de útil aprendizado e por utilizar exclusivamente dados públicos governamentais, em 2023 optamos recomeçar o projeto um iniciativa aberta, com desenvolvimento e compartilhamento desvinculado de burcracias e disponibilizando os códigos aqui no Github. A ideia é a partir do que já funciona, testar, aprimorar, criar e aperfeiçoar os códigos e funções com técnicas de Engenharia de Dados, Inteligência Artificial e boas prátivas de desenvolvimento.
 
 Os códigos são simples e as ferramentas são as mais básicas disponíveis para engenharia de dados, possibilitando que seja simples de replicar e um ambiente de aprendizagem para quem quiser aprender, seja ele servidor público, universitário, aluno de algum curso online ou só um entusiasta.
 
