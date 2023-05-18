@@ -99,7 +99,7 @@ Você é dev? ajude a gente a resolver esses problemas.
 
 Migrando pro Projects
 
-# FAQ Portais da Transparência
+# Portais da Transparência
 
 Um Portal da Transparência é um site que tem por finalidade veicular dados e informações detalhados sobre a execução orçamentária dos órgãos públicos brasileiros e entidades do terceiro setor que recebem repasses públicos. A ferramenta publica também dados sobre assuntos transversais ou que estejam relacionados à função da maioria desses órgãos.
 
