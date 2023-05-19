@@ -11,10 +11,10 @@ from datetime import date
 import os
 
 #read csv prefeituras
-prefeiturasURLS=pd.read_csv('prefeituras.csv')
+prefeiturasURLS=pd.read_csv('data/prefeituras.csv')
 
 #read csv assuntos
-assuntos_tectrilha=pd.read_csv('assuntos_tectrilha.csv')
+assuntos_tectrilha=pd.read_csv('data/assuntos_tectrilha.csv')
 
 meses=[
     1,

@@ -27,10 +27,10 @@ Insira a API da sua cidade e colabore para unificar as fontes de dados públicos
 """All starts here"""
 
 
-import tectrilha
-import agape
+import scr.tectrilha as tectrilha
+import scr.agape as agape
 import sqlite3
-import portaltp
+import scr.portaltp as portaltp
 
 def main():
     empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 0: Todas \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n '))

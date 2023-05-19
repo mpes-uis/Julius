@@ -11,11 +11,11 @@ import os
 import traceback
 
 #read csv prefeituras
-prefeiturasURLS=pd.read_csv('prefeituras.csv')
+prefeiturasURLS=pd.read_csv('data/prefeituras.csv')
 #print(prefeiturasURLS)
 
 #read csv assuntos
-assuntos_portaltp=pd.read_csv('assuntos_portaltp.csv')
+assuntos_portaltp=pd.read_csv('data/assuntos_portaltp.csv')
 
 meses=[
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
