@@ -18,13 +18,11 @@ import os
 #print('Database Connected!')
 
 #Lê csv prefeituras (contém nome da prefeitura, município, url base e empresa responsavel pelo portal)
-prefeiturasURLS=pd.read_csv('prefeituras.csv')
+prefeiturasURLS=pd.read_csv('data/prefeituras.csv')
 #print(prefeiturasURLS)
 
 #read csv assuntos
-assuntos_agape=pd.read_csv('assuntos_agape.csv')
-
-error_list = []
+assuntos_agape=pd.read_csv('data/assuntos_agape.csv')
 
 #Função que lê a url, incrementa as paginas e usa a função readAndSaveUrl
 #Para cada url lida, cria tabela do assunto no banco e verifica se o dado já existe
@@ -80,7 +78,6 @@ def readData_Agape(url, assunto, prefeitura, readAgain, conn):
             sucess=False 
             erro=str(e) #mensagem de erro da leitura da url
             print(f"Error reading data from {url_agape}")
-            error_list.append(f"Error reading data from {url_agape}")
             readAndSaveUrl(url_agape, assunto, prefeitura, contador, sucess, erro, None, pag_total, conn) #salva a url e o respectivo erro
             break #quando ocorre erro na leitura da url, o contador da página não é iterado e voltamos ao início da função (porque não sabemos se há uma próxima página a ser lida), em vez disso começamos a ler o próximo assunto ou prefeitura)
 
