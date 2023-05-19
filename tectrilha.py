@@ -23,7 +23,22 @@ prefeiturasURLS=pd.read_csv('prefeituras.csv')
 assuntos_tectrilha=pd.read_csv('assuntos_tectrilha.csv')
 
 #read csv meses
-meses=pd.read_csv('meses.csv')
+#meses=pd.read_csv('meses.csv')
+
+meses=[
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+]
 
 anos=[
     #2018,
@@ -122,9 +137,9 @@ def readData_tectrilha_Total(conn):
         for assuntoid in assuntos_tectrilha.index:
             if assuntos_tectrilha["assunto"][assuntoid]=="pessoal":
                 for ano in anos:
-                    for periodoid in meses.index:
+                    for mes in meses:
                         if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":
-                           readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, meses["mes"][periodoid], prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False, conn)
+                           readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, mes, prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False, conn)
             if assuntos_tectrilha["assunto"][assuntoid] in ["despesa", "captacoes", "bensmoveis","receitas", "diarias", "convenios", "passagens", "contratos"]:
                 for ano in anos:
                     if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":

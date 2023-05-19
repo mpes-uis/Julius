@@ -33,7 +33,7 @@ import sqlite3
 import portaltp
 
 def main():
-    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n 4: Todas \n'))
+    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 0: Todas \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n '))
     funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script (lê apenas urls que não foram lidas ainda) \n 2: Rodar apenas as leituras com erro \n'))
 
     if(empresa_escolhida=='1'):
@@ -72,7 +72,7 @@ def main():
             conn_portaltp.close()
         if(funcao_escolhida=='2'):
             print("Função em construção")
-    if(empresa_escolhida=='4'):
+    if(empresa_escolhida=='0'):
         if(funcao_escolhida=='1'):
             #Conexão com o banco Agape
             conn_agape=sqlite3.connect('agape.db')
