@@ -10,13 +10,6 @@ from datetime import date
 import os
 import traceback
 
-#connect to sqlite
-#conn=sqlite3.connect('portaltp.db')
-#type(conn)
-#cur = conn.cursor()
-#type(cur)
-#print('Database Connected!')
-
 #read csv prefeituras
 prefeiturasURLS=pd.read_csv('prefeituras.csv')
 #print(prefeiturasURLS)
@@ -31,10 +24,9 @@ meses=[
 anos=[
     #2020,
     #2021,
-    2022
+    2022,
+    2023
 ]
-
-error_list = []
 
 def readData_portaltp(url, assunto, ano, mes, prefeitura, readAgain, conn):
     sucess=True
@@ -85,7 +77,6 @@ def readData_portaltp(url, assunto, ano, mes, prefeitura, readAgain, conn):
         sucess=False 
         erro=str(e) #mensagem de erro da leitura da url
         print(f"Error reading data from {url_portaltp}")
-        error_list.append(f"Error reading data from {url_portaltp}")
         readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucess, erro, conn) #salva a url e o respectivo erro
         
     readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucess, erro, conn) #salva a url lida com sucesso
@@ -116,6 +107,9 @@ def readData_portaltp_Total(conn):
         for assuntoid in assuntos_portaltp.index:
             for ano in anos:
                 for mes in meses:
+                    if mes>= datetime.datetime.now().month and ano>= datetime.datetime.now().year:
+                            print("Leitura feita até data atual")
+                            break
                     if prefeiturasURLS["empresa"][prefeituraId]=="portaltp":
                         readData_portaltp(prefeiturasURLS["url"][prefeituraId], assuntos_portaltp["assunto"][assuntoid], ano, mes, prefeiturasURLS["prefeitura"][prefeituraId], False, conn)
 

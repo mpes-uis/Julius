@@ -6,24 +6,15 @@ import pandas as pd
 import numpy as np
 import json
 import sqlite3
+import datetime
 from datetime import date
 import os
-
-#connect to sqlite
-#conn=sqlite3.connect('tectrilha.db')
-#type(conn)
-#cur = conn.cursor()
-#type(cur)
-#print('Database Connected!')
 
 #read csv prefeituras
 prefeiturasURLS=pd.read_csv('prefeituras.csv')
 
 #read csv assuntos
 assuntos_tectrilha=pd.read_csv('assuntos_tectrilha.csv')
-
-#read csv meses
-#meses=pd.read_csv('meses.csv')
 
 meses=[
     1,
@@ -48,8 +39,6 @@ anos=[
     2022,
     2023
 ]
-
-#error_list = []
 
 def readData_tectrilha(url, assunto, ano, periodo, prefeitura, parametro, unidadegestora, readAgain, conn):
     sucess=True
@@ -107,7 +96,6 @@ def readData_tectrilha(url, assunto, ano, periodo, prefeitura, parametro, unidad
         sucess=False 
         erro=str(e) #mensagem de erro da leitura da url
         print(f"Error reading data from {urlcompleta}")
-        #error_list.append(f"Error reading data from {urlcompleta}")
         readAndSaveUrl(urlcompleta, assunto, prefeitura, ano, periodo, sucess, erro, conn) #salva a url e o respectivo erro
 
     
@@ -138,6 +126,9 @@ def readData_tectrilha_Total(conn):
             if assuntos_tectrilha["assunto"][assuntoid]=="pessoal":
                 for ano in anos:
                     for mes in meses:
+                        if mes>= datetime.datetime.now().month and ano>= datetime.datetime.now().year:
+                            print("Leitura feita até data atual")
+                            break
                         if prefeiturasURLS["empresa"][prefeituraId]=="Tectrilha":
                            readData_tectrilha(prefeiturasURLS["url"][prefeituraId], assuntos_tectrilha["assunto"][assuntoid], ano, mes, prefeiturasURLS["prefeitura"][prefeituraId], assuntos_tectrilha["parametros"][assuntoid], prefeiturasURLS["unidadegestora"][prefeituraId], False, conn)
             if assuntos_tectrilha["assunto"][assuntoid] in ["despesa", "captacoes", "bensmoveis","receitas", "diarias", "convenios", "passagens", "contratos"]:
