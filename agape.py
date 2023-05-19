@@ -21,27 +21,10 @@ import os
 prefeiturasURLS=pd.read_csv('prefeituras.csv')
 #print(prefeiturasURLS)
 
-#Assuntos disponíveis nos portais da transparência (posteriormente, cada assunto se torna uma tabela no banco)
-assuntos=[
-    "orcamento_receita",
-    "orcamento_despesa",
-    "receitas",
-    "empenhos",
-    "liquidacoes",
-    "pagamentos",
-    "extra",
-    "licitacoes",
-    "atas",
-    "contratos",
-    "servidores",
-    "diarias_passagens",
-    "documentos",
-    "atos_controle",
-    "notasfiscais",
-]
+#read csv assuntos
+assuntos_agape=pd.read_csv('assuntos_agape.csv')
 
 error_list = []
-
 
 #Função que lê a url, incrementa as paginas e usa a função readAndSaveUrl
 #Para cada url lida, cria tabela do assunto no banco e verifica se o dado já existe
@@ -133,9 +116,9 @@ def readData_Agape_Total(conn):
     leituras = pd.DataFrame(columns=colunas)
     leituras.to_sql('leituras', conn, if_exists='append', index=False)
     for id in prefeiturasURLS["id"]:
-            for assunto in assuntos:
+            for assuntoid in assuntos_agape.index:
                         if prefeiturasURLS["empresa"][id]=="Agape" or prefeiturasURLS["empresa"][id]=="Alphatec" :
-                                readData_Agape(prefeiturasURLS["url"][id], assunto, prefeiturasURLS["prefeitura"][id], False, conn)
+                                readData_Agape(prefeiturasURLS["url"][id], assuntos_agape["assunto"][assuntoid], prefeiturasURLS["prefeitura"][id], False, conn)
 
 #readData_Agape_Total(conn)
 
