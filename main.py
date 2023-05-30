@@ -32,9 +32,14 @@ import scr.agape as agape
 import sqlite3
 import scr.portaltp as portaltp
 
+
+
 def main():
-    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 0: Todas \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n '))
-    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script (lê apenas urls que não foram lidas ainda) \n 2: Rodar apenas as leituras com erro \n'))
+#    empresa_escolhida = str(input('Escolha qual empresa você quer rodar: \n 0: Todas \n 1: Tectrilha \n 2: Ágape \n 3: Portaltp \n '))
+#    funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script (lê apenas urls que não foram lidas ainda) \n 2: Rodar apenas as leituras com erro \n'))
+
+    empresa_escolhida = 0
+    função_escolhida = 1
 
     if(empresa_escolhida=='1'):
         #Conexão com o banco tectrilha
