@@ -5,7 +5,7 @@ FROM continuumio/anaconda3
 WORKDIR /app
 
 # Copia todos os arquivos da pasta App para o diretório de trabalho do container
-COPY ./App /app
+#COPY ./App /app
 
 # Clona o git com a versão mais atual (tirar se der ruim)
 RUN git clone https://github.com/mpes-uis/Julius.git
