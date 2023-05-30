@@ -61,17 +61,17 @@ def main():
             agape.readData_Agape_ComErro(conn_agape,cur_agape)
         conn_agape.close()
     if(empresa_escolhida=='3'):
+        #Conexão com o banco portaltp
+        conn_portaltp=sqlite3.connect('output/portaltp.db')
+        type(conn_portaltp)
+        cur_portaltp = conn_portaltp.cursor()
+        type(cur_portaltp)
+        print('Portaltp Connected!')
         if(funcao_escolhida=='1'):
-            #Conexão com o banco portaltp
-            conn_portaltp=sqlite3.connect('output/portaltp.db')
-            type(conn_portaltp)
-            cur = conn_portaltp.cursor()
-            type(cur)
-            print('Portaltp Connected!')
-            portaltp.readData_portaltp_Total(conn_portaltp)
-            conn_portaltp.close()
+            portaltp.readData_portaltp_Total(conn_portaltp)   
         if(funcao_escolhida=='2'):
-            print("Função em construção")
+            portaltp.readData_Portaltp_ComErro(conn_portaltp)
+        conn_portaltp.close()
     if(empresa_escolhida=='0'):
         if(funcao_escolhida=='1'):
             #Conexão com o banco Agape

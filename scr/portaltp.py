@@ -29,7 +29,7 @@ anos=[
 ]
 
 def readData_portaltp(url, assunto, ano, mes, prefeitura, readAgain, conn):
-    sucess=True
+    sucesso=True
     erro=''
     url_portaltp=url + "json_" + assunto + "?ano=" + str(ano) + "&mes=" + str(mes)
     print(url_portaltp)
@@ -74,33 +74,45 @@ def readData_portaltp(url, assunto, ano, mes, prefeitura, readAgain, conn):
         new_data.to_sql(assunto, conn, if_exists='append', index=False)
 
     except Exception as e:
-        sucess=False 
+        sucesso=False 
         erro=str(e) #mensagem de erro da leitura da url
         print(f"Error reading data from {url_portaltp}")
-        readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucess, erro, conn) #salva a url e o respectivo erro
+        readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucesso, erro, conn) #salva a url e o respectivo erro
         
-    readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucess, erro, conn) #salva a url lida com sucesso
+    readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucesso, erro, conn) #salva a url lida com sucesso
 
 # Lê e salva url e os respectivos resultados
-def readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucess, erro, conn):
-    colunas = ['url','assunto','prefeitura', 'ano', 'mes', 'sucess','erro','data_leitura']
+def readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucesso, erro, conn):
+    #print(erro)
+    colunas = ['url','assunto','prefeitura', 'ano', 'mes', 'sucesso','erro','dataPrimeiraLeitura', 'dataUltimaAtualizacao']
     leituras = pd.DataFrame(columns=colunas)
+    dataHoraAtual = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     registro={
          "url":url_portaltp,
          "assunto":assunto,
          "prefeitura":prefeitura,
          "ano": ano,
          "mes": mes,
-         "sucess": sucess,
+         "sucesso": sucesso,
          "erro": erro,
-         "data_leitura": date.today()
+         "dataPrimeiraLeitura": dataHoraAtual,
+         "dataUltimaAtualizacao": dataHoraAtual
     }
-    leituras=leituras.append(registro, ignore_index=True)
-    leituras.to_sql("leituras", conn, if_exists='append', index=False)
+    registroNoBanco = pd.read_sql(f"SELECT * FROM leituras WHERE url='{url_portaltp}'", conn)
+    #print(registroNoBanco)
+    cur=conn.cursor()
+    if (not registroNoBanco["url"].empty):
+        cur.execute(f"UPDATE leituras SET sucesso={sucesso}, erro='{erro}', dataUltimaAtualizacao='{dataHoraAtual}' WHERE url = '{url_portaltp}'")
+        conn.commit()
+    else:      
+        leituras=leituras.append(registro, ignore_index=True)
+        leituras.to_sql("leituras", conn, if_exists='append', index=False)
+    #teste=pd.read_sql(f"SELECT * FROM leituras WHERE url='{url_portaltp}'", conn)
+    #print(teste)
 
 
 def readData_portaltp_Total(conn):
-    colunas = ['url', 'assunto', 'prefeitura', 'ano', 'mes', 'sucess', 'erro', 'data_leitura']
+    colunas = ['url', 'assunto', 'prefeitura', 'ano', 'mes', 'sucesso', 'erro','dataPrimeiraLeitura', 'dataUltimaAtualizacao']
     leituras = pd.DataFrame(columns=colunas)
     leituras.to_sql('leituras', conn, if_exists='append', index=False)
     for prefeituraId in prefeiturasURLS.index:
@@ -114,30 +126,16 @@ def readData_portaltp_Total(conn):
                         readData_portaltp(prefeiturasURLS["url"][prefeituraId], assuntos_portaltp["assunto"][assuntoid], ano, mes, prefeiturasURLS["prefeitura"][prefeituraId], False, conn)
 
 
-#def readData_portaltp_Uma_prefeitura(url, nomePrefeitura):
-#    for assunto in assuntos:
-#        for ano in anos:
-#            for mes in meses:
-#                #if prefeiturasURLS["empresa"][prefeitura]=="empresa1":
-#                readData_portaltp(url, assunto, ano, mes, nomePrefeitura)
-    
-#readData_portaltp("https://afonsoclaudio-es.portaltp.com.br/api/transparencia.asmx/", "licitacoes", 2016, 1, "Prefeitura de Afonso Cláudio")
-
-#readData_portaltp_Total(prefeiturasURLS.at[0,"url"], assuntos[0], anos[0], meses[0], prefeiturasURLS.at[0,"prefeitura"])
-#readData_portaltp_Total()
-#print(error_list)
-#readData_portaltp_Uma_prefeitura("https://afonsoclaudio-es.portaltp.com.br/api/transparencia.asmx/", "Prefeitura Municipal de Afonso Cláudio")
-
-
-
-#def readData_portaltp_Intervalo(url, assunto, ano_inicial, ano_final, mes, prefeitura):
-#    for prefeitura in prefeiturasURLS.index:
-#        for assunto in assuntos:           
-#            while ano_final >= ano_inicial:  
-#                for mes in meses:
-#                    if prefeiturasURLS["empresa"][prefeitura]=="empresa1":
-#                        readData_portaltp(prefeiturasURLS["url"][prefeitura], assunto, ano_inicial, mes, prefeiturasURLS["prefeitura"][prefeitura])
-#                ano_inicial += 1
-
-
-#readData_portaltp_Intervalo(prefeiturasURLS.at[0,"url"], assuntos[0], 2016, 2020, meses[0], prefeiturasURLS.at[0,"prefeitura"])
+#Função que lê urls a partir de um vetor dado (útil quando é necessário reler urls que deram erro)
+def readData_Portaltp_ComErro(conn):
+    urlsComErro = pd.read_sql(f"SELECT * FROM leituras WHERE sucesso=0", conn)
+    #print(urlscomerro)
+    for urlComErroId in urlsComErro.index:
+        assunto = urlsComErro["assunto"][urlComErroId]
+        prefeitura = urlsComErro["prefeitura"][urlComErroId]
+        ano = urlsComErro["ano"][urlComErroId]
+        mes = urlsComErro["mes"][urlComErroId]
+        urlTotal = urlsComErro["url"][urlComErroId]
+        url = urlTotal.split("json_")[0]
+        print(url)
+        readData_portaltp(url, assunto, ano, mes, prefeitura, True, conn)
