@@ -37,17 +37,18 @@ def main():
     funcao_escolhida = str(input('Escolha o que você quer fazer: \n 1: Rodar todo o script (lê apenas urls que não foram lidas ainda) \n 2: Rodar apenas as leituras com erro \n'))
 
     if(empresa_escolhida=='1'):
+        #Conexão com o banco tectrilha
+        conn_tectrilha=sqlite3.connect('output/tectrilha.db')
+        type(conn_tectrilha)
+        cur_tectrilha = conn_tectrilha.cursor()
+        type(cur_tectrilha)
+        print('Tectrilha Connected!')
         if(funcao_escolhida=='1'):
-            #Conexão com o banco tectrilha
-            conn_tectrilha=sqlite3.connect('output/tectrilha.db')
-            type(conn_tectrilha)
-            cur = conn_tectrilha.cursor()
-            type(cur)
-            print('Tectrilha Connected!')
             tectrilha.readData_tectrilha_Total(conn_tectrilha)
-            conn_tectrilha.close()
         if(funcao_escolhida=='2'):
-            print("Função em construção")
+            tectrilha.readData_Tectrilha_ComErro(conn_tectrilha)
+        conn_tectrilha.close()
+
     if(empresa_escolhida=='2'):
         #Conexão com o banco Agape
         conn_agape=sqlite3.connect('output/agape.db')
@@ -60,6 +61,7 @@ def main():
         if(funcao_escolhida=='2'):
             agape.readData_Agape_ComErro(conn_agape,cur_agape)
         conn_agape.close()
+
     if(empresa_escolhida=='3'):
         #Conexão com o banco portaltp
         conn_portaltp=sqlite3.connect('output/portaltp.db')
@@ -72,6 +74,7 @@ def main():
         if(funcao_escolhida=='2'):
             portaltp.readData_Portaltp_ComErro(conn_portaltp)
         conn_portaltp.close()
+
     if(empresa_escolhida=='0'):
         if(funcao_escolhida=='1'):
             #Conexão com o banco Agape
@@ -102,7 +105,33 @@ def main():
             conn_portaltp.close()
             
         if(funcao_escolhida=='2'):
-            print("Função em construção")
+            #Conexão com o banco Agape
+            conn_agape=sqlite3.connect('output/agape.db')
+            type(conn_agape)
+            cur_agape = conn_agape.cursor()
+            type(cur_agape)
+            print('Agape Connected!')
+            agape.readData_Agape_ComErro(conn_agape,cur_agape)
+            conn_agape.close()
+
+            #Conexão com o banco tectrilha
+            conn_tectrilha=sqlite3.connect('output/tectrilha.db')
+            type(conn_tectrilha)
+            cur = conn_tectrilha.cursor()
+            type(cur)
+            print('Tectrilha Connected!')
+            tectrilha.readData_Tectrilha_ComErro(conn_tectrilha)
+            conn_tectrilha.close()
+
+            #Conexão com o banco portaltp
+            conn_portaltp=sqlite3.connect('output/portaltp.db')
+            type(conn_portaltp)
+            cur = conn_portaltp.cursor()
+            type(cur)
+            print('Portaltp Connected!')
+            portaltp.readData_Portaltp_ComErro(conn_portaltp)
+            conn_portaltp.close()
+            
   
 
 if __name__ == "__main__":

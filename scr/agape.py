@@ -97,7 +97,6 @@ def readAndSaveUrl(url_agape, assunto, prefeitura, contador, sucesso, erro, prox
          "dataUltimaAtualizacao": dataHoraAtual,
          "proxima": proxima,
          "pag_total": pag_total
-
     }
     registroNoBanco = pd.read_sql(f"SELECT * FROM leituras WHERE url='{url_agape}'", conn)
     if (not registroNoBanco["url"].empty):
