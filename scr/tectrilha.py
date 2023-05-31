@@ -114,7 +114,7 @@ def readAndSaveUrl(url_tectrilha, assunto, prefeitura, ano, periodo, sucesso, er
         cur.execute(f"UPDATE leituras SET sucesso={sucesso}, erro='{erro}', dataUltimaAtualizacao='{dataHoraAtual}' WHERE url = '{url_tectrilha}'")
         conn.commit()
     else:      
-        leituras=leituras.append(registro, ignore_index=True)
+        leituras = pd.concat([leituras, pd.DataFrame([registro], columns=colunas)], ignore_index=True)
         leituras.to_sql("leituras", conn, if_exists='append', index=False)
 
 def readData_tectrilha_Total(conn):

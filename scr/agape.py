@@ -102,7 +102,7 @@ def readAndSaveUrl(url_agape, assunto, prefeitura, contador, sucesso, erro, prox
     if (not registroNoBanco["url"].empty):
         cur.execute(f"UPDATE leituras SET sucesso={sucesso}, erro='{erro}', dataUltimaAtualizacao='{dataHoraAtual}', proxima='{proxima}', pag_total={pag_total} WHERE url = '{url_agape}'")
     else:      
-        leituras=leituras.append(registro, ignore_index=True)
+        leituras = pd.concat([leituras, pd.DataFrame([registro], columns=colunas)], ignore_index=True)
         leituras.to_sql("leituras", conn, if_exists='append', index=False)
 
 #Função que lê todas as prefeituras e todos os assuntos Agape e Alphatec 1 vez (e não substitui leitura)

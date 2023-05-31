@@ -105,7 +105,7 @@ def readAndSaveUrl(url_portaltp, assunto, prefeitura, ano, mes, sucesso, erro, c
         cur.execute(f"UPDATE leituras SET sucesso={sucesso}, erro='{erro}', dataUltimaAtualizacao='{dataHoraAtual}' WHERE url = '{url_portaltp}'")
         conn.commit()
     else:      
-        leituras=leituras.append(registro, ignore_index=True)
+        leituras = pd.concat([leituras, pd.DataFrame([registro], columns=colunas)], ignore_index=True)
         leituras.to_sql("leituras", conn, if_exists='append', index=False)
     #teste=pd.read_sql(f"SELECT * FROM leituras WHERE url='{url_portaltp}'", conn)
     #print(teste)
