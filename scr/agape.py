@@ -111,10 +111,10 @@ def readData_Agape_Total(conn, cur):
     colunas = ['url','assunto','prefeitura', 'contador','sucesso','erro','dataPrimeiraLeitura','dataUltimaAtualizacao','proxima','pag_total']
     leituras = pd.DataFrame(columns=colunas)
     leituras.to_sql('leituras', conn, if_exists='append', index=False)
-    for id in prefeiturasURLS["id"]:
+    for prefeituraId in prefeiturasURLS.index:
             for assuntoid in assuntos_agape.index:
-                        if prefeiturasURLS["empresa"][id]=="Agape" or prefeiturasURLS["empresa"][id]=="Alphatec" :
-                                readData_Agape(prefeiturasURLS["url"][id], assuntos_agape["assunto"][assuntoid], prefeiturasURLS["prefeitura"][id], False, conn, cur)
+                        if prefeiturasURLS["empresa"][prefeituraId]=="Agape" or prefeiturasURLS["empresa"][prefeituraId]=="Alphatec" :
+                                readData_Agape(prefeiturasURLS["url"][prefeituraId], assuntos_agape["assunto"][assuntoid], prefeiturasURLS["prefeitura"][prefeituraId], False, conn, cur)
 
 #readData_Agape_Total(conn)
 
@@ -129,4 +129,3 @@ def readData_Agape_ComErro(conn, cur):
         contador = urlTotal.split("=")[-1]
         url = urlTotal.split(assunto)[0]
         readData_Agape(url, assunto, prefeitura, True, conn, cur, contador)
-
