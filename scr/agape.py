@@ -38,7 +38,7 @@ def readData_Agape(url, assunto, prefeitura, readAgain, conn, cur, contador = 1)
                 continue
         try:
             #Lê url
-            response = requests.get(url_agape)
+            response = requests.get(url_agape, timeout=10)
             data=json.loads(response.content.decode('utf-8-sig'))
 
             #transforma dados lidos em dataframe

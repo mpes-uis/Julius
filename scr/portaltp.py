@@ -39,7 +39,7 @@ def readData_portaltp(url, assunto, ano, mes, prefeitura, readAgain, conn):
             return
     try:
         #read url
-        response = requests.get(url_portaltp)
+        response = requests.get(url_portaltp, timeout=10)
         data=response.text
 
         #data json

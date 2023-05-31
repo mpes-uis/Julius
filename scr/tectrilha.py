@@ -54,7 +54,7 @@ def readData_tectrilha(url, assunto, ano, periodo, prefeitura, parametro, unidad
             return
     try:
         #read url
-        response = requests.get(url_tectrilha)
+        response = requests.get(url_tectrilha, timeout=10)
         data=response.text
 
         #data frame
