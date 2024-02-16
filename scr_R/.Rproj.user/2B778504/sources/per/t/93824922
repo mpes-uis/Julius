@@ -3,7 +3,7 @@
     "path": "~/GitHub/Julius/scr_R/scripts/main.R",
     "project_path": "scripts/main.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3826309578",
     "contents": "",
     "dirty": false,
     "created": 1708105798954.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "16,0",
+        "cursorPosition": "13,28",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1708105805,
+    "lastKnownWriteTime": 1708108704,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1708105805102,
+    "last_content_update": 1708108704516,
     "read_only": false,
     "read_only_alternatives": []
 }

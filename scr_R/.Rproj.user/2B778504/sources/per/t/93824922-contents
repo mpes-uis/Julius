@@ -11,6 +11,4 @@ source("scripts/consultas_API/funcoes_consultas.R")
 
 # Cria o banco SQLite
 
-source()
-
-#aaaa
+source("scripts/gera_banco.R")

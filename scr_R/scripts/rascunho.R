@@ -23,3 +23,25 @@ df <- fromJSON(data)
 
 
 df
+
+
+consulta <- "SELECT * FROM pagamentos"
+resultado <- dbGetQuery(conn, consulta)
+
+
+df <- as.data.frame(consulta_portaltp(prefeituras[9,4],
+                                      metodos[1,],
+                                      periodo[1],
+                                      1,
+                                      prefeituras_portaltp[1, 3]))
+
+
+
+
+# Obtém uma lista de todas as tabelas no banco de dados
+tabelas <- dbListTables(conn)
+
+# Exclui cada tabela do banco de dados
+for (tabela in tabelas) {
+  dbExecute(conn, paste("DROP TABLE", tabela))
+}

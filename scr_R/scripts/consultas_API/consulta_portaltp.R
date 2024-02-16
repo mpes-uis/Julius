@@ -12,15 +12,18 @@ consulta_portaltp <- function(API, metodo, ano, mes, municipio) {
     data <- (content(response, "text"))
     data <- gsub("<\\?xml version=\"1.0\" encoding=\"utf-8\"\\?>\r\n<string xmlns=\"http://tempuri.org/\">", "", data)
     data <- gsub("</string>", "", data)
-    df <- fromJSON(data)
+    df <- as.data.frame(fromJSON(data))
   }
    else {
-     df <- c()
+     df <- as.data.frame(c())
    }
   
-  # adicionando as data frame a data da consulta e o nome do municipio
-  df$data_consulta <- data_consulta
-  df$nome_municipio <- municipio
+  if (nrow(df) != 0) {
+    # adicionando as data frame a data da consulta e o nome do municipio
+    df$data_consulta <- data_consulta
+    df$nome_municipio <- municipio
+  }
+
   
   # retorna a tabela consultada
   return(df)

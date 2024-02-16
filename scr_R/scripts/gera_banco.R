@@ -1,4 +1,5 @@
 conn <- dbConnect(SQLite(), dbname = "banco/julius.db")
+periodo <- 2020:2024
 
 gera_banco <- function(prefeituras_portaltp, metodos, periodo, meses = 1:12) {
   for (ano in periodo){
@@ -17,7 +18,7 @@ gera_banco <- function(prefeituras_portaltp, metodos, periodo, meses = 1:12) {
                                   mes,
                                   prefeituras_portaltp[prefeitura, 3]))
           if (nrow(df) != 0) {
-            dbWriteTable(conn, name = metodos[metodo,], value = df, overwrite = TRUE)
+            dbWriteTable(conn, name = metodos[metodo,], value = df, append = TRUE)
             cat("\033[1;32m", nome_tabela, " adicionada ao banco\n", "\033[0m")
           }
         }
@@ -29,6 +30,6 @@ gera_banco <- function(prefeituras_portaltp, metodos, periodo, meses = 1:12) {
 gera_banco(prefeituras_portaltp, metodos, periodo)
 
 
-consulta <- "SELECT * from contratos"
+consulta <- "SELECT * from frota_veiculos"
 
 df <- dbGetQuery(conn, consulta)
