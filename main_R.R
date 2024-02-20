@@ -11,5 +11,10 @@ source("scr_R/consultas_API/funcoes_consultas.R")
 
 # Cria o banco SQLite
 
-source("scr_R/gera_bancos/gera_portaltp.R")
+source("scr_R/gera_bancos/funcoes_gera_banco.R")
+
+fim <- Sys.time()
+inicio
+fim
+difftime(fim, inicio)
 

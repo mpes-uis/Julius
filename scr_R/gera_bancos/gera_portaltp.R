@@ -19,7 +19,7 @@ gera_portaltp <- function(prefeituras_portaltp, assuntos_portaltp, periodo, mese
                                   prefeituras_portaltp[prefeitura, 3]))
           if (nrow(df) != 0) {
             dbWriteTable(conn, name = assuntos_portaltp[assunto,], value = df, append = TRUE)
-            cat("\033[1;32m", nome_tabela, " adicionada ao banco\n", "\033[0m")
+            cat("\033[1;32m", nome_tabela, " adicionada ao banco portaltp\n", "\033[0m")
           }
         }
       }
@@ -29,5 +29,8 @@ gera_portaltp <- function(prefeituras_portaltp, assuntos_portaltp, periodo, mese
   dbDisconnect(conn)
 }
 
+inicio_portaltp <- Sys.time()
 gera_portaltp(prefeituras_portaltp, assuntos_portaltp, periodo)
+fim_portaltp <- Sys.time()
+tempo_portaltp <- difftime(fim_portaltp, inicio_portaltp )
 
