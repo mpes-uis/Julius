@@ -30,8 +30,3 @@ gera_tectrilha <- function(prefeituras_tectrilha, assuntos_tectrilha, periodo, m
   dbDisconnect(conn)
 }
 
-
-inicio_tectrilha <- Sys.time()
-gera_tectrilha(prefeituras_tectrilha, assuntos_tectrilha, periodo)
-fim_tectrilha <- Sys.time()
-tempo_tectrilha <- difftime(fim_tectrilha, inicio_tectrilha)

@@ -1,27 +1,45 @@
 gera_agape <- function(prefeituras_agape, assuntos_agape) {
   
   conn <- dbConnect(SQLite(), dbname = "output_R/agape.db")
+  log <- data.frame(tabelas_adicionadas = "")
+  dbWriteTable(conn, name = "log", value = log, append = TRUE)
   
   for (prefeitura in 1:nrow(prefeituras_agape)) {
     for (assunto in 1:nrow(assuntos_agape)) {
       
-      nome_tabela <- paste0(prefeituras_agape[prefeitura,3], "_",
-                            assuntos_agape[assunto,])
+      url <- paste0(prefeituras_agape[prefeitura,4], assuntos_agape[assunto,], "?page_size=100&page=", 1)
+      response <- GET(url)
+      json <- content(response, "text", encoding = "UTF-8")
+      data <- fromJSON(json)
+      paginas <- data[["pagina_total"]]
       
-      df <- as.data.frame(consulta_agape(prefeituras_agape[prefeitura, 4],
-                                         assuntos_agape[assunto,]))
-      
-      if (nrow(df) != 0) {
-        dbWriteTable(conn, name = assuntos_agape[assunto,], value = df, append = TRUE)
-        cat("\033[1;32m", nome_tabela, " adicionada ao banco agape\n", "\033[0m")
+      for(pagina in 1:paginas) {
+        
+        nome_tabela <- paste0(prefeituras_agape[prefeitura,3], "_",
+                              assuntos_agape[assunto,], "_pagina_", pagina)
+        
+        consulta <- paste0("SELECT EXISTS (SELECT 1 FROM log WHERE tabelas_adicionadas = '",
+                           nome_tabela, "') AS linha_existe;")
+        resultado <- dbGetQuery(conn, consulta)
+        
+        if (resultado == 0) {
+        
+          df <- as.data.frame(consulta_agape(prefeituras_agape[prefeitura, 4],
+                                           assuntos_agape[assunto,], pagina))
+        
+          if (nrow(df) != 0) {
+            dbWriteTable(conn, name = assuntos_agape[assunto,], value = df, append = TRUE)
+            cat("\033[1;32m", nome_tabela, "de", paginas, "adicionada ao banco agape\n", "\033[0m")
+          
+            log <- data.frame(tabelas_adicionadas = nome_tabela)
+          
+            dbWriteTable(conn, name = "log", value = log, append = TRUE)
+          }
+        }
+        else {
+          cat("\033[1;32m", nome_tabela, "de", paginas, "ja esta no banco agape\n", "\033[0m")
+        }
       }
     }
   }
-  
-  dbDisconnect(conn)
 }
-
-inicio_agape <- Sys.time()
-gera_agape(prefeituras_agape, assuntos_agape)
-fim_agape <- Sys.time()
-tempo_agape <- difftime(fim_agape, inicio_agape)

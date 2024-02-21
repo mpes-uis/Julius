@@ -29,8 +29,4 @@ gera_portaltp <- function(prefeituras_portaltp, assuntos_portaltp, periodo, mese
   dbDisconnect(conn)
 }
 
-inicio_portaltp <- Sys.time()
-gera_portaltp(prefeituras_portaltp, assuntos_portaltp, periodo)
-fim_portaltp <- Sys.time()
-tempo_portaltp <- difftime(fim_portaltp, inicio_portaltp )
 

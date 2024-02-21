@@ -9,12 +9,11 @@ source("scr_R/dados.R")
 
 source("scr_R/consultas_API/funcoes_consultas.R")
 
-# Cria o banco SQLite
+# Funções para criar e alimentar os bancos
 
 source("scr_R/gera_bancos/funcoes_gera_banco.R")
 
-fim <- Sys.time()
-inicio
-fim
-difftime(fim, inicio)
+# Cria e alimenta os bancos
+
+source("scr_R/bancos.R")
 

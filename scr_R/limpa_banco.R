@@ -12,4 +12,4 @@ limpa_banco <- function(banco) {
   cat("O banco de dados foi limpo com sucesso.\n")
 }
 
-limpa_banco("dados/julius.db")
+limpa_banco("output_R/agape.db")

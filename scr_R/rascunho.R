@@ -25,7 +25,8 @@ df <- fromJSON(data)
 df
 
 
-consulta <- "SELECT * FROM orcamento_despesa"
+
+consulta <- "SELECT EXISTS (SELECT 1 FROM log WHERE tabelas_adicionadas = 'Anchieta_receitas_pagina_29') AS linha_existe;"
 resultado <- dbGetQuery(conn, consulta)
 
 
@@ -45,3 +46,8 @@ tabelas <- dbListTables(conn)
 for (tabela in tabelas) {
   dbExecute(conn, paste("DROP TABLE", tabela))
 }
+
+
+
+
+a <- consulta_agape(prefeituras_agape[1, 4], assuntos_agape[5,], 18)
