@@ -12,11 +12,12 @@ gera_tectrilha <- function(prefeituras_tectrilha, assuntos_tectrilha, periodo, m
                                 ano, "_",
                                 mes)
           
-          df <- as.data.frame(consulta_tectrilha(prefeituras_tectrilha[prefeitura,4],
-                                                assuntos_tectrilha[assunto,2],
-                                                assuntos_tectrilha[assunto,3],
-                                                prefeituras_tectrilha[prefeitura,6],
-                                                ano, mes))
+          df <- data.frame(consulta_tectrilha(prefeituras_tectrilha[prefeitura,4],
+                                              assuntos_tectrilha[assunto,2],
+                                              assuntos_tectrilha[assunto,3],
+                                              prefeituras_tectrilha[prefeitura,6],
+                                              ano, mes,
+                                              prefeituras_tectrilha[prefeitura,3]))
           
           if (nrow(df) != 0) {
             dbWriteTable(conn, name = assuntos_tectrilha[assunto,2], value = df, append = TRUE)

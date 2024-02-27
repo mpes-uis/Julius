@@ -24,22 +24,28 @@ gera_agape <- function(prefeituras_agape, assuntos_agape) {
         
         if (resultado == 0) {
         
-          df <- as.data.frame(consulta_agape(prefeituras_agape[prefeitura, 4],
-                                           assuntos_agape[assunto,], pagina))
+          df <- consulta_agape(prefeituras_agape[prefeitura, 4],
+                               assuntos_agape[assunto,], pagina,
+                               prefeituras_agape[prefeitura, 3])
         
-          if (nrow(df) != 0) {
-            dbWriteTable(conn, name = assuntos_agape[assunto,], value = df, append = TRUE)
-            cat("\033[1;32m", nome_tabela, "de", paginas, "adicionada ao banco agape\n", "\033[0m")
+          if (length(df) != 0) {
+              dbWriteTable(conn, name = assuntos_agape[assunto,], value = df, append = TRUE)
+              cat("\033[1;32m", nome_tabela, "de", paginas, "adicionada ao banco agape\n", "\033[0m")
           
-            log <- data.frame(tabelas_adicionadas = nome_tabela)
+              log <- data.frame(tabelas_adicionadas = nome_tabela)
           
-            dbWriteTable(conn, name = "log", value = log, append = TRUE)
+              dbWriteTable(conn, name = "log", value = log, append = TRUE)
+          }
+          else {
+            cat("\033[1;34m", nome_tabela, "de", paginas, "esta vazia\n", "\033[0m")
           }
         }
         else {
-          cat("\033[1;32m", nome_tabela, "de", paginas, "ja esta no banco agape\n", "\033[0m")
+          cat("\033[1;33m", nome_tabela, "de", paginas, "ja esta no banco agape\n", "\033[0m")
         }
       }
     }
   }
+  
+  dbDisconnect(conn)
 }

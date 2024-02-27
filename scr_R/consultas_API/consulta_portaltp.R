@@ -8,14 +8,14 @@ consulta_portaltp <- function(API, assunto, ano, mes, municipio) {
   data_consulta <- Sys.time()
   
   # convertendo o JSON obtido para xml e armazenando a tabela
-  if (response["status_code"] == 200) {
+  if (status_code(response) == 200) {
     data <- content(response, "text")
     data <- gsub("<\\?xml version=\"1.0\" encoding=\"utf-8\"\\?>\r\n<string xmlns=\"http://tempuri.org/\">", "", data)
     data <- gsub("</string>", "", data)
-    df <- as.data.frame(fromJSON(data))
+    df <- data.frame(fromJSON(data))
   }
    else {
-     df <- as.data.frame(c())
+     df <- NULL
    }
   
   if (nrow(df) != 0) {
@@ -24,7 +24,6 @@ consulta_portaltp <- function(API, assunto, ano, mes, municipio) {
     df$nome_municipio <- municipio
   }
 
-  
   # retorna a tabela consultada
   return(df)
 }
