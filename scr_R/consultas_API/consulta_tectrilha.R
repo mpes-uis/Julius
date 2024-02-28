@@ -17,10 +17,10 @@ consulta_tectrilha <- function(API, assunto, parametro, unidade_gestora, ano, me
     df <- NULL
   }
   
-  if (nrow(df) != 0) {
-    df$data_consulta <- data_consulta
-    df$nome_municipio <- municipio
-  }
+  #if (nrow(df) != 0) {
+  #  df$data_consulta <- data_consulta
+  #  df$nome_municipio <- municipio
+  #}
   return(df)
 }
 
