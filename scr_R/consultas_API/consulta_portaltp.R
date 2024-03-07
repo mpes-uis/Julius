@@ -2,7 +2,7 @@ consulta_portaltp <- function(API, assunto, ano, mes, municipio) {
 
   # montando a url e consultando a API
   url <- paste0(API,"json_", assunto, "?ano=", ano, "&mes=", mes)
-  response <- GET(url)
+  response <- GET(url, timeout(5))
   
   # obtendo a data que a consulta foi realizada
   data_consulta <- Sys.time()
@@ -22,6 +22,9 @@ consulta_portaltp <- function(API, assunto, ano, mes, municipio) {
     # adicionando as data frame a data da consulta e o nome do municipio
     df$data_consulta <- data_consulta
     df$nome_municipio <- municipio
+  }
+  else {
+    df <- NULL
   }
 
   # retorna a tabela consultada

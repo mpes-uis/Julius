@@ -5,7 +5,7 @@ consulta_tectrilha <- function(API, assunto, parametro, unidade_gestora, ano, me
   url <- sub("\\{periodo\\}", mes, url)
   
   
-  response <- GET(url, timeout(10))
+  response <- GET(url, timeout(15))
   data_consulta <- Sys.time()
   
   if (status_code(response) == 200) {

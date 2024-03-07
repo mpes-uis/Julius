@@ -1,7 +1,7 @@
 consulta_agape <- function(API, assunto, pagina, municipio) {
   
   url <- paste0(API, assunto, "?page_size=100&page=", pagina)
-  response <- GET(url)
+  response <- GET(url, timeout(5))
   data_consulta <- Sys.time()
   
   if (status_code(response) == 200) {
