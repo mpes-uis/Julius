@@ -12,7 +12,7 @@ limpa_banco <- function(banco) {
   cat("O banco de dados foi limpo com sucesso.\n")
 }
 
-limpa_banco("output_R/portaltp.db")
+limpa_banco("output_R/tectrilha.db")
 
 
 #conn <- dbConnect(SQLite(), dbname = "output_R/agape.db")

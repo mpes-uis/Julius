@@ -37,8 +37,3 @@ consulta_agape <- function(API, assunto, pagina, municipio) {
 
 #problema: algumas tabelas contém listas dentro delas, a funcao dbwritetable nao suporta esse tipo de objeto
 
-df <- consulta_agape(prefeituras_agape[2, 4],
-                     assuntos_agape[12,], 1,
-                     prefeituras_agape[2, 3])
-
-
