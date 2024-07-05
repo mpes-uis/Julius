@@ -13,7 +13,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 12,Prefeitura Municipal de Barra de São Francisco,Barra de São Francisco,https://BarradeSaoFrancisco-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 13,Prefeitura Municipal de Boa Esperança,Boa Esperança,https://BoaEsperanca-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 14,Prefeitura Municipal de Bom Jesus do Norte,Bom Jesus do Norte,https://BomJesusdoNorte-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
-15,Prefeitura Municipal de Brejetuba,Brejetuba,https://www.brejetuba.es.gov.br/transparencia/api/,Agape,
+15,Prefeitura Municipal de Brejetuba,Brejetuba,semAPI,Betha,
 16,Prefeitura Municipal de Cachoeiro de Itapemirim,Cachoeiro de Itapemirim,https://transparencia.cachoeiro.es.gov.br/transparencia/api/,Agape,
 17,Prefeitura Municipal de Cariacica,Cariacica,https://wstransparencia.cariacica.es.gov.br/api/,Tectrilha,6
 18,Prefeitura Municipal de Castelo,Castelo,https://Castelo-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
