@@ -150,7 +150,7 @@ Os itens abaixo são comumente encontrados nos portais da transparência, e cada
 
 ## Colaboradores
 
-| [<img src="https://github.com/pedropberger.png?size=115" width=115><br><sub>@pedropberger</sub>](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115><br><sub>@mwildemberg</sub>](https://github.com/mwildemberg) | [<img src="https://github.com/iaraarruda.png?size=115" width=115><br><sub>@iaraarruda</sub>](https://github.com/iaraarruda) |
+| [<img src="https://github.com/pedropberger.png?size=115" width=115><br><sub>@pedropberger</sub>](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115><br><sub>@mwildemberg</sub>](https://github.com/mwildemberg) | [<img src="https://github.com/iaraarruda.png?size=115" width=115><br><sub>@iaraarruda</sub>](https://github.com/iaraarruda) | [<img src="https://github.com/xMerisio.png?size=115" width=115><br><sub>@xMerisio</sub>](https://github.com/xMerisio)
 | :---: | :---: | :---: |
 
 Ajude a gente a evoluir e entre pro grupo.
