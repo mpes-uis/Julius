@@ -150,7 +150,7 @@ Os itens abaixo são comumente encontrados nos portais da transparência, e cada
 
 ## Colaboradores
 
-| [<img src="https://github.com/pedropberger.png?size=115" width=115>](https://github.com/pedropberger) <br> [@pedropberger](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115>](https://github.com/mwildemberg) <br> [@mwildemberg](https://github.com/mwildemberg) | [<img src="https://github.com/iaraarruda.png?size=115" width=115>](https://github.com/iaraarruda) <br> [@iaraarruda](https://github.com/iaraarruda) | [<img src="https://github.com/xMerisio.png?size=115" width=115>](https://github.com/xMerisio) <br> [@xMerisio](https://github.com/xMerisio) | [<img src="https://github.com/HeitorQuartezani.png?size=115" width=115>](https://github.com/HeitorQuartezani) <br> [@HeitorQuartezani](https://github.com/HeitorQuartezani) |
+| [<img src="https://github.com/pedropberger.png?size=115" width=115>](https://github.com/pedropberger) <br> [@pedropberger](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115>](https://github.com/mwildemberg) <br> [@mwildemberg](https://github.com/mwildemberg) | [<img src="https://github.com/iaraarruda.png?size=115" width=115>](https://github.com/iaraarruda) <br> [@iaraarruda](https://github.com/iaraarruda) | [<img src="https://github.com/gMerisio.png?size=115" width=115>](https://github.com/gMerisio) <br> [@gMerisio](https://github.com/gMerisio) | [<img src="https://github.com/HeitorQuartezani.png?size=115" width=115>](https://github.com/HeitorQuartezani) <br> [@HeitorQuartezani](https://github.com/HeitorQuartezani) |
 |:---:|:---:|:---:|:---:|:---:|
 
 Ajude a gente a evoluir e entre pro grupo.
