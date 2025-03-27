@@ -1,71 +1,96 @@
 import requests
 import pandas as pd
 from time import sleep
+import os
 
-# Configurações
-ano = 2024
-meses = range(1, 13)  # De 1 (janeiro) a 12 (dezembro)
-base_url = "https://santateresa-es.portaltp.com.br/api/Compras"
-delay = 1  # segundos entre requisições
+def main():
+    # Configurações
+    anos = [2023, 2024]  # Lista de anos
+    meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  
+    base_url = "https://santateresa-es.portaltp.com.br/api"
+    delay = 1  # segundos entre requisições
+    endpoints_file = "endpoints.txt"  # Arquivo com os endpoints
 
-# DataFrames finais
-df_licitacoes = pd.DataFrame()
-df_contratos = pd.DataFrame()
+    # Verifica se o arquivo de endpoints existe antes de continuar
+    if not os.path.exists(endpoints_file):
+        print(f"\nErro: Arquivo '{endpoints_file}' não encontrado no diretório atual.")
+        print(f"Diretório atual: {os.getcwd()}")
+        return
 
-def get_api_data(endpoint, ano, mes):
+    # Carrega endpoints
+    endpoints = load_endpoints(endpoints_file)
+    
+    if not endpoints:
+        print("\nNenhum endpoint válido encontrado no arquivo. Verifique o conteúdo de endpoints.txt")
+        return
+
+    # Processa os endpoints e obtém o DataFrame consolidado
+    df_consolidado = process_endpoints(endpoints, anos, meses, base_url, delay)
+
+    # Exibe resumo final
+    print("\nProcessamento concluído!")
+    print(f"- Total de registros: {len(df_consolidado)}")
+    print("- Amostra dos dados:")
+    print(df_consolidado.head())
+    
+    return df_consolidado
+
+def get_api_data(endpoint, ano, mes, base_url):
     """Função para fazer requisição à API e retornar DataFrame"""
     url = f"{base_url}/{endpoint}?ano={ano}&mes={mes:02d}"
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         response.raise_for_status()
         return pd.DataFrame(response.json())
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(f"Erro ao obter {endpoint} para {mes:02d}/{ano}: {str(e)}")
         return pd.DataFrame()
 
-for mes in meses:
-    print(f"\nProcessando mês {mes:02d}/{ano}...")
+def load_endpoints(filename):
+    """Carrega os endpoints de um arquivo .txt"""
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except Exception as e:
+        print(f"\nErro ao ler arquivo de endpoints: {str(e)}")
+        return []
+
+def process_endpoints(endpoints, anos, meses, base_url, delay):
+    """Processa endpoints e retorna um único DataFrame consolidado"""
+    df_consolidado = pd.DataFrame()
     
-    # Licitações
-    df_mes_lic = get_api_data("GetLicitacoes", ano, mes)
-    if not df_mes_lic.empty:
-        df_mes_lic['ano'] = ano
-        df_mes_lic['mes'] = mes
-        df_licitacoes = pd.concat([df_licitacoes, df_mes_lic], ignore_index=True)
-        print(f"Licitações: +{len(df_mes_lic)} registros")
+    for endpoint in endpoints:
+        print(f"\n{'='*50}")
+        print(f"Processando: {endpoint}")
+        endpoint_name = endpoint.split('/')[-1]
+        
+        for ano in anos:
+            for mes in meses:
+                print(f"{mes:02d}/{ano}", end=' ', flush=True)
+                
+                # Obtém dados da API
+                df_mes = get_api_data(endpoint, ano, mes, base_url)
+                
+                if not df_mes.empty:
+                    # Adiciona colunas de ano, mes e endpoint
+                    df_mes['ano'] = ano
+                    df_mes['mes'] = mes
+                    df_mes['endpoint'] = endpoint_name
+                    # Concatena ao DataFrame principal
+                    df_consolidado = pd.concat([df_consolidado, df_mes], ignore_index=True)
+                
+                sleep(delay)
+        
+        print(f"\nTotal acumulado: {len(df_consolidado)} registros")
     
-    # Contratos/Aditivos
-    df_mes_con = get_api_data("GetContratosAditivos", ano, mes)
-    if not df_mes_con.empty:
-        df_mes_con['ano'] = ano
-        df_mes_con['mes'] = mes
-        df_contratos = pd.concat([df_contratos, df_mes_con], ignore_index=True)
-        print(f"Contratos: +{len(df_mes_con)} registros")
+    return df_consolidado
+
+if __name__ == "__main__":
+    # Executa o script e obtém o DataFrame consolidado
+    df_final = main()
     
-    sleep(delay)
-
-# Salvando os resultados
-if not df_licitacoes.empty:
-    lic_file = f"licitacoes_consolidadas_{ano}.csv"
-    df_licitacoes.to_csv(lic_file, index=False, encoding='utf-8-sig')
-    print(f"\nLicitações salvas em '{lic_file}'")
-    print(f"Total de licitações: {len(df_licitacoes)}")
-else:
-    print("\nNenhuma licitação encontrada")
-
-if not df_contratos.empty:
-    con_file = f"contratos_aditivos_{ano}.csv"
-    df_contratos.to_csv(con_file, index=False, encoding='utf-8-sig')
-    print(f"Contratos/Aditivos salvos em '{con_file}'")
-    print(f"Total de contratos/aditivos: {len(df_contratos)}")
-else:
-    print("Nenhum contrato/aditivo encontrado")
-
-# Mostrando amostras dos dados
-if not df_licitacoes.empty:
-    print("\nAmostra das licitações:")
-    print(df_licitacoes.head(2))
-
-if not df_contratos.empty:
-    print("\nAmostra dos contratos/aditivos:")
-    print(df_contratos.head(2))
+    # Exemplo de como acessar o DataFrame depois:
+    if not df_final.empty:
+        print("\nExemplo de acesso ao DataFrame consolidado:")
+        print(f"Colunas disponíveis: {list(df_final.columns)}")
+        print(f"Primeiros registros:\n{df_final.head()}")
