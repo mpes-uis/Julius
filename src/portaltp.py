@@ -9,7 +9,7 @@ def main():
     meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  
     base_url = "https://santateresa-es.portaltp.com.br/api"
     delay = 1  # segundos entre requisições
-    endpoints_file = "endpoints.txt"  # Arquivo com os endpoints
+    endpoints_file = "endpoints_portaltp.txt"  # Arquivo com os endpoints
 
     # Verifica se o arquivo de endpoints existe antes de continuar
     if not os.path.exists(endpoints_file):
