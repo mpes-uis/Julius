@@ -147,7 +147,6 @@ Os itens abaixo são comumente encontrados nos portais da transparência, e cada
 
 - Servidores: são as informações sobre os funcionários públicos que trabalham no órgão governamental. No portal da transparência, é possível encontrar dados sobre a estrutura organizacional do órgão, a quantidade de servidores por cargo e os seus salários, entre outras informações. Essa informação é importante para que o cidadão possa avaliar a eficiência e a qualidade dos serviços prestados pelo órgão.
 
-
 ## Colaboradores
 
 | [<img src="https://github.com/pedropberger.png?size=115" width=115>](https://github.com/pedropberger) <br> [@pedropberger](https://github.com/pedropberger) | [<img src="https://github.com/mwildemberg.png?size=115" width=115>](https://github.com/mwildemberg) <br> [@mwildemberg](https://github.com/mwildemberg) | [<img src="https://github.com/iaraarruda.png?size=115" width=115>](https://github.com/iaraarruda) <br> [@iaraarruda](https://github.com/iaraarruda) | [<img src="https://github.com/gMerisio.png?size=115" width=115>](https://github.com/gMerisio) <br> [@gMerisio](https://github.com/gMerisio) | [<img src="https://github.com/HeitorQuartezani.png?size=115" width=115>](https://github.com/HeitorQuartezani) <br> [@HeitorQuartezani](https://github.com/HeitorQuartezani) |
