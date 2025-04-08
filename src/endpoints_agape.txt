@@ -1,4 +1,3 @@
-assunto
 orcamento_receita
 orcamento_despesa
 receitas

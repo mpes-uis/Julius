@@ -12,7 +12,7 @@ def main():
     delay = 1
     endpoints_file = "endpoints_portaltp.txt"
     prefeituras_file = "prefeituras.csv"
-    db_file = "dados_transparencia.db"
+    db_file = "dados_transparencia_portaltp.db"
 
     # Verifica arquivos necessários
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
