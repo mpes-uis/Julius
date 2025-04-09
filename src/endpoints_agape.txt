@@ -13,3 +13,5 @@ diarias_passagens
 documentos
 atos_controle
 notasfiscais
+auxilio_alimentacao
+patrimonios

@@ -18,7 +18,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 17,Prefeitura Municipal de Cariacica,cariacica,https://wstransparencia.cariacica.es.gov.br/api/,Tectrilha,6
 18,Prefeitura Municipal de Castelo,castelo,https://Castelo-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 19,Prefeitura Municipal de Colatina,colatina,https://Colatina-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
-20,Prefeitura Municipal de Conceição da Barra,conceicaodabarra,http://187.1.137.226/transparencia/api/,Agape,
+20,Prefeitura Municipal de Conceição da Barra,conceicaodabarra,https://conceicaodabarra.cr2.site/,CR2,
 21,Prefeitura Municipal de Conceição do Castelo,conceiçãodocastelo,https://ConceicaodoCastelo-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 22,Prefeitura Municipal de Divino de São Lourenço,divinodesaolourenço,https://DivinodeSaoLourenco-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 23,Prefeitura Municipal de Domingos Martins,domingosmartins,https://DomingosMartins-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
@@ -63,7 +63,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 62,Prefeitura Municipal de Santa Leopoldina,santaleopoldina,https://SantaLeopoldina-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 63,Prefeitura Municipal de Santa Maria de Jetibá,santamariadejetiba,https://SantaMariadeJetiba-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 64,Prefeitura Municipal de Santa Teresa,santateresa,https://SantaTeresa-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
-65,Prefeitura Municipal de São Domingos do Norte,saodomingosdonorte,https://www.saodomingosdonorte.es.gov.br/transparencia,Agape,
+65,Prefeitura Municipal de São Domingos do Norte,saodomingosdonorte,https://www.saodomingosdonorte.es.gov.br/transparencia/api/,Agape,
 66,Prefeitura Municipal de São Gabriel da Palha,saogabrieldapalha,https://SaoGabrieldaPalha-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 67,Prefeitura Municipal de São Jose do Calçado,saojosedocalçado,https://SaoJosedoCalcado-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
 68,Prefeitura Municipal de São Mateus,saomateus,https://SaoMateus-es.portaltp.com.br/api/transparencia.asmx/,portaltp,
