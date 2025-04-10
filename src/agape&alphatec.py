@@ -11,14 +11,14 @@ def main():
     delay = 1
     endpoints_file = "endpoints_agape.txt"  
     prefeituras_file = "prefeituras.csv"
-    db_file = "dados_transparencia_agape.db"  
+    db_file = "dados_transparencia_agape&alphatec.db"  # Nome alterado conforme solicitado
 
     # Verifica arquivos necessários
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
         print("\nErro: Arquivos necessários não encontrados.")
         return
 
-    # Conecta ao SQLite (cria o banco se não existir)
+    # Conecta ao SQLite
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
     
@@ -39,15 +39,32 @@ def main():
     # Carrega dados
     endpoints = load_endpoints(endpoints_file)
     prefeituras = load_prefeituras(prefeituras_file)
-    prefeituras_agape = prefeituras[prefeituras['empresa'] == 'Agape']  
+    
+    # Processa prefeituras Agape
+    processar_prefeituras(conn, cursor, prefeituras, endpoints, 'Agape', anos, meses, delay)
+    
+    # Processa prefeituras Alphatec
+    processar_prefeituras(conn, cursor, prefeituras, endpoints, 'Alphatec', anos, meses, delay)
 
-    if prefeituras_agape.empty:
-        print("\nNenhuma prefeitura com empresa 'Agape' encontrada.")
-        conn.close()
-        return
+    print("\nProcessamento concluído!")
+    print(f"Dados salvos em: {db_file}")
+    
+    # Exemplo de consulta
+    print("\nExemplo de dados armazenados:")
+    cursor.execute("SELECT municipio, endpoint, COUNT(*) as registros FROM transparencia GROUP BY municipio, endpoint")
+    for row in cursor.fetchmany(5):
+        print(row)
+    
+    conn.close()
+
+def processar_prefeituras(conn, cursor, prefeituras, endpoints, empresa, anos, meses, delay):
+    prefeituras_empresa = prefeituras[prefeituras['empresa'] == empresa]  
+
+    if prefeituras_empresa.empty:
+        return  # Silenciosamente retorna se não houver prefeituras para esta empresa
 
     # Processa cada prefeitura
-    for _, prefeitura in prefeituras_agape.iterrows():
+    for _, prefeitura in prefeituras_empresa.iterrows():
         municipio = prefeitura['municipio']
         base_url = prefeitura['url'].rstrip('/')  
         
@@ -82,17 +99,6 @@ def main():
                         print(f" [Erro: {str(e)}]", end=' ')
                     
                     sleep(delay)
-
-    print("\n\nProcessamento concluído!")
-    print(f"Dados salvos em: {db_file}")
-    
-    # Exemplo de consulta
-    print("\nExemplo de dados armazenados:")
-    cursor.execute("SELECT municipio, endpoint, COUNT(*) as registros FROM transparencia GROUP BY municipio, endpoint")
-    for row in cursor.fetchmany(5):
-        print(row)
-    
-    conn.close()
 
 def load_prefeituras(filename):
     try:

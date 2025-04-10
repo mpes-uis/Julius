@@ -11,7 +11,7 @@ from datetime import date
 import os
 
 #read csv prefeituras
-prefeiturasURLS=pd.read_csv('data/prefeituras.csv')
+prefeiturasURLS=pd.read_csv('src/prefeituras.csv')
 
 #read csv assuntos
 assuntos_tectrilha=pd.read_csv('data/assuntos_tectrilha.csv')
