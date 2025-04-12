@@ -6,6 +6,6 @@ id,assunto,parametros
 5,captacoes,?exercicio={exercicio}
 6,bensmoveis,?exercicio={exercicio}
 7,passagens,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
-8,bensImoveis,
+8,bensImoveis, 
 9,pessoal,?exercicio={exercicio}&periodo={periodo}
 10,receitas,?unidadeGestoraId={unidadeGestoraId}&exercicio={exercicio}
