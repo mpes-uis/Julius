@@ -7,35 +7,19 @@ import os
 def main():
     # Configurações
     anos = [2023, 2024]
-    meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  
-    url_template = "https://{municipio}-es.portaltp.com.br/api"
+    meses = [1, 2]  
     delay = 1
-    endpoints_file = "endpoints_portaltp.txt"
-    prefeituras_file = "prefeituras.csv"
-    db_file = "dados_transparencia_portaltp.db"
+    endpoints_file = os.path.join("..", "data", "endpoints_portaltp.txt")  
+    prefeituras_file = os.path.join("..", "data", "prefeituras.csv")      
+    db_folder = os.path.join("..", "bds", "dados_transparencia_portaltp") 
 
     # Verifica arquivos necessários
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
         print("\nErro: Arquivos necessários não encontrados.")
         return
 
-    # Conecta ao SQLite (cria o banco se não existir)
-    conn = sqlite3.connect(db_file)
-    cursor = conn.cursor()
-    
-    # Cria tabela se não existir
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS transparencia (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        municipio TEXT,
-        endpoint TEXT,
-        ano INTEGER,
-        mes INTEGER,
-        dados TEXT,
-        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-    ''')
-    conn.commit()
+    # Cria pasta para os bancos de dados se não existir
+    os.makedirs(db_folder, exist_ok=True)
 
     # Carrega dados
     endpoints = load_endpoints(endpoints_file)
@@ -44,20 +28,40 @@ def main():
 
     if prefeituras_portaltp.empty:
         print("\nNenhuma prefeitura com empresa 'portaltp' encontrada.")
-        conn.close()
         return
 
-    # Processa cada prefeitura
-    for _, prefeitura in prefeituras_portaltp.iterrows():
-        municipio = prefeitura['municipio']
-        base_url = url_template.format(municipio=municipio)
+    # Processa por endpoint
+    for endpoint in endpoints:
+        endpoint_name = endpoint.split('/')[-1].replace('Get', '')
+        db_file = os.path.join(db_folder, f"{endpoint_name}_portaltp.db")
         
         print(f"\n{'='*50}")
-        print(f"Processando: {prefeitura['prefeitura']} ({municipio})")
+        print(f"Processando endpoint: {endpoint_name}")
         
-        for endpoint in endpoints:
-            endpoint_name = endpoint.split('/')[-1]
-            print(f"\nEndpoint: {endpoint_name}")
+        # Cria conexão com o banco de dados específico para este endpoint
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        
+        # Cria tabela se não existir (sem timestamp)
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS transparencia (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            municipio TEXT,
+            prefeitura TEXT,
+            ano INTEGER,
+            mes INTEGER,
+            dados TEXT
+        )
+        ''')
+        conn.commit()
+
+        # Processa todas as prefeituras para este endpoint
+        for _, prefeitura in prefeituras_portaltp.iterrows():
+            municipio = prefeitura['municipio']  # Nome do município da coluna 'municipio'
+            prefeitura_nome = prefeitura['prefeitura']
+            base_url = prefeitura['url']
+            
+            print(f"\nPrefeitura: {prefeitura_nome} ({municipio})")
             
             for ano in anos:
                 for mes in meses:
@@ -70,12 +74,12 @@ def main():
                         response.raise_for_status()
                         dados = response.json()
                         
-                        # Insere no SQLite
+                        # Insere no SQLite com o nome do município
                         cursor.execute('''
                         INSERT INTO transparencia 
-                        (municipio, endpoint, ano, mes, dados) 
+                        (municipio, prefeitura, ano, mes, dados) 
                         VALUES (?, ?, ?, ?, ?)
-                        ''', (municipio, endpoint_name, ano, mes, str(dados)))
+                        ''', (municipio, prefeitura_nome, ano, mes, str(dados)))
                         
                         conn.commit()
                         
@@ -83,17 +87,25 @@ def main():
                         print(f" [Erro: {str(e)}]", end=' ')
                     
                     sleep(delay)
+        
+        # Fecha conexão com o banco deste endpoint
+        conn.close()
 
     print("\n\nProcessamento concluído!")
-    print(f"Dados salvos em: {db_file}")
+    print(f"Dados salvos na pasta: {db_folder}")
     
-    # Exemplo de consulta
-    print("\nExemplo de dados armazenados:")
-    cursor.execute("SELECT municipio, endpoint, COUNT(*) as registros FROM transparencia GROUP BY municipio, endpoint")
-    for row in cursor.fetchmany(5):
-        print(row)
-    
-    conn.close()
+    # Exemplo de consulta (mostra o primeiro banco de dados encontrado)
+    if endpoints:
+        first_endpoint = endpoints[0].split('/')[-1].replace('Get', '')
+        db_file = os.path.join(db_folder, f"{first_endpoint}_portaltp.db")
+        if os.path.exists(db_file):
+            print(f"\nExemplo de dados armazenados em {first_endpoint}_portaltp.db:")
+            conn = sqlite3.connect(db_file)
+            cursor = conn.cursor()
+            cursor.execute("SELECT municipio, prefeitura, ano, mes, COUNT(*) as registros FROM transparencia GROUP BY municipio, prefeitura, ano, mes")
+            for row in cursor.fetchmany(5):
+                print(row)
+            conn.close()
 
 def load_prefeituras(filename):
     try:
