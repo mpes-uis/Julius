@@ -11,15 +11,15 @@ def main():
     delay = 1
     endpoints_file = os.path.join("..", "data", "endpoints_portaltp.txt")  
     prefeituras_file = os.path.join("..", "data", "prefeituras.csv")      
-    db_folder = os.path.join("..", "bds", "dados_transparencia_portaltp") 
+    db_file = os.path.join("..", "bds", "portaltp.db")  # Único banco de dados
 
     # Verifica arquivos necessários
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
         print("\nErro: Arquivos necessários não encontrados.")
         return
 
-    # Cria pasta para os bancos de dados se não existir
-    os.makedirs(db_folder, exist_ok=True)
+    # Cria pasta para o banco de dados se não existir
+    os.makedirs(os.path.dirname(db_file), exist_ok=True)
 
     # Carrega dados
     endpoints = load_endpoints(endpoints_file)
@@ -30,34 +30,29 @@ def main():
         print("\nNenhuma prefeitura com empresa 'portaltp' encontrada.")
         return
 
-    # Processa por endpoint
+    # Cria conexão com o único banco de dados
+    conn = sqlite3.connect(db_file)
+    cursor = conn.cursor()
+
+    # Processa por endpoint (cada endpoint será uma tabela)
     for endpoint in endpoints:
-        endpoint_name = endpoint.split('/')[-1].replace('Get', '')
-        db_file = os.path.join(db_folder, f"{endpoint_name}_portaltp.db")
+        endpoint_name = endpoint.split('/')[-1].replace('Get', '').lower()
         
         print(f"\n{'='*50}")
         print(f"Processando endpoint: {endpoint_name}")
         
-        # Cria conexão com o banco de dados específico para este endpoint
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
-        
-        # Cria tabela se não existir (sem timestamp)
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS transparencia (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            municipio TEXT,
-            prefeitura TEXT,
-            ano INTEGER,
-            mes INTEGER,
-            dados TEXT
+        # Cria tabela para este endpoint se não existir (sem colunas fixas)
+        cursor.execute(f'''
+        CREATE TABLE IF NOT EXISTS {endpoint_name} (
+            id INTEGER PRIMARY KEY AUTOINCREMENT
+            -- As colunas serão adicionadas dinamicamente conforme os dados
         )
         ''')
         conn.commit()
 
         # Processa todas as prefeituras para este endpoint
         for _, prefeitura in prefeituras_portaltp.iterrows():
-            municipio = prefeitura['municipio']  # Nome do município da coluna 'municipio'
+            municipio = prefeitura['municipio']
             prefeitura_nome = prefeitura['prefeitura']
             base_url = prefeitura['url']
             
@@ -74,38 +69,62 @@ def main():
                         response.raise_for_status()
                         dados = response.json()
                         
-                        # Insere no SQLite com o nome do município
-                        cursor.execute('''
-                        INSERT INTO transparencia 
-                        (municipio, prefeitura, ano, mes, dados) 
-                        VALUES (?, ?, ?, ?, ?)
-                        ''', (municipio, prefeitura_nome, ano, mes, str(dados)))
+                        # Converte JSON para DataFrame
+                        df = pd.DataFrame(dados)
                         
-                        conn.commit()
-                        
+                        if not df.empty:
+                            # Adiciona apenas a coluna de município (se necessário)
+                            if 'municipio' not in df.columns:
+                                df['municipio'] = municipio
+                            
+                            # Adiciona coluna de prefeitura (se necessário)
+                            if 'prefeitura' not in df.columns:
+                                df['prefeitura'] = prefeitura_nome
+                            
+                            # Verifica e adiciona novas colunas se necessário
+                            cursor.execute(f"PRAGMA table_info({endpoint_name})")
+                            existing_columns = [col[1] for col in cursor.fetchall()]
+                            
+                            for column in df.columns:
+                                if column not in existing_columns and column != 'id':
+                                    # Determina o tipo da coluna
+                                    col_type = 'TEXT'  # padrão
+                                    if pd.api.types.is_numeric_dtype(df[column]):
+                                        col_type = 'REAL'
+                                    elif pd.api.types.is_integer_dtype(df[column]):
+                                        col_type = 'INTEGER'
+                                    
+                                    cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {column} {col_type}")
+                                    conn.commit()
+                            
+                            # Insere os dados no banco (sem índice)
+                            df.to_sql(endpoint_name, conn, if_exists='append', index=False)
+                            
                     except Exception as e:
                         print(f" [Erro: {str(e)}]", end=' ')
                     
                     sleep(delay)
-        
-        # Fecha conexão com o banco deste endpoint
-        conn.close()
+    
+    # Fecha conexão com o banco de dados
+    conn.close()
 
     print("\n\nProcessamento concluído!")
-    print(f"Dados salvos na pasta: {db_folder}")
+    print(f"Dados salvos no arquivo: {db_file}")
     
-    # Exemplo de consulta (mostra o primeiro banco de dados encontrado)
+    # Exemplo de consulta (mostra as tabelas criadas)
     if endpoints:
-        first_endpoint = endpoints[0].split('/')[-1].replace('Get', '')
-        db_file = os.path.join(db_folder, f"{first_endpoint}_portaltp.db")
-        if os.path.exists(db_file):
-            print(f"\nExemplo de dados armazenados em {first_endpoint}_portaltp.db:")
-            conn = sqlite3.connect(db_file)
-            cursor = conn.cursor()
-            cursor.execute("SELECT municipio, prefeitura, ano, mes, COUNT(*) as registros FROM transparencia GROUP BY municipio, prefeitura, ano, mes")
-            for row in cursor.fetchmany(5):
-                print(row)
-            conn.close()
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        
+        print("\nTabelas criadas no banco de dados:")
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        for table in cursor.fetchall():
+            print(f"\nTabela: {table[0]}")
+            cursor.execute(f"SELECT * FROM {table[0]} LIMIT 1")
+            columns = [description[0] for description in cursor.description]
+            print("Colunas:", columns)
+        
+        conn.close()
 
 def load_prefeituras(filename):
     try:
