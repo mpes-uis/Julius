@@ -11,7 +11,7 @@ def main():
     delay = 1
     endpoints_file = os.path.join("..", "data", "endpoints_portaltp.txt")  
     prefeituras_file = os.path.join("..", "data", "prefeituras.csv")      
-    db_file = os.path.join("..", "bds", "portaltp.db")  # Único banco de dados
+    db_file = os.path.join("..", "bds", "portaltp.db") 
 
     # Verifica arquivos necessários
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
@@ -34,14 +34,14 @@ def main():
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
 
-    # Processa por endpoint (cada endpoint será uma tabela)
+    # Processa por endpoint 
     for endpoint in endpoints:
         endpoint_name = endpoint.split('/')[-1].replace('Get', '').lower()
         
         print(f"\n{'='*50}")
         print(f"Processando endpoint: {endpoint_name}")
         
-        # Cria tabela para este endpoint se não existir (sem colunas fixas)
+        # Cria tabela para este endpoint se não existir 
         cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {endpoint_name} (
             id INTEGER PRIMARY KEY AUTOINCREMENT
