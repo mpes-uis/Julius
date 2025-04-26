@@ -190,15 +190,13 @@ def transform_json_to_dataframe(data, assunto_nome):
         print(f"❌ Erro ao transformar JSON em DataFrame: {str(e)}")
         return None
 
-def store_dataframe(conn, df, table_name, prefeitura_nome=None, municipio=None, ano=None, periodo=None):
+def store_dataframe(conn, df, table_name):
     """
-    Armazena DataFrame no SQLite SEM adicionar colunas de metadados
-    Args:
-        prefeitura_nome, municipio, ano, periodo: usados apenas para lógica interna (não armazenados)
+    Armazena DataFrame no SQLite mantendo APENAS prefeitura e municipio como metadados
     """
     try:
-        # Remove colunas de metadados se existirem
-        for col in ['ano', 'mes', 'prefeitura', 'municipio']:
+        # Remove colunas de metadados que não queremos (ano e mes)
+        for col in ['ano', 'mes']:
             if col in df.columns:
                 df = df.drop(columns=[col])
         
@@ -223,7 +221,7 @@ def store_dataframe(conn, df, table_name, prefeitura_nome=None, municipio=None, 
                 index=False
             )
         else:
-            # Adiciona colunas faltantes
+            # Adiciona colunas faltantes (incluindo prefeitura e municipio se não existirem)
             cursor.execute(f"PRAGMA table_info({table_name})")
             existing_columns = [column[1] for column in cursor.fetchall()]
             
@@ -238,7 +236,7 @@ def store_dataframe(conn, df, table_name, prefeitura_nome=None, municipio=None, 
                         if "duplicate column" not in str(e):
                             raise
         
-        # Insere os dados
+        # Insere os dados (mantendo prefeitura e municipio)
         df.to_sql(
             name=table_name,
             con=conn,
@@ -250,6 +248,7 @@ def store_dataframe(conn, df, table_name, prefeitura_nome=None, municipio=None, 
     except Exception as e:
         print(f"❌ Erro ao armazenar dados: {str(e)}")
         print(f"Colunas problemáticas: {df.columns.tolist()}")
+        
 def clean_column_name(col):
     # Remove caracteres especiais e substitui espaços
     return ''.join(c if c.isalnum() else '_' for c in str(col))
