@@ -14,14 +14,16 @@ def main():
     endpoints_file = os.path.join(base_dir, "data", "endpoints_agape.txt")  
     prefeituras_file = os.path.join(base_dir, "data", "prefeituras.csv")
     db_file = os.path.join(base_dir, "bds", "agape&alphatec.db")  
+    error_log_file = os.path.join(base_dir, "logs", "agape_alphatec_errors.log")
 
     if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
-        print("\nErro: Arquivos necessários não encontrados.")
-        print(f"Procurando em: {endpoints_file}")
-        print(f"Procurando em: {prefeituras_file}")
+        print("\n🔴 ERRO: Arquivos necessários não encontrados.")
+        print(f"🔍 Procurando em: {endpoints_file}")
+        print(f"🔍 Procurando em: {prefeituras_file}")
         return
 
     os.makedirs(os.path.dirname(db_file), exist_ok=True)
+    os.makedirs(os.path.dirname(error_log_file), exist_ok=True)
 
     endpoints = load_endpoints(endpoints_file)
     prefeituras = load_prefeituras(prefeituras_file)
@@ -33,7 +35,7 @@ def main():
         endpoint_name = endpoint.split('/')[-1].replace('Get', '').lower()
 
         print(f"\n{'='*50}")
-        print(f"Processando endpoint: {endpoint_name}")
+        print(f"🔧 Processando endpoint: {endpoint_name}")
 
         cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {endpoint_name} (
@@ -42,29 +44,29 @@ def main():
         ''')
         conn.commit()
 
-        processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, 'Agape', anos, meses, delay)
-        processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, 'Alphatec', anos, meses, delay)
+        processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, 'Agape', anos, meses, delay, error_log_file)
+        processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, 'Alphatec', anos, meses, delay, error_log_file)
 
     conn.close()
 
-    print("\n\nProcessamento concluído!")
-    print(f"Dados salvos no arquivo: {db_file}")
+    print("\n\n✅ PROCESSAMENTO CONCLUÍDO!")
+    print(f"💾 Dados salvos no arquivo: {db_file}")
 
     if endpoints:
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
 
-        print("\nTabelas criadas no banco de dados:")
+        print("\n📊 Tabelas criadas no banco de dados:")
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
         for table in cursor.fetchall():
-            print(f"\nTabela: {table[0]}")
+            print(f"\n📋 Tabela: {table[0]}")
             cursor.execute(f"SELECT * FROM {table[0]} LIMIT 1")
             columns = [description[0] for description in cursor.description]
-            print("Colunas:", columns)
+            print("🔡 Colunas:", columns)
 
         conn.close()
 
-def processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, empresa, anos, meses, delay):
+def processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, empresa, anos, meses, delay, error_log_file):
     prefeituras_empresa = prefeituras[prefeituras['empresa'] == empresa]  
 
     if prefeituras_empresa.empty:
@@ -75,11 +77,11 @@ def processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, empres
         prefeitura_nome = prefeitura['prefeitura']
         base_url = prefeitura['url'].rstrip('/')  
 
-        print(f"\nPrefeitura: {prefeitura_nome} ({municipio}) - {empresa}")
+        print(f"\n🏛️ Prefeitura: {prefeitura_nome} ({municipio}) - {empresa}")
 
         for ano in anos:
             for mes in meses:
-                print(f"{mes:02d}/{ano}", end=' ', flush=True)
+                print(f"📅 {mes:02d}/{ano}", end=' ', flush=True)
                 url = f"{base_url}/{endpoint}?ano={ano}&mes={mes:02d}"
 
                 try:
@@ -131,7 +133,9 @@ def processar_empresa(conn, cursor, prefeituras, endpoint, endpoint_name, empres
                         df.to_sql(endpoint_name, conn, if_exists='append', index=False)
 
                 except Exception as e:
-                    print(f" [Erro: {str(e)}]", end=' ')
+                    print(f"🔴 ERRO: {str(e)}", end=' ')
+                    with open(error_log_file, 'a') as f:
+                        f.write(f"{url}|{str(e)}\n")
 
                 sleep(delay)
 
@@ -139,7 +143,7 @@ def load_prefeituras(filename):
     try:
         return pd.read_csv(filename)
     except Exception as e:
-        print(f"\nErro ao ler arquivo de prefeituras: {str(e)}")
+        print(f"\n🔴 ERRO ao ler arquivo de prefeituras: {str(e)}")
         return pd.DataFrame()
 
 def load_endpoints(filename):
@@ -147,7 +151,7 @@ def load_endpoints(filename):
         with open(filename, 'r', encoding='utf-8') as file:
             return [line.strip() for line in file if line.strip()]
     except Exception as e:
-        print(f"\nErro ao ler arquivo de endpoints: {str(e)}")
+        print(f"\n🔴 ERRO ao ler arquivo de endpoints: {str(e)}")
         return []
 
 if __name__ == "__main__":
