@@ -7,7 +7,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 6,Prefeitura Municipal de Alto Rio Novo,alto rio novo,https://altorionovo-es.portaltp.com.br/api/,portaltp,
 7,Prefeitura Municipal de Anchieta,anchieta,http://anchieta-es.portaltp.com.br/api/dadosabertos.aspx,portaltp,
 8,Prefeitura Municipal de Apiacá,apiacá,https://Apiaca-es.portaltp.com.br/api/,portaltp,
-9,Prefeitura Municipal de Aracruz,aracruz,http://wstransparencia.aracruz.es.gov.br/api/,,3
+9,Prefeitura Municipal de Aracruz,aracruz,http://wstransparencia.aracruz.es.gov.br/api/,Tectrilha,3
 10,Prefeitura Municipal de Atílio Vivácqua,atílio vivácqua,https://www.pmav.es.gov.br/transparencia/api/,Alphatec,
 11,Prefeitura Municipal de Baixo Guandu,baixo guandu,https://BaixoGuandu-es.portaltp.com.br/api/,portaltp,
 12,Prefeitura Municipal de Barra de São Francisco,barra de são francisco,https://BarradeSaoFrancisco-es.portaltp.com.br/api/,portaltp,
@@ -27,7 +27,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 26,Prefeitura Municipal de Fundão,fundão,https://Fundao-es.portaltp.com.br/api/,portaltp,
 27,Prefeitura Municipal de Governador Lindenberg,governador lindenberg,https://GovernadorLindenberg-es.portaltp.com.br/api/,portaltp,
 28,Prefeitura Municipal de Guacuí,guaçuí,https://Guacui-es.portaltp.com.br/api/,portaltp,
-29,Prefeitura Municipal de Guarapari,guarapari,http://transparencia.guarapari.es.gov.br:82/,,
+29,Prefeitura Municipal de Guarapari,guarapari,http://transparencia.guarapari.es.gov.br:82/,Tectrilha,2
 30,Prefeitura Municipal de Ibatiba,ibatiba,https://Ibatiba-es.portaltp.com.br/api/,portaltp,
 31,Prefeitura Municipal de Ibiracu,ibiraçu,https://Ibiracu-es.portaltp.com.br/api/,portaltp,
 32,Prefeitura Municipal de Ibitirama,ibitirama,https://Ibitirama-es.portaltp.com.br/api/,portaltp,
