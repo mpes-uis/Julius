@@ -101,13 +101,11 @@ def get_periodo_usuario():
             print("🔴 Formato inválido. Use MM/AAAA (ex: 01/2024). Tente novamente.")
 
 def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_file, error_log_file):
-    """Executa a extração de dados para o período especificado"""
-    print(f"\nIniciando extração de {data_inicio[1]:02d}/{data_inicio[0]} a {data_fim[1]:02d}/{data_fim[0]}")
-    
-    if not all(os.path.exists(f) for f in [endpoints_file, prefeituras_file]):
-        print("\n🔴 ERRO: Arquivos necessários não encontrados.")
-        return
-
+    """
+    Executa a extração de dados para um período específico,
+    evitando duplicatas e garantindo commits no banco de dados.
+    """
+    # Carrega endpoints e prefeituras
     endpoints = load_endpoints(endpoints_file)
     prefeituras = load_prefeituras(prefeituras_file)
     prefeituras_portaltp = prefeituras[prefeituras['empresa'] == 'portaltp']
@@ -125,10 +123,15 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
         print(f"\n{'='*50}")
         print(f"🔧 Processando endpoint: {endpoint_name}")
         
+        # Cria a tabela se não existir 
         cursor.execute(f'''
-        CREATE TABLE IF NOT EXISTS {endpoint_name} (
-            id INTEGER PRIMARY KEY AUTOINCREMENT
-        )
+            CREATE TABLE IF NOT EXISTS {endpoint_name} (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                municipio TEXT,
+                prefeitura TEXT,
+                ano INTEGER,
+                mes INTEGER
+            )
         ''')
         conn.commit()
 
@@ -139,11 +142,23 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
             
             print(f"\n🏛️ Prefeitura: {prefeitura_nome} ({municipio})")
             
-            # Gerar todos os meses no período
             meses_periodo = generate_months_range(data_inicio, data_fim)
             
             for ano, mes in meses_periodo:
                 print(f"📅 {mes:02d}/{ano}", end=' ', flush=True)
+                
+                # Verifica se os dados já existem (usando ano/mes como filtro)
+                cursor.execute(f'''
+                    SELECT 1 FROM {endpoint_name} 
+                    WHERE municipio = ? AND prefeitura = ? AND ano = ? AND mes = ?
+                    LIMIT 1
+                ''', (municipio, prefeitura_nome, ano, mes))
+                
+                if cursor.fetchone():
+                    print("✅ Já existe no BD", end=' ')
+                    continue
+                
+                # Se não existir, faz a requisição
                 url = f"{base_url}/{endpoint}?ano={ano}&mes={mes:02d}"
                 
                 try:
@@ -154,12 +169,13 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
                     df = pd.DataFrame(dados)
                     
                     if not df.empty:
-                        if 'municipio' not in df.columns:
-                            df['municipio'] = municipio
+                        # Adiciona metadados
+                        df['municipio'] = municipio
+                        df['prefeitura'] = prefeitura_nome
+                        df['ano'] = ano
+                        df['mes'] = mes
                         
-                        if 'prefeitura' not in df.columns:
-                            df['prefeitura'] = prefeitura_nome
-                        
+                        # Adiciona colunas dinâmicas 
                         cursor.execute(f"PRAGMA table_info({endpoint_name})")
                         existing_columns = [col[1] for col in cursor.fetchall()]
                         
@@ -174,7 +190,9 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
                                 cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {column} {col_type}")
                                 conn.commit()
                         
+                        # Insere os dados (commit automático no to_sql)
                         df.to_sql(endpoint_name, conn, if_exists='append', index=False)
+                        print("✅ Dados salvos", end=' ')
                         
                 except Exception as e:
                     print(f"🔴 ERRO: {str(e)}", end=' ')
