@@ -1,4 +1,3 @@
-
 import requests
 import pandas as pd
 import sqlite3
@@ -23,7 +22,6 @@ def get_retry_session():
     return session
 
 def main():
-    # Configurações de diretórios
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(base_dir, 'data')
     bds_dir = os.path.join(base_dir, 'bds')
@@ -36,11 +34,9 @@ def main():
     execution_log_file = os.path.join(logs_dir, 'portaltp_execution.log')
     last_run_file = os.path.join(logs_dir, 'portaltp_last_run.txt')
 
-    # Criar diretórios se não existirem
     os.makedirs(bds_dir, exist_ok=True)
     os.makedirs(logs_dir, exist_ok=True)
 
-    # Menu principal
     while True:
         print("\n" + "="*50)
         print("MENU PRINCIPAL - PORTALTP DATA EXTRACTOR")
@@ -87,11 +83,10 @@ def main():
             print("\n🔴 Opção inválida. Tente novamente.")
 
 def get_periodo_usuario():
-    """Obtém o período desejado do usuário"""
     print("\n" + "="*50)
     print("DEFINIR PERÍODO DE EXTRAÇÃO")
     print("="*50)
-    
+
     while True:
         try:
             inicio = input("Data inicial (MM/AAAA): ").split('/')
@@ -116,7 +111,6 @@ def get_periodo_usuario():
             print("🔴 Formato inválido. Use MM/AAAA (ex: 01/2024). Tente novamente.")
 
 def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_file, error_log_file):
-    # Carrega endpoints e prefeituras
     endpoints = load_endpoints(endpoints_file)
     prefeituras = load_prefeituras(prefeituras_file)
     prefeituras_portaltp = prefeituras[prefeituras['empresa'] == 'portaltp']
@@ -131,9 +125,7 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
 
     for endpoint in endpoints:
         endpoint_name = endpoint.split('/')[-1].replace('Get', '').lower()
-
-        print(f"\n{'='*50}")
-        print(f"🔧 Processando endpoint: {endpoint_name}")
+        print(f"\n{'='*50}\n🔧 Processando endpoint: {endpoint_name}")
 
         cursor.execute(f'''
             CREATE TABLE IF NOT EXISTS {endpoint_name} (
@@ -150,12 +142,10 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
             municipio = prefeitura['municipio']
             prefeitura_nome = prefeitura['prefeitura']
             base_url = normalizar_url(prefeitura['url'])
-
             print(f"\n🏛️ Prefeitura: {prefeitura_nome} ({municipio})")
 
             for ano, mes in generate_months_range(data_inicio, data_fim):
                 print(f"📅 {mes:02d}/{ano}", end=' ', flush=True)
-
                 cursor.execute(f'''
                     SELECT 1 FROM {endpoint_name} 
                     WHERE municipio = ? AND prefeitura = ? AND ano = ? AND mes = ?
@@ -167,14 +157,13 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
                     continue
 
                 url = f"{base_url}/{endpoint}?ano={ano}&mes={mes:02d}"
-
                 try:
                     response = session.get(url, timeout=30)
                     response.raise_for_status()
                     if not response.content.strip():
-                        raise ValueError("Resposta vazia da API")
+                        print("🟡 Resposta vazia. Ignorando.", end=' ')
+                        continue
                     dados = response.json()
-
                     df = pd.DataFrame(dados)
 
                     if not df.empty:
@@ -193,7 +182,6 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
                                     col_type = 'REAL'
                                 elif pd.api.types.is_integer_dtype(df[column]):
                                     col_type = 'INTEGER'
-
                                 cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {column} {col_type}")
                                 conn.commit()
 
@@ -205,7 +193,6 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
                     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     with open(error_log_file, 'a') as f:
                         f.write(f"{timestamp}|{url}|{type(e).__name__}|{str(e)}\n")
-
                 sleep(1)
 
     conn.close()
@@ -216,8 +203,12 @@ def run_failed_urls(error_log_file, endpoints_file, prefeituras_file, db_file):
         print("\n🔴 Nenhum arquivo de log de erros encontrado.")
         return
 
+    failed_urls = []
     with open(error_log_file, 'r') as f:
-        failed_urls = [line.strip().split('|')[1] for line in f if '|' in line]
+        for line in f:
+            partes = line.strip().split('|')
+            if len(partes) >= 2:
+                failed_urls.append(partes[1])
 
     if not failed_urls:
         print("\n✅ Nenhuma URL com erro para reprocessar.")
@@ -234,22 +225,34 @@ def run_failed_urls(error_log_file, endpoints_file, prefeituras_file, db_file):
     for url in failed_urls:
         try:
             print(f"🔁 Tentando novamente: {url}", end=' ', flush=True)
-            parts = url.split('/')
-            base_url = '/'.join(parts[:3])
-            endpoint = parts[-2]
-            query_params = parts[-1].split('?')[1]
-            ano = int(query_params.split('&')[0].split('=')[1])
-            mes = int(query_params.split('&')[1].split('=')[1])
+            url = normalizar_url(url).replace('//', '/').replace('https:/', 'https://')
+            parsed = urlparse(url)
+            base_url = f"{parsed.scheme}://{parsed.netloc}"
+            if '?' not in url:
+                print("🟡 URL sem parâmetros. Ignorando.")
+                continue
 
-            prefeitura = prefeituras[prefeituras['url'].str.strip().apply(normalizar_url) == normalizar_url(base_url)].iloc[0]
+            query_params = parsed.query
+            params_dict = dict(param.split('=', 1) for param in query_params.split('&'))
+            ano = int(params_dict.get('ano', 0))
+            mes = int(params_dict.get('mes', 0))
+
+            prefeitura_match = prefeituras[prefeituras['url'].str.strip().apply(normalizar_url) == base_url]
+            if prefeitura_match.empty:
+                print("🟡 Prefeitura não encontrada. Ignorando.")
+                continue
+
+            prefeitura = prefeitura_match.iloc[0]
             municipio = prefeitura['municipio']
             prefeitura_nome = prefeitura['prefeitura']
-            endpoint_name = endpoint.replace('Get', '').lower()
+            endpoint_name = parsed.path.split('/')[-1].replace('Get', '').lower()
 
-            response = session.get(url, timeout=30)
+            response = session.get(url, timeout=60)
             response.raise_for_status()
             if not response.content.strip():
-                raise ValueError("Resposta vazia da API")
+                print("🟡 Resposta vazia. Ignorando.")
+                continue
+
             dados = response.json()
             df = pd.DataFrame(dados)
 
@@ -269,7 +272,6 @@ def run_failed_urls(error_log_file, endpoints_file, prefeituras_file, db_file):
                             col_type = 'REAL'
                         elif pd.api.types.is_integer_dtype(df[column]):
                             col_type = 'INTEGER'
-
                         cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {column} {col_type}")
                         conn.commit()
 
@@ -282,7 +284,6 @@ def run_failed_urls(error_log_file, endpoints_file, prefeituras_file, db_file):
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(temp_error_file, 'a') as f:
                 f.write(f"{timestamp}|{url}|{type(e).__name__}|{str(e)}\n")
-
         sleep(1)
 
     conn.close()
