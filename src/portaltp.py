@@ -11,7 +11,7 @@ from urllib3.util.retry import Retry
 def normalizar_url(url):
     url = url.strip()
     if not url.startswith('http'):
-        url = 'https://' + url
+        url = 'https://' + url.strip().lstrip('/')
     return url.rstrip('/')
 
 def get_retry_session():

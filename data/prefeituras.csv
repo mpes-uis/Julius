@@ -5,7 +5,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 4,Prefeitura Municipal de Alegre,alegre,https://alegre-es.portaltp.com.br/api/,portaltp,
 5,Prefeitura Municipal de Alfredo Chaves,alfredo chaves,https://alfredochaves-es.portaltp.com.br/api/,portaltp,
 6,Prefeitura Municipal de Alto Rio Novo,alto rio novo,https://altorionovo-es.portaltp.com.br/api/,portaltp,
-7,Prefeitura Municipal de Anchieta,anchieta,http://anchieta-es.portaltp.com.br/api/dadosabertos.aspx,portaltp,
+7,Prefeitura Municipal de Anchieta,anchieta,http://anchieta-es.portaltp.com.br/api/,portaltp,
 8,Prefeitura Municipal de Apiacá,apiacá,https://Apiaca-es.portaltp.com.br/api/,portaltp,
 9,Prefeitura Municipal de Aracruz,aracruz,http://wstransparencia.aracruz.es.gov.br/api/,Tectrilha,3
 10,Prefeitura Municipal de Atílio Vivácqua,atílio vivácqua,https://www.pmav.es.gov.br/transparencia/api/,Alphatec,
@@ -37,7 +37,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 36,Prefeitura Municipal de Itapemirim,itapemirim,https://dadosabertos-portalfacil.azurewebsites.net/438,portalfacil,
 37,Prefeitura Municipal de Itarana,itarana,https://Itarana-es.portaltp.com.br/api/,portaltp,
 38,Prefeitura Municipal de Iúna,iúna,https://Iuna-es.portaltp.com.br/api/,portaltp,
-39,Prefeitura Municipal de Jaguaré,jaguaré,https://jaguare-es.portaltp.com.br/api/dadosabertos.aspx,portaltp,
+39,Prefeitura Municipal de Jaguaré,jaguaré,https://jaguare-es.portaltp.com.br/api/,portaltp,
 40,Prefeitura Municipal de Jeronimo Monteiro,jerônimo monteiro,https://JeronimoMonteiro-es.portaltp.com.br/api/,portaltp,
 41,Prefeitura Municipal de João Neiva,joão neiva,https://JoaoNeiva-es.portaltp.com.br/api/,portaltp,
 42,Prefeitura Municipal de Laranja da Terra,laranja da terra,https://LaranjadaTerra-es.portaltp.com.br/api/,portaltp,
