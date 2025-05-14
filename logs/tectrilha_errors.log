@@ -1,150 +1,54 @@
-http://wstransparencia.aracruz.es.gov.br/api/contratos?unidadeGestoraId=3&exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/contratos?unidadeGestoraId=3&exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/despesa?exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/despesa?exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/diarias?unidadeGestoraId=3&exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/diarias?unidadeGestoraId=3&exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/convenios?unidadeGestoraId=3&exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/convenios?unidadeGestoraId=3&exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/captacoes?exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/captacoes?exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/bensmoveis?exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/bensmoveis?exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/passagens?unidadeGestoraId=3&exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/passagens?unidadeGestoraId=3&exercicio=2024|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=1|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=2|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=3|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=4|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=5|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=6|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=7|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=8|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=9|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=10|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=11|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=12|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=1|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=2|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=3|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=4|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=5|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=6|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=7|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=8|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=9|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=10|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=11|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2024&periodo=12|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/receitas?unidadeGestoraId=3&exercicio=2023|Falha após 5 tentativas
-http://wstransparencia.aracruz.es.gov.br/api/receitas?unidadeGestoraId=3&exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/contratos?unidadeGestoraId=2&exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/contratos?unidadeGestoraId=2&exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/despesa?exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/despesa?exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/diarias?unidadeGestoraId=2&exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/diarias?unidadeGestoraId=2&exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/convenios?unidadeGestoraId=2&exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/convenios?unidadeGestoraId=2&exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/captacoes?exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/captacoes?exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/bensmoveis?exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/bensmoveis?exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/passagens?unidadeGestoraId=2&exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/passagens?unidadeGestoraId=2&exercicio=2024|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=1|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=2|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=3|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=4|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=5|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=6|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=7|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=8|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=9|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=10|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=11|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2023&periodo=12|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=1|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=2|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=3|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=4|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=5|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=6|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=7|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=8|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=9|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=10|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=11|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/pessoal?exercicio=2024&periodo=12|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/receitas?unidadeGestoraId=2&exercicio=2023|Falha após 5 tentativas
-http://transparencia.guarapari.es.gov.br:82/receitas?unidadeGestoraId=2&exercicio=2024|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=1|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=2|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=3|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=4|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=5|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=6|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=7|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=8|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=9|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=11|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=12|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=1|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=2|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=3|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=4|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=5|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=6|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=7|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=8|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=9|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=10|Falha após 5 tentativas
-https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2024&periodo=11|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=1|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=2|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=3|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=4|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=5|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=6|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=7|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=8|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=9|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=10|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=11|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=12|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=1|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=2|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=3|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=4|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=5|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=6|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=7|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=8|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=9|Falha após 5 tentativas
-https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2024&periodo=10|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=1|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=2|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=3|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=4|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=5|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=6|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=7|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=8|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=9|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=10|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=11|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=12|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=1|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=2|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=3|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=4|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=5|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=6|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=7|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=8|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=9|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=10|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=11|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2024&periodo=12|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2023|Falha após 5 tentativas
-https://wstransparencia.vitoria.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2024|Falha após 5 tentativas
+2025-05-13 20:31:16|http://wstransparencia.aracruz.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:33:23|http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=1|ConnectionError|HTTPConnectionPool(host='wstransparencia.aracruz.es.gov.br', port=80): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=1 (Caused by ReadTimeoutError("HTTPConnectionPool(host='wstransparencia.aracruz.es.gov.br', port=80): Read timed out. (read timeout=30)"))
+2025-05-13 20:35:29|http://wstransparencia.aracruz.es.gov.br/api/pessoal?exercicio=2023&periodo=2|ConnectionError|HTTPConnectionPool(host='wstransparencia.aracruz.es.gov.br', port=80): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=2 (Caused by ReadTimeoutError("HTTPConnectionPool(host='wstransparencia.aracruz.es.gov.br', port=80): Read timed out. (read timeout=30)"))
+2025-05-13 20:35:34|https://wstransparencia.cariacica.es.gov.br/api/contratos?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/contratos?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:34|https://wstransparencia.cariacica.es.gov.br/api/contratos?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/contratos?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:35|https://wstransparencia.cariacica.es.gov.br/api/despesa?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/despesa?exercicio=2023
+2025-05-13 20:35:35|https://wstransparencia.cariacica.es.gov.br/api/despesa?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/despesa?exercicio=2023
+2025-05-13 20:35:36|https://wstransparencia.cariacica.es.gov.br/api/diarias?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/diarias?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:36|https://wstransparencia.cariacica.es.gov.br/api/diarias?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/diarias?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:37|https://wstransparencia.cariacica.es.gov.br/api/convenios?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/convenios?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:37|https://wstransparencia.cariacica.es.gov.br/api/convenios?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/convenios?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:38|https://wstransparencia.cariacica.es.gov.br/api/captacoes?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/captacoes?exercicio=2023
+2025-05-13 20:35:39|https://wstransparencia.cariacica.es.gov.br/api/captacoes?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/captacoes?exercicio=2023
+2025-05-13 20:35:39|https://wstransparencia.cariacica.es.gov.br/api/bensmoveis?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/bensmoveis?exercicio=2023
+2025-05-13 20:35:40|https://wstransparencia.cariacica.es.gov.br/api/bensmoveis?exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/bensmoveis?exercicio=2023
+2025-05-13 20:35:40|https://wstransparencia.cariacica.es.gov.br/api/passagens?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/passagens?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:41|https://wstransparencia.cariacica.es.gov.br/api/passagens?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/passagens?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:41|https://wstransparencia.cariacica.es.gov.br/api/bensImoveis|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/bensImoveis
+2025-05-13 20:35:42|https://wstransparencia.cariacica.es.gov.br/api/bensImoveis|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/bensImoveis
+2025-05-13 20:35:42|https://wstransparencia.cariacica.es.gov.br/api/pessoal?exercicio=2023&periodo=1|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/pessoal?exercicio=2023&periodo=1
+2025-05-13 20:35:43|https://wstransparencia.cariacica.es.gov.br/api/pessoal?exercicio=2023&periodo=2|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/pessoal?exercicio=2023&periodo=2
+2025-05-13 20:35:43|https://wstransparencia.cariacica.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:44|https://wstransparencia.cariacica.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2023|HTTPError|403 Client Error: Forbidden for url: https://wstransparencia.cariacica.es.gov.br/api/receitas?unidadeGestoraId=6&exercicio=2023
+2025-05-13 20:35:45|http://transparencia.guarapari.es.gov.br:82/api/contratos?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/contratos?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:45|http://transparencia.guarapari.es.gov.br:82/api/contratos?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/contratos?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:46|http://transparencia.guarapari.es.gov.br:82/api/despesa?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/despesa?exercicio=2023
+2025-05-13 20:35:46|http://transparencia.guarapari.es.gov.br:82/api/despesa?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/despesa?exercicio=2023
+2025-05-13 20:35:47|http://transparencia.guarapari.es.gov.br:82/api/diarias?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/diarias?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:47|http://transparencia.guarapari.es.gov.br:82/api/diarias?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/diarias?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:48|http://transparencia.guarapari.es.gov.br:82/api/convenios?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/convenios?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:48|http://transparencia.guarapari.es.gov.br:82/api/convenios?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/convenios?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:49|http://transparencia.guarapari.es.gov.br:82/api/captacoes?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/captacoes?exercicio=2023
+2025-05-13 20:35:49|http://transparencia.guarapari.es.gov.br:82/api/captacoes?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/captacoes?exercicio=2023
+2025-05-13 20:35:50|http://transparencia.guarapari.es.gov.br:82/api/bensmoveis?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/bensmoveis?exercicio=2023
+2025-05-13 20:35:51|http://transparencia.guarapari.es.gov.br:82/api/bensmoveis?exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/bensmoveis?exercicio=2023
+2025-05-13 20:35:51|http://transparencia.guarapari.es.gov.br:82/api/passagens?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/passagens?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:52|http://transparencia.guarapari.es.gov.br:82/api/passagens?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/passagens?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:52|http://transparencia.guarapari.es.gov.br:82/api/bensImoveis|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/bensImoveis
+2025-05-13 20:35:53|http://transparencia.guarapari.es.gov.br:82/api/bensImoveis|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/bensImoveis
+2025-05-13 20:35:53|http://transparencia.guarapari.es.gov.br:82/api/pessoal?exercicio=2023&periodo=1|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/pessoal?exercicio=2023&periodo=1
+2025-05-13 20:35:54|http://transparencia.guarapari.es.gov.br:82/api/pessoal?exercicio=2023&periodo=2|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/pessoal?exercicio=2023&periodo=2
+2025-05-13 20:35:54|http://transparencia.guarapari.es.gov.br:82/api/receitas?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/receitas?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:35:55|http://transparencia.guarapari.es.gov.br:82/api/receitas?unidadeGestoraId=2&exercicio=2023|HTTPError|404 Client Error: Not Found for url: http://transparencia.guarapari.es.gov.br:82/api/receitas?unidadeGestoraId=2&exercicio=2023
+2025-05-13 20:36:41|https://wstransparencia.serra.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:36:42|https://wstransparencia.serra.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:38:49|https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=1|ConnectionError|HTTPSConnectionPool(host='wstransparencia.serra.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.serra.es.gov.br', port=443): Read timed out. (read timeout=30)"))
+2025-05-13 20:40:57|https://wstransparencia.serra.es.gov.br/api/pessoal?exercicio=2023&periodo=2|ConnectionError|HTTPSConnectionPool(host='wstransparencia.serra.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=2 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.serra.es.gov.br', port=443): Read timed out. (read timeout=30)"))
+2025-05-13 20:41:47|https://wstransparencia.vilavelha.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:43:54|https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=1|ConnectionError|HTTPSConnectionPool(host='wstransparencia.vilavelha.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.vilavelha.es.gov.br', port=443): Read timed out. (read timeout=30)"))
+2025-05-13 20:46:01|https://wstransparencia.vilavelha.es.gov.br/api/pessoal?exercicio=2023&periodo=2|ConnectionError|HTTPSConnectionPool(host='wstransparencia.vilavelha.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=2 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.vilavelha.es.gov.br', port=443): Read timed out. (read timeout=30)"))
+2025-05-13 20:48:57|https://wstransparencia.vitoria.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:48:59|https://wstransparencia.vitoria.es.gov.br/api/bensImoveis|IntegrityError|UNIQUE constraint failed: bensImoveis.id
+2025-05-13 20:51:06|https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=1|ConnectionError|HTTPSConnectionPool(host='wstransparencia.vitoria.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.vitoria.es.gov.br', port=443): Read timed out. (read timeout=30)"))
+2025-05-13 20:53:13|https://wstransparencia.vitoria.es.gov.br/api/pessoal?exercicio=2023&periodo=2|ConnectionError|HTTPSConnectionPool(host='wstransparencia.vitoria.es.gov.br', port=443): Max retries exceeded with url: /api/pessoal?exercicio=2023&periodo=2 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='wstransparencia.vitoria.es.gov.br', port=443): Read timed out. (read timeout=30)"))
