@@ -618,15 +618,49 @@ def data_exists(conn, table_name, df):
     
 def store_dataframe(conn, df, table_name, url):
     try:
-        # [código existente...]
+        # Limpa nomes de colunas
+        df.columns = [clean_column_name(col) for col in df.columns]
         
-        if data_exists(conn, table_name, df):
-            PrintManager.print(f"   🟡 Dados já existem na tabela '{table_name}'. Ignorando.")
-            return
+        # Remove duplicatas do DataFrame
+        df = df.drop_duplicates()
         
-        # [restante do código existente...]
+        # Verifica se a tabela existe
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'")
+        table_exists = cursor.fetchone() is not None
+        
+        if not table_exists:
+            # Cria a tabela se não existir
+            columns_with_types = []
+            for col in df.columns:
+                sample_value = df[col].iloc[0] if not df[col].empty else None
+                if isinstance(sample_value, (int, float)):
+                    col_type = "REAL"
+                elif isinstance(sample_value, str):
+                    col_type = "TEXT"
+                else:
+                    col_type = "TEXT"
+                columns_with_types.append(f"{col} {col_type}")
+            
+            create_table_sql = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join(columns_with_types)})"
+            cursor.execute(create_table_sql)
+            conn.commit()
+        
+        # Insere os dados
+        placeholders = ', '.join(['?'] * len(df.columns))
+        columns = ', '.join(df.columns)
+        sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+        
+        # Converte os dados para uma lista de tuplas
+        data_to_insert = [tuple(x) for x in df.to_records(index=False)]
+        
+        cursor.executemany(sql, data_to_insert)
+        conn.commit()
+        
+        PrintManager.print(f"   ✅ Dados armazenados na tabela '{table_name}'")
         
     except Exception as e:
+        conn.rollback()
         PrintManager.print(f"   🔴 Erro ao armazenar: {str(e)[:50]}...")
         raise
 
