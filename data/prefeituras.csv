@@ -7,7 +7,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 6,Prefeitura Municipal de Alto Rio Novo,alto rio novo,https://altorionovo-es.portaltp.com.br/api/,portaltp,
 7,Prefeitura Municipal de Anchieta,anchieta,http://anchieta-es.portaltp.com.br/api/,portaltp,
 8,Prefeitura Municipal de Apiacá,apiacá,https://Apiaca-es.portaltp.com.br/api/,portaltp,
-9,Prefeitura Municipal de Aracruz,aracruz,http://wstransparencia.aracruz.es.gov.br/api/,Tectrilha,3
+9,Prefeitura Municipal de Aracruz,aracruz,http://wstransparencia.aracruz.es.gov.br/api/,tectrilha,3
 10,Prefeitura Municipal de Atílio Vivácqua,atílio vivácqua,https://www.pmav.es.gov.br/transparencia/api/,Alphatec,
 11,Prefeitura Municipal de Baixo Guandu,baixo guandu,https://BaixoGuandu-es.portaltp.com.br/api/,portaltp,
 12,Prefeitura Municipal de Barra de São Francisco,barra de são francisco,https://BarradeSaoFrancisco-es.portaltp.com.br/api/,portaltp,
@@ -15,7 +15,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 14,Prefeitura Municipal de Bom Jesus do Norte,bom jesus do norte,https://BomJesusdoNorte-es.portaltp.com.br/api/,portaltp,
 15,Prefeitura Municipal de Brejetuba,brejetuba,https://www.brejetuba.es.gov.br/transparencia/api/,Agape,
 16,Prefeitura Municipal de Cachoeiro de Itapemirim,cachoeiro de itapemirim,https://transparencia.cachoeiro.es.gov.br/transparencia/api/,Agape,
-17,Prefeitura Municipal de Cariacica,cariacica,https://wstransparencia.cariacica.es.gov.br/api/,Tectrilha,6
+17,Prefeitura Municipal de Cariacica,cariacica,https://wstransparencia.cariacica.es.gov.br/api/,tectrilha,6
 18,Prefeitura Municipal de Castelo,castelo,https://Castelo-es.portaltp.com.br/api/,portaltp,
 19,Prefeitura Municipal de Colatina,colatina,https://Colatina-es.portaltp.com.br/api/,portaltp,
 20,Prefeitura Municipal de Conceição da Barra,conceição da barra,https://conceicaodabarra.cr2.site/,CR2,
@@ -27,7 +27,7 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 26,Prefeitura Municipal de Fundão,fundão,https://Fundao-es.portaltp.com.br/api/,portaltp,
 27,Prefeitura Municipal de Governador Lindenberg,governador lindenberg,https://GovernadorLindenberg-es.portaltp.com.br/api/,portaltp,
 28,Prefeitura Municipal de Guacuí,guaçuí,https://Guacui-es.portaltp.com.br/api/,portaltp,
-29,Prefeitura Municipal de Guarapari,guarapari,http://transparencia.guarapari.es.gov.br:86/,Tectrilha,2
+29,Prefeitura Municipal de Guarapari,guarapari,http://transparencia.guarapari.es.gov.br:86/,tectrilha,2
 30,Prefeitura Municipal de Ibatiba,ibatiba,https://Ibatiba-es.portaltp.com.br/api/,portaltp,
 31,Prefeitura Municipal de Ibiracu,ibiraçu,https://Ibiracu-es.portaltp.com.br/api/,portaltp,
 32,Prefeitura Municipal de Ibitirama,ibitirama,https://Ibitirama-es.portaltp.com.br/api/,portaltp,
@@ -68,12 +68,12 @@ id,prefeitura,municipio,url,empresa,unidadegestora
 67,Prefeitura Municipal de São Jose do Calçado,são josé do calçado,https://SaoJosedoCalcado-es.portaltp.com.br/api/,portaltp,
 68,Prefeitura Municipal de São Mateus,são mateus,https://SaoMateus-es.portaltp.com.br/api/,portaltp,
 69,Prefeitura Municipal de São Roque do Canaã,são roque do canaã,https://SaoRoquedoCanaa-es.portaltp.com.br/api/,portaltp,
-70,Prefeitura Municipal da Serra,serra,https://wstransparencia.serra.es.gov.br/api/,Tectrilha,1
+70,Prefeitura Municipal da Serra,serra,https://wstransparencia.serra.es.gov.br/api/,tectrilha,1
 71,Prefeitura Municipal de Sooretama,sooretama,https://www.sooretama.es.gov.br/transparencia/api/,Alphatec,
 72,Prefeitura Municipal de Vargem Alta,vargem alta,https://VargemAlta-es.portaltp.com.br/api/,portaltp,
 73,Prefeitura Municipal de Venda Nova do Imigrante,venda nova do imigrante,https://VendaNovadoImigrante-es.portaltp.com.br/api/,portaltp,
 74,Prefeitura Municipal de Viana,viana,https://Viana-es.portaltp.com.br/api/,portaltp,
 75,Prefeitura Municipal de Vila Pavão,vila pavão,https://VilaPavao-es.portaltp.com.br/api/,portaltp,
 76,Prefeitura Municipal de Vila Valério,vila valério,https://VilaValerio-es.portaltp.com.br/api/,portaltp,
-77,Prefeitura Municipal de Vila Velha,vila velha,https://wstransparencia.vilavelha.es.gov.br/api/,Tectrilha,2
-78,Prefeitura Municipal de Vitória,vitória,https://wstransparencia.vitoria.es.gov.br/api/,Tectrilha,6
+77,Prefeitura Municipal de Vila Velha,vila velha,https://wstransparencia.vilavelha.es.gov.br/api/,tectrilha,2
+78,Prefeitura Municipal de Vitória,vitória,https://wstransparencia.vitoria.es.gov.br/api/,tectrilha,6

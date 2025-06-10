@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+from pandas import json_normalize
 import sqlite3
 from time import sleep, time
 import os
@@ -151,6 +152,63 @@ def run_extraction(data_inicio, data_fim, endpoints_file, prefeituras_file, db_f
     conn.close()
     print("\n\n✅ EXTRAÇÃO CONCLUÍDA!")
 
+def processar_resposta(response):
+    """Processa a resposta HTTP e retorna um DataFrame normalizado"""
+    try:
+        content = response.content.decode('utf-8-sig')
+        if not content.strip():
+            return pd.DataFrame()
+        
+        dados = json.loads(content)
+        
+        # Se for uma lista de objetos
+        if isinstance(dados, list):
+            if not dados:
+                return pd.DataFrame()
+            
+            # Tenta normalizar com json_normalize do pandas
+            try:
+                df = json_normalize(dados, sep='_')
+                return df
+            except:
+                # Fallback para tratamento manual se json_normalize falhar
+                records = []
+                for item in dados:
+                    if isinstance(item, dict):
+                        records.append(flatten_dict(item))
+                if records:
+                    return pd.DataFrame(records)
+                return pd.DataFrame(dados)
+        
+        # Se for um único dicionário
+        elif isinstance(dados, dict):
+            return pd.DataFrame([flatten_dict(dados)])
+        
+        # Valor simples (string, número, etc)
+        else:
+            return pd.DataFrame({'valor': [dados]})
+
+    except Exception as e:
+        raise ValueError(f"Erro ao processar resposta: {str(e)}")
+
+def flatten_dict(d, parent_key='', sep='_'):
+    """Aplaina um dicionário aninhado de forma mais simples"""
+    items = []
+    for k, v in d.items():
+        new_key = f"{parent_key}{sep}{k}" if parent_key else k
+        if isinstance(v, dict):
+            items.extend(flatten_dict(v, new_key, sep=sep).items())
+        elif isinstance(v, list):
+            # Para listas, verificamos se contém dicionários
+            if v and isinstance(v[0], dict):
+                for i, item in enumerate(v):
+                    items.extend(flatten_dict(item, f"{new_key}_{i}", sep=sep).items())
+            else:
+                items.append((new_key, json.dumps(v) if v else None))
+        else:
+            items.append((new_key, v))
+    return dict(items)
+
 def processar_prefeitura(session, conn, cursor, prefeitura, endpoint, endpoint_name, data_inicio, data_fim, error_log_file):
     municipio = prefeitura['municipio']
     prefeitura_nome = prefeitura['prefeitura']
@@ -159,6 +217,7 @@ def processar_prefeitura(session, conn, cursor, prefeitura, endpoint, endpoint_n
 
     for ano, mes in generate_months_range(data_inicio, data_fim):
         print(f"📅 {mes:02d}/{ano}", end=' ', flush=True)
+        
         cursor.execute(f'''
             SELECT 1 FROM {endpoint_name} 
             WHERE municipio = ? AND prefeitura = ? AND ano = ? AND mes = ?
@@ -173,61 +232,55 @@ def processar_prefeitura(session, conn, cursor, prefeitura, endpoint, endpoint_n
         try:
             response = session.get(url, timeout=30)
             response.raise_for_status()
-            if not response.content.strip():
-                print("🟡 Resposta vazia. Ignorando.", end=' ')
+            
+            df = processar_resposta(response)
+            
+            if df.empty:
+                print("🟡 Dados vazios", end=' ')
                 continue
 
-            # Tratamento do encoding UTF-8 com BOM
-            try:
-                dados = response.json()
-            except json.JSONDecodeError:
-                dados = json.loads(response.content.decode('utf-8-sig'))
+            # Adiciona metadados
+            df['municipio'] = municipio
+            df['prefeitura'] = prefeitura_nome
+            df['ano'] = ano
+            df['mes'] = mes
 
-            if isinstance(dados, dict):
-                if all(isinstance(v, list) for v in dados.values()):
-                    lengths = [len(v) for v in dados.values()]
-                    if len(set(lengths)) > 1:
-                        raise ValueError("All arrays must be of the same length")
-                    dados = [dict(zip(dados.keys(), values)) for values in zip(*dados.values())]
-                else:
-                    dados = [dados]
-
-            if not isinstance(dados, list):
-                raise ValueError("Formato inesperado (não é lista)")
-
-            df = pd.DataFrame(dados)
-
-            if not df.empty:
-                df['municipio'] = municipio
-                df['prefeitura'] = prefeitura_nome
-                df['ano'] = ano
-                df['mes'] = mes
-
-                cursor.execute(f"PRAGMA table_info({endpoint_name})")
-                existing_columns = [col[1] for col in cursor.fetchall()]
-
-                for column in df.columns:
-                    if column not in existing_columns and column != 'id':
-                        col_type = 'TEXT'
-                        if pd.api.types.is_numeric_dtype(df[column]):
-                            col_type = 'REAL'
-                        elif pd.api.types.is_integer_dtype(df[column]):
-                            col_type = 'INTEGER'
-                        cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {column} {col_type}")
-                        conn.commit()
-
-                for col in df.columns:
-                    df[col] = df[col].apply(lambda x: json.dumps(x) if isinstance(x, (list, dict)) else x)
-
-                df.to_sql(endpoint_name, conn, if_exists='append', index=False)
-                print("✅ Dados salvos", end=' ')
+            # Verifica e adapta estrutura da tabela
+            cursor.execute(f"PRAGMA table_info({endpoint_name})")
+            existing_columns = [col[1] for col in cursor.fetchall()]
+            
+            # Converte listas/dicionários para JSON string
+            for col in df.columns:
+                if df[col].apply(lambda x: isinstance(x, (list, dict))).any():
+                    df[col] = df[col].apply(lambda x: json.dumps(x, ensure_ascii=False) if isinstance(x, (list, dict)) else x)
+            
+            # Adiciona novas colunas se necessário
+            for col in df.columns:
+                if col not in existing_columns and col != 'id':
+                    col_type = 'TEXT'
+                    if pd.api.types.is_numeric_dtype(df[col]):
+                        col_type = 'REAL' if df[col].dtype == float else 'INTEGER'
+                    cursor.execute(f"ALTER TABLE {endpoint_name} ADD COLUMN {col} {col_type}")
+                    conn.commit()
+            
+            # Insere os dados
+            df.to_sql(endpoint_name, conn, if_exists='append', index=False)
+            print("✅ Dados salvos", end=' ')
 
         except Exception as e:
-            print(f"🔴 ERRO: {str(e)}", end=' ')
+            error_msg = f"Erro: {type(e).__name__} - {str(e)}"
+            print(f"🔴 {error_msg}", end=' ')
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            with open(error_log_file, 'a') as f:
-                f.write(f"{timestamp}|{url}|{type(e).__name__}|{str(e)}\n")
+            with open(error_log_file, 'a', encoding='utf-8') as f:
+                f.write(f"{timestamp}|{url}|{error_msg}\n")
+        
         sleep(1)
+
+def log_error(log_file, url, error_msg):
+    """Registra erros no arquivo de log"""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(log_file, 'a', encoding='utf-8') as f:
+        f.write(f"{timestamp}|{url}|{error_msg}\n")
 
 def run_failed_urls(error_log_file, endpoints_file, prefeituras_file, db_file):
     if not os.path.exists(error_log_file):
