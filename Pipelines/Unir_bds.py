@@ -8,8 +8,21 @@ def unificar_tabelas_sqlite(
         caminho_bd2: str,
         nome_tabela2: str,
         caminho_bd_saida: str,
-        nome_tabela_saida: str
+        nome_tabela_saida: str,
+        colunas_chave: list = None
 ):
+    """
+    Unifica tabelas de dois bancos de dados SQLite em uma nova tabela.
+    
+    Parâmetros:
+        caminho_bd1: Caminho para o primeiro banco de dados
+        nome_tabela1: Nome da tabela no primeiro banco de dados
+        caminho_bd2: Caminho para o segundo banco de dados
+        nome_tabela2: Nome da tabela no segundo banco de dados
+        caminho_bd_saida: Caminho para o banco de dados de saída
+        nome_tabela_saida: Nome da tabela de saída
+        colunas_chave: Lista de colunas para verificação de duplicatas (opcional)
+    """
     # Verificação de caminhos
     caminho_bd1 = Path(caminho_bd1).absolute()
     caminho_bd2 = Path(caminho_bd2).absolute()
@@ -53,21 +66,62 @@ def unificar_tabelas_sqlite(
 
         # Normaliza nomes de colunas (remove duplicatas case-insensitive)
         def normalizar_colunas(df):
-            df.columns = [col.lower() for col in df.columns]
+            df.columns = [col.strip().lower() for col in df.columns]
             return df.loc[:, ~df.columns.duplicated()]
 
         df1 = normalizar_colunas(df1)
         df2 = normalizar_colunas(df2)
 
-        print("\nResumo dos dados após normalização:")
+        print("\nResumo dos dados originais:")
         print(f"- Tabela 1: {len(df1)} registros, {len(df1.columns)} colunas")
         print(f"- Tabela 2: {len(df2)} registros, {len(df2.columns)} colunas")
 
-        # Unificação
-        df_unificado = pd.concat([df1, df2], ignore_index=True)
+        # Verifica estrutura das tabelas
+        print("\nEstrutura das tabelas:")
+        print("Tabela 1 - Tipos de dados:\n", df1.dtypes)
+        print("\nTabela 2 - Tipos de dados:\n", df2.dtypes)
+
+        print("\nSobreposição de colunas:")
+        colunas_comuns = set(df1.columns) & set(df2.columns)
+        print("Colunas em comum:", colunas_comuns)
+        print("Colunas exclusivas Tabela 1:", set(df1.columns) - set(df2.columns))
+        print("Colunas exclusivas Tabela 2:", set(df2.columns) - set(df1.columns))
+
+        # Unificação com preservação de dados
+        print("\nProcessando unificação...")
         
-        # Remove possíveis duplicatas completas
-        df_unificado = df_unificado.drop_duplicates()
+        # Se houver colunas em comum, faz merge, senão concatena
+        if colunas_comuns:
+            # Usa outer join para preservar todos os registros
+            df_unificado = pd.merge(
+                df1, 
+                df2, 
+                how='outer', 
+                on=list(colunas_comuns),
+                suffixes=('_bd1', '_bd2')
+            )
+            print(f"Registros após merge (outer join): {len(df_unificado)}")
+        else:
+            # Concatena simples se não houver colunas em comum
+            df_unificado = pd.concat([df1, df2], ignore_index=True)
+            print(f"Registros após concatenação: {len(df_unificado)}")
+
+        # Remove duplicatas baseadas em colunas chave (se especificado)
+        if colunas_chave:
+            # Verifica se as colunas chave existem
+            colunas_faltantes = [col for col in colunas_chave if col not in df_unificado.columns]
+            if colunas_faltantes:
+                print(f"\nAVISO: Colunas chave não encontradas: {colunas_faltantes}")
+                print("Removendo duplicatas completas (todas as colunas)")
+                df_unificado = df_unificado.drop_duplicates()
+            else:
+                print(f"\nRemovendo duplicatas baseadas nas colunas: {colunas_chave}")
+                df_unificado = df_unificado.drop_duplicates(subset=colunas_chave)
+        else:
+            print("\nRemovendo duplicatas completas (todas as colunas)")
+            df_unificado = df_unificado.drop_duplicates()
+
+        print(f"\nRegistros após remoção de duplicatas: {len(df_unificado)}")
 
         # Salva o resultado
         conn_saida = sqlite3.connect(caminho_bd_saida)
@@ -95,9 +149,10 @@ def unificar_tabelas_sqlite(
 if __name__ == "__main__":
     unificar_tabelas_sqlite(
         caminho_bd1="bds/portaltp.db",
-        nome_tabela1="contratosaditivos",
+        nome_tabela1="bensimoveis",
         caminho_bd2="bds/tectrilha.db",
-        nome_tabela2="contratos",
-        caminho_bd_saida="bds/contratos.db",
-        nome_tabela_saida="contratos"
+        nome_tabela2="bensImoveis",
+        caminho_bd_saida="bds/bensImoveis.db",
+        nome_tabela_saida="bensImoveis",
+        colunas_chave=[]
     )
