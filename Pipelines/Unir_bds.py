@@ -72,6 +72,17 @@ def unificar_tabelas_sqlite(
         df1 = normalizar_colunas(df1)
         df2 = normalizar_colunas(df2)
 
+        # Função para converter a coluna valor para numérico
+        def converter_coluna_valor(df):
+            if 'valor' in df.columns:
+                # Converte para numérico, forçando valores inválidos para NaN
+                df['valor'] = pd.to_numeric(df['valor'], errors='coerce')
+            return df
+
+        # Converte a coluna 'valor' em ambos os DataFrames
+        df1 = converter_coluna_valor(df1)
+        df2 = converter_coluna_valor(df2)
+
         print("\nResumo dos dados originais:")
         print(f"- Tabela 1: {len(df1)} registros, {len(df1.columns)} colunas")
         print(f"- Tabela 2: {len(df2)} registros, {len(df2.columns)} colunas")
@@ -122,6 +133,12 @@ def unificar_tabelas_sqlite(
             df_unificado = df_unificado.drop_duplicates()
 
         print(f"\nRegistros após remoção de duplicatas: {len(df_unificado)}")
+
+        # Verifica valores NaN na coluna 'valor' se existir
+        if 'valor' in df_unificado.columns:
+            nan_count = df_unificado['valor'].isna().sum()
+            if nan_count > 0:
+                print(f"\nAVISO: {nan_count} valores não numéricos foram convertidos para NaN na coluna 'valor'")
 
         # Salva o resultado
         conn_saida = sqlite3.connect(caminho_bd_saida)
