@@ -1,1 +1,0 @@
-Texto sobre transparência
