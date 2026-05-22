@@ -2,6 +2,7 @@
 
 import json
 import re
+import unicodedata
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -13,10 +14,16 @@ _FIXED_COLS = {"municipio", "prefeitura", "provider", "ano", "mes", "extracted_a
 
 
 def _safe(name: str) -> str:
-    """Validate a table/column name is safe for interpolation."""
-    cleaned = name.lower().replace("-", "_").replace(" ", "_")
-    if not _SAFE_NAME.match(cleaned):
-        raise ValueError(f"Unsafe identifier: {name!r}")
+    """Normalize and validate a table/column name for safe SQL interpolation.
+
+    Strips diacritics (ç→c, ã→a, etc.) and replaces non-alphanumeric chars with _.
+    """
+    # NFD decomposition + drop non-ASCII (strips diacritics)
+    ascii_name = unicodedata.normalize("NFD", name).encode("ascii", "ignore").decode()
+    cleaned = re.sub(r"[^a-z0-9_]", "_", ascii_name.lower())
+    cleaned = re.sub(r"_+", "_", cleaned).strip("_")
+    if not cleaned or not _SAFE_NAME.match(cleaned):
+        raise ValueError(f"Could not produce a safe identifier from: {name!r}")
     return cleaned
 
 

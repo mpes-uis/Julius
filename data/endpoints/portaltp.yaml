@@ -1,0 +1,248 @@
+# PortalTP API endpoints
+# URL pattern: {base}/{path}?ano={year}&mes={month:02d}
+# Base URL from prefeituras.csv already includes /api (e.g. https://afonsoclaudio-es.portaltp.com.br/api)
+# Validated against Afonso Cláudio on 2026-05-22.
+
+endpoints:
+  # --- Compras ---
+  - name: licitacoes
+    path: Compras/GetLicitacoes
+    frequency: monthly
+    description: Bidding processes
+
+  - name: contratos_aditivos
+    path: Compras/GetContratosAditivos
+    frequency: monthly
+    description: Contracts and additive terms
+
+  - name: atas
+    path: Compras/GetTermosDeCompromissoAtas
+    frequency: monthly
+    description: Commitment terms and meeting minutes
+
+  - name: ordem_compras
+    path: Compras/GetOrdemDeCompras
+    frequency: monthly
+    description: Purchase orders
+
+  - name: contratos_fiscais
+    path: Compras/GetContratos_Fiscais
+    frequency: monthly
+    description: Contract fiscal officers
+
+  # --- Despesas ---
+  - name: empenhos
+    path: Despesas/GetEmpenhosFavorecidos
+    frequency: monthly
+    description: Commitments and beneficiaries
+
+  - name: liquidacoes
+    path: Despesas/GetLiquidacoesFavorecidos
+    frequency: monthly
+    description: Settlements and beneficiaries
+
+  - name: pagamentos
+    path: Despesas/GetPagamentosFavorecidos
+    frequency: monthly
+    description: Payments and beneficiaries
+
+  - name: diarias
+    path: Despesas/GetDespesaComDiarias
+    frequency: monthly
+    description: Daily allowance expenses
+
+  - name: obras
+    path: Despesas/GetDespesaComObras
+    frequency: monthly
+    description: Public works expenses
+
+  - name: passagens
+    path: Despesas/GetDespesaComPassagens
+    frequency: monthly
+    description: Travel ticket expenses
+
+  - name: adiantamentos
+    path: Despesas/GetDespesaComAdiantamentos
+    frequency: monthly
+    description: Advance payment expenses
+
+  - name: ordem_cronologica
+    path: Despesas/GetOrdemCronologica
+    frequency: monthly
+    description: Chronological payment order
+
+  - name: ordem_cronologica_a_pagar
+    path: Despesas/GetOrdemCronologicaAPagar
+    frequency: monthly
+    description: Chronological order — pending payments
+
+  - name: programa_acao
+    path: Despesas/GetProgramaAcao
+    frequency: monthly
+    description: Programs, projects and actions
+
+  - name: restos_pagar
+    path: Despesas/GetRestosPagar
+    frequency: monthly
+    description: Outstanding balance expenses
+
+  # --- Emergências ---
+  - name: dispensas_emergenciais
+    path: Emergencias/GetDispensasEmergenciais
+    frequency: monthly
+    description: Emergency dispensations
+
+  - name: contratos_emergenciais
+    path: Emergencias/GetContratosEmergenciais
+    frequency: monthly
+    description: Emergency contracts
+
+  - name: ordem_compra_emergencial
+    path: Emergencias/GetOrdemCompraEmergenciais
+    frequency: monthly
+    description: Emergency purchase orders
+
+  - name: despesas_emergenciais
+    path: Emergencias/GetDespesasEmergenciais
+    frequency: monthly
+    description: Emergency expenses
+
+  - name: receita_emergencial
+    path: Emergencias/GetReceitaEmergenciais
+    frequency: monthly
+    description: Emergency revenues
+
+  # --- Materiais e Bens ---
+  - name: entrada_estoque
+    path: MateriasBens/GetEntradaDeEstoque
+    frequency: monthly
+    description: Stock entries
+
+  - name: saida_estoque
+    path: MateriasBens/GetSaidaDeEstoque
+    frequency: monthly
+    description: Stock exits
+
+  - name: bens_moveis
+    path: MateriasBens/GetBensMoveis
+    frequency: yearly
+    description: Movable assets
+
+  - name: bens_imoveis
+    path: MateriasBens/GetBensImoveis
+    frequency: yearly
+    description: Real estate assets
+
+  - name: bens_intangiveis
+    path: MateriasBens/GetBensIntangiveis
+    frequency: yearly
+    description: Intangible assets
+
+  - name: frota
+    path: MateriasBens/GetFrota
+    frequency: yearly
+    description: Fleet vehicles
+
+  - name: patrimonio
+    path: MateriasBens/GetPatrimonio
+    frequency: yearly
+    description: Consolidated heritage assets
+
+  # --- Orçamento ---
+  - name: orcamento_despesa
+    path: Orcamento/GetOrcamentoDespesa
+    frequency: yearly
+    description: Expense budget (full year snapshot)
+
+  - name: orcamento_receitas
+    path: Orcamento/GetOrcamentoReceitas
+    frequency: yearly
+    description: Revenue budget (full year snapshot)
+
+  # --- Pessoal ---
+  - name: servidores
+    path: Pessoal/GetServidores
+    frequency: monthly
+    description: Active public employees
+
+  - name: plano_cargos_salario
+    path: Pessoal/GetPlanoDeCargosSalario
+    frequency: monthly
+    description: Position and salary plan
+
+  - name: cargos_vagas
+    path: Pessoal/GetCargasVagas
+    frequency: monthly
+    description: Positions and vacancies
+
+  - name: atos_cargos
+    path: Pessoal/GetAtosDosCargos
+    frequency: monthly
+    description: Official acts for positions
+
+  - name: cargos_comissionados
+    path: Pessoal/GetCargosComissionados
+    frequency: monthly
+    description: Commissioned positions
+
+  - name: estagiarios
+    path: Pessoal/GetEstagiarios
+    frequency: monthly
+    description: Intern list
+
+  - name: ferias
+    path: Pessoal/GetFerias
+    frequency: monthly
+    description: Employee vacations
+
+  - name: servidores_inativos
+    path: Pessoal/GetServidoresInativos
+    frequency: monthly
+    description: Retired/inactive employees
+
+  # --- Receitas ---
+  - name: receita_realizada
+    path: Receitas/GetReceitaRealizada
+    frequency: monthly
+    description: Realized revenue
+
+  - name: divida_ativa
+    path: Receitas/GetDívidaAtiva
+    frequency: monthly
+    description: Active debt list
+
+  - name: receita_lancada
+    path: Receitas/GetReceitaLancada
+    frequency: monthly
+    description: Launched (accrual) revenue
+
+  - name: renuncias
+    path: Receitas/GetRenuncias
+    frequency: monthly
+    description: Revenue waivers
+
+  # --- Repasses ---
+  - name: transferencias_cedidas
+    path: Repasses/GetTransferenciasCedidas
+    frequency: monthly
+    description: Outgoing transfers
+
+  - name: transferencias_recebidas
+    path: Repasses/GetTransferenciasRecebidas
+    frequency: monthly
+    description: Incoming transfers
+
+  - name: transferencias_extraorcamentarias
+    path: Repasses/GetTransferenciasExtraorcamentarias
+    frequency: monthly
+    description: Extra-budgetary transfers
+
+  - name: transferencias_intraorcamentarias
+    path: Repasses/TransferenciasIntraorcamentarias
+    frequency: monthly
+    description: Intra-budgetary transfers
+
+  - name: duodecimo
+    path: Repasses/GetDuodecimo
+    frequency: monthly
+    description: Municipal chamber monthly allocation

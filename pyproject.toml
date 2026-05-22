@@ -24,6 +24,7 @@ dev = [
     "respx>=0.21",
     "ruff>=0.5",
     "mypy>=1.10",
+    "types-pyyaml>=6.0.12.20260518",
 ]
 
 [tool.setuptools.packages.find]

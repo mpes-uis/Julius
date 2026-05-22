@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS _checkpoints (
     status       TEXT NOT NULL,
     records      INTEGER DEFAULT 0,
     error        TEXT,
-    extracted_at TIMESTAMP DEFAULT current_timestamp
+    extracted_at TIMESTAMP DEFAULT now()
 )
 """
 
@@ -39,7 +39,7 @@ class Checkpoint:
             INSERT INTO _checkpoints ({cols})
             VALUES (?, ?, ?, ?, ?, ?, 'success', ?)
             ON CONFLICT (job_key) DO UPDATE SET
-                status = 'success', records = excluded.records, extracted_at = current_timestamp
+                status = 'success', records = excluded.records, extracted_at = now()
             """,
             [
                 job.key,
@@ -59,7 +59,7 @@ class Checkpoint:
             INSERT INTO _checkpoints ({cols})
             VALUES (?, ?, ?, ?, ?, ?, 'failed', ?)
             ON CONFLICT (job_key) DO UPDATE SET
-                status = 'failed', error = excluded.error, extracted_at = current_timestamp
+                status = 'failed', error = excluded.error, extracted_at = now()
             """,
             [
                 job.key,

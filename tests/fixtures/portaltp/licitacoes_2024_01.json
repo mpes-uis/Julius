@@ -1,0 +1,47 @@
+[
+  {
+    "ano": "2024",
+    "mes": "01 - Janeiro",
+    "tipo_processo": "Licitacao",
+    "unidade_gestora": "Fundo de Saude de Afonso Claudio",
+    "modalidade": "Pregao Eletronico",
+    "licitacao": "000075/2023",
+    "processo": "018302/2023",
+    "objeto": "AQUISICAO DE CORTINA HOSPITALAR E BOMBA DE INFUSAO COM DISPLAY E TELA DE LCD, PARA ATENDER AS DEMANDAS DA SECRETARIA MUNICIPAL DE SAUDE",
+    "abertura": "2023-12-21T00:00:00",
+    "homologacao": "2023-12-28T00:00:00",
+    "conclusao": "2024-01-02T00:00:00",
+    "situacao": "Concluida",
+    "valor_homologado": 31493.94
+  },
+  {
+    "ano": "2024",
+    "mes": "01 - Janeiro",
+    "tipo_processo": "Licitacao",
+    "unidade_gestora": "Fundo de Saude de Afonso Claudio",
+    "modalidade": "Pregao Eletronico",
+    "licitacao": "000050/2023",
+    "processo": "010670/2023",
+    "objeto": "REGISTRO DE PRECO PARA CONTRATACAO DE EMPRESA ESPECIALIZADA EM CONFECCAO DE MOCHILAS, COLETES, CAMISAS  E CHAPEUS PARA ADEQUACAO AO PROGRAMA SAUDE COM AGENTE, CONFORME TERMO DE ADESAO ENTRE O MUNICIPIO DE AFONSO CLAUDIO E O MINISTERIO DA SAUDE.",
+    "abertura": "2023-09-18T00:00:00",
+    "homologacao": "2024-01-04T00:00:00",
+    "conclusao": "2024-01-08T00:00:00",
+    "situacao": "Concluida",
+    "valor_homologado": 20995.0
+  },
+  {
+    "ano": "2024",
+    "mes": "01 - Janeiro",
+    "tipo_processo": "Licitacao",
+    "unidade_gestora": "Prefeitura Municipal de Afonso Claudio",
+    "modalidade": "Pregao Eletronico",
+    "licitacao": "000052/2023",
+    "processo": "030803/2022",
+    "objeto": "SOLICITAMOS AUTORIZACAO PARA AQUISICAO DE MOBILIARIO, ELETRODOMESTICOS E SONORIZACAO, POR MEIO DE ATA DE REGISTRO DE PRECO, VISANDO ATENDER DIVERSAS SECRETARIAS DA PREFEITURA MUNICIPAL DE AFONSO CLAUDIO/ES.",
+    "abertura": "2023-10-11T00:00:00",
+    "homologacao": "2024-01-04T00:00:00",
+    "conclusao": "2024-01-11T00:00:00",
+    "situacao": "Concluida",
+    "valor_homologado": 761700.23
+  }
+]
