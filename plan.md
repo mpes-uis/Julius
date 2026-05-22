@@ -398,8 +398,8 @@ Não implementar agora. A arquitetura (DuckDB + dados normalizados) já suporta 
 
 ## 8. Status atual
 
-- [ ] Fase 0 — Limpeza prévia
-- [ ] Fase 1 — Fundação
+- [x] Fase 0 — Limpeza prévia ✅ (commit 9c7698a)
+- [x] Fase 1 — Fundação ✅
 - [ ] Fase 2 — Provider PortalTP end-to-end
 - [ ] Fase 3 — Tectrilha, Agape, Alphatec
 - [ ] Fase 4 — CR2 e PortalFacil

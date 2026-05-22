@@ -1,3 +1,52 @@
-*.db
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+uv.lock
+
+# DuckDB
+*.duckdb
+*.duckdb.wal
+
+# Legacy SQLite databases
+*.db
+
+# Logs
+logs/
+*.jsonl
+*.log
+
+# Data outputs (generated, not committed)
 output/
+bds/
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Build artifacts
+*.egg-info/
+
+# Pytest / mypy
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage

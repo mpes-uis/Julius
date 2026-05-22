@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "refactor/v2"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Lint (ruff)
+        run: uv run ruff check julius tests
+
+      - name: Format check (ruff)
+        run: uv run ruff format --check julius tests
+
+      - name: Type check (mypy)
+        run: uv run mypy julius
+
+      - name: Tests
+        run: uv run pytest --tb=short -q
