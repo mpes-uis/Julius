@@ -10,7 +10,6 @@ from typing import Any
 import duckdb
 
 _SAFE_NAME = re.compile(r"^[a-z_][a-z0-9_]*$")
-_FIXED_COLS = {"municipio", "prefeitura", "provider", "ano", "mes", "extracted_at"}
 
 
 def _safe(name: str) -> str:
@@ -18,7 +17,6 @@ def _safe(name: str) -> str:
 
     Strips diacritics (ç→c, ã→a, etc.) and replaces non-alphanumeric chars with _.
     """
-    # NFD decomposition + drop non-ASCII (strips diacritics)
     ascii_name = unicodedata.normalize("NFD", name).encode("ascii", "ignore").decode()
     cleaned = re.sub(r"[^a-z0-9_]", "_", ascii_name.lower())
     cleaned = re.sub(r"_+", "_", cleaned).strip("_")
@@ -52,51 +50,58 @@ class DuckDBStore:
         records: list[dict[str, Any]],
         meta: dict[str, Any],
     ) -> None:
-        """Insert records into the table, adding metadata columns. Creates table if needed."""
+        """Insert records into the table, adding metadata columns. Creates table if needed.
+
+        API field names are normalized to safe identifiers first. Metadata fields are only
+        added when they don't conflict with an existing normalized API field name.
+        """
         if not records:
             return
 
         table = _safe(table)
         now = datetime.now(UTC).isoformat()
 
-        # Merge metadata into every record
-        enriched = []
+        # Pre-normalize metadata keys once
+        safe_meta = {_safe(str(k)): _serialize(v) for k, v in meta.items()}
+        safe_meta["extracted_at"] = now
+
+        # Normalize each record's keys and merge metadata without overwriting API fields
+        enriched: list[dict[str, Any]] = []
         for rec in records:
-            row = {k: _serialize(v) for k, v in rec.items()}
-            row.update(meta)
-            row["extracted_at"] = now
+            row: dict[str, Any] = {_safe(str(k)): _serialize(v) for k, v in rec.items()}
+            for mk, mv in safe_meta.items():
+                if mk not in row:
+                    row[mk] = mv
             enriched.append(row)
 
-        # Collect all column names across rows (schema evolves naturally)
+        # Collect all column names (already safe) in stable order
         all_cols: dict[str, None] = {}
         for row in enriched:
             all_cols.update(dict.fromkeys(row))
         columns = list(all_cols)
 
-        # Create table if not exists (all TEXT — normalize pipeline handles types)
+        # Create table if not exists (all TEXT — type normalization is a pipeline concern)
         if table not in self._known_tables:
-            col_defs = ", ".join(f'"{_safe(c)}" TEXT' for c in columns)
+            col_defs = ", ".join(f'"{c}" TEXT' for c in columns)
             self._conn.execute(f'CREATE TABLE IF NOT EXISTS "{table}" ({col_defs})')
             self._known_tables.add(table)
 
-        # Add any missing columns
+        # Add any columns that appeared in a later batch (schema evolution)
         existing = {
-            row[1].lower() for row in self._conn.execute(f'PRAGMA table_info("{table}")').fetchall()
+            row[1].lower()
+            for row in self._conn.execute(f'PRAGMA table_info("{table}")').fetchall()
         }
         for col in columns:
-            safe_col = _safe(col)
-            if safe_col not in existing:
-                self._conn.execute(f'ALTER TABLE "{table}" ADD COLUMN "{safe_col}" TEXT')
+            if col not in existing:
+                self._conn.execute(f'ALTER TABLE "{table}" ADD COLUMN "{col}" TEXT')
 
         # Insert rows
-        safe_cols = [_safe(c) for c in columns]
-        placeholders = ", ".join("?" * len(safe_cols))
-        col_clause = ", ".join(f'"{c}"' for c in safe_cols)
+        placeholders = ", ".join("?" * len(columns))
+        col_clause = ", ".join(f'"{c}"' for c in columns)
         rows = [
             [str(row.get(c, "")) if row.get(c) is not None else None for c in columns]
             for row in enriched
         ]
-
         self._conn.executemany(
             f'INSERT INTO "{table}" ({col_clause}) VALUES ({placeholders})',
             rows,

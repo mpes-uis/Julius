@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Identificacao": "000000002629",
+    "Tipo": "Terrenos",
+    "Descricao": "014.1.077.0147.001                   TERRENO",
+    "Secretaria": "Secretaria Municipal de Gestão e Planejamento",
+    "Endereco": "RUA  PRINCIPAL, SN, CAMPINHO DA SERRA I",
+    "Bairro": " CAMPINHO DA SERRA I",
+    "AreaTerreno": "4531,07",
+    "AreaConstruida": "4531,07",
+    "DataAquisicao": "20/01/2014",
+    "DataAvaliacao": "20/01/2014",
+    "ValorAvaliacao": "659403,21"
+  },
+  {
+    "Id": 2,
+    "Identificacao": "000000002627",
+    "Tipo": "Terrenos",
+    "Descricao": "014.1.075.0343.001            TERRENO",
+    "Secretaria": "Secretaria Municipal de Gestão e Planejamento",
+    "Endereco": "RUA  PRINCIPAL, SN, CAMPINHO DA SERRA II",
+    "Bairro": " CAMPINHO DA SERRA II",
+    "AreaTerreno": "8506,33",
+    "AreaConstruida": "8506,33",
+    "DataAquisicao": "20/01/2014",
+    "DataAvaliacao": "20/01/2014",
+    "ValorAvaliacao": "1167144,74"
+  },
+  {
+    "Id": 3,
+    "Identificacao": "000000002628",
+    "Tipo": "Terrenos",
+    "Descricao": "014.1.075.0076.001         TERRENO    ",
+    "Secretaria": "Secretaria Municipal de Gestão e Planejamento",
+    "Endereco": "RUA  PRINCIPAL, SN, CAMPINHO DA SERRA II",
+    "Bairro": " CAMPINHO DA SERRA II",
+    "AreaTerreno": "48070,62",
+    "AreaConstruida": "48070,62",
+    "DataAquisicao": "20/01/2014",
+    "DataAvaliacao": "20/01/2014",
+    "ValorAvaliacao": "4912421,26"
+  }
+]

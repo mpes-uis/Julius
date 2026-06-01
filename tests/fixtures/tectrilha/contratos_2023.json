@@ -1,0 +1,32 @@
+[
+  {
+    "NumeroContrato": 42,
+    "AnoContrato": 2023,
+    "TipoContrato": "Contrato",
+    "Processo": "12345",
+    "AnoProcesso": 2023,
+    "ValorContratado": 150000.0,
+    "Aditivo": false,
+    "ValorTotal": 150000.0,
+    "Fornecedor": "EMPRESA EXEMPLO LTDA",
+    "CNPJ": "00.000.000/0001-00",
+    "Objeto": "Prestação de serviços de limpeza",
+    "DataInicio": "2023-01-15T00:00:00",
+    "DataFim": "2023-12-31T00:00:00"
+  },
+  {
+    "NumeroContrato": 43,
+    "AnoContrato": 2023,
+    "TipoContrato": "Contrato",
+    "Processo": "12346",
+    "AnoProcesso": 2023,
+    "ValorContratado": 80000.0,
+    "Aditivo": false,
+    "ValorTotal": 80000.0,
+    "Fornecedor": "OUTRA EMPRESA SA",
+    "CNPJ": "11.111.111/0001-11",
+    "Objeto": "Fornecimento de materiais de escritório",
+    "DataInicio": "2023-02-01T00:00:00",
+    "DataFim": "2023-07-31T00:00:00"
+  }
+]

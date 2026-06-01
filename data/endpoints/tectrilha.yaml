@@ -1,0 +1,85 @@
+# Tectrilha API endpoints
+# URL pattern: {base}/api/{path}?{params}
+# Base URL in prefeituras.csv ends in /api — strip it: base = url.removesuffix("/api")
+# Key difference from PortalTP: exercicio (year only, no month) + unidadeGestoraId per endpoint.
+# Validated against Vitória (UG=6) and Serra (UG=1) on 2026-05-22.
+#
+# Special cases:
+#   licitacoes  — POST with JSON body {unidadeGestoraId, exercicio}
+#   bens_imoveis — no params (snapshot, ignores exercicio)
+#   pessoal     — monthly via &periodo=MM (large dataset, may time out on big municipalities)
+
+endpoints:
+  - name: contratos
+    path: contratos
+    frequency: yearly
+    requires_ug: true
+    description: Contracts (NumeroContrato, AnoContrato, ValorContratado…)
+
+  - name: licitacoes
+    path: licitacoes
+    frequency: yearly
+    requires_ug: true
+    method: POST
+    description: Bidding processes — POST {unidadeGestoraId, exercicio}
+
+  - name: despesa
+    path: despesa
+    frequency: yearly
+    requires_ug: false
+    description: Expense detail (Ano, ValorEmpenhado, ValorLiquidado, ValorPago…)
+
+  - name: receitas
+    path: receitas
+    frequency: yearly
+    requires_ug: true
+    description: Revenues by unidade gestora
+
+  - name: diarias
+    path: diarias
+    frequency: yearly
+    requires_ug: true
+    description: Daily allowances
+
+  - name: passagens
+    path: passagens
+    frequency: yearly
+    requires_ug: true
+    description: Travel tickets
+
+  - name: convenios
+    path: convenios
+    frequency: yearly
+    requires_ug: true
+    description: Agreements and partnerships
+
+  - name: captacoes
+    path: captacoes
+    frequency: yearly
+    requires_ug: false
+    description: Revenue captures / external funding
+
+  - name: bens_moveis
+    path: bensMoveis
+    frequency: yearly
+    requires_ug: false
+    description: Movable assets inventory
+
+  - name: bens_imoveis
+    path: bensImoveis
+    frequency: yearly
+    requires_ug: false
+    no_year_param: true
+    description: Real estate — snapshot, ignores exercicio, returns current state
+
+  - name: emendas
+    path: emendas
+    frequency: yearly
+    requires_ug: false
+    description: Budget amendments
+
+  - name: pessoal
+    path: pessoal
+    frequency: monthly
+    requires_ug: false
+    description: Payroll per month — &periodo=MM. Warning — large dataset, may time out.

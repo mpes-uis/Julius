@@ -23,3 +23,8 @@ class EndpointSpec(BaseModel):
     frequency: Frequency = Frequency.MONTHLY
     params: list[ParamSpec] = []
     description: str = ""
+
+    # Provider-specific flags (ignored when not applicable)
+    method: str = "GET"
+    requires_ug: bool = False  # endpoint needs unidadeGestoraId
+    no_year_param: bool = False  # endpoint ignores exercicio/ano
