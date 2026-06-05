@@ -1,0 +1,85 @@
+# Alphatec API endpoints
+# IDENTICAL pattern to Agape — same paginated JSON structure, same URL format.
+# Validated against Sooretama on 2026-05-22.
+# Uses agape.yaml endpoints. This file exists for completeness and future divergence.
+
+endpoints:
+  - name: empenhos
+    path: empenhos
+    frequency: monthly
+    description: Commitments
+
+  - name: liquidacoes
+    path: liquidacoes
+    frequency: monthly
+    description: Settlements
+
+  - name: pagamentos
+    path: pagamentos
+    frequency: monthly
+    description: Payments
+
+  - name: receitas
+    path: receitas
+    frequency: monthly
+    description: Revenues
+
+  - name: diarias_passagens
+    path: diarias_passagens
+    frequency: monthly
+    description: Daily allowances and travel
+
+  - name: servidores
+    path: servidores
+    frequency: yearly
+    description: Public employees
+
+  - name: contratos
+    path: contratos
+    frequency: yearly
+    description: Contracts
+
+  - name: licitacoes
+    path: licitacoes
+    frequency: yearly
+    description: Bidding processes
+
+  - name: atas
+    path: atas
+    frequency: yearly
+    description: Meeting minutes
+
+  - name: orcamento_receita
+    path: orcamento_receita
+    frequency: yearly
+    description: Revenue budget
+
+  - name: orcamento_despesa
+    path: orcamento_despesa
+    frequency: yearly
+    description: Expense budget
+
+  - name: documentos
+    path: documentos
+    frequency: yearly
+    description: Official documents
+
+  - name: notasfiscais
+    path: notasfiscais
+    frequency: yearly
+    description: Fiscal notes
+
+  - name: auxilio_alimentacao
+    path: auxilio_alimentacao
+    frequency: yearly
+    description: Food allowance
+
+  - name: atos_controle
+    path: atos_controle
+    frequency: yearly
+    description: Internal control acts
+
+  - name: extra
+    path: extra
+    frequency: yearly
+    description: Extra-budgetary transactions

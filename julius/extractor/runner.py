@@ -4,6 +4,7 @@ import asyncio
 import time
 from collections.abc import Iterator
 
+import httpx
 import structlog
 
 from julius.config import settings
@@ -22,7 +23,6 @@ class Runner:
         self._store = store
         self._checkpoint = checkpoint
         self._global_sem = asyncio.Semaphore(settings.http_concurrency)
-        # One semaphore per host — ensures 1 request at a time per portal
         self._host_sems: dict[str, asyncio.Semaphore] = {}
 
     def _host_sem(self, url: str) -> asyncio.Semaphore:
@@ -37,10 +37,8 @@ class Runner:
         self,
         provider: Provider,
         job: ExtractionJob,
-        client: "asyncio.Future[object]",  # actually httpx.AsyncClient, typed loosely for stub
+        client: httpx.AsyncClient,
     ) -> ExtractionResult:
-        import httpx as _httpx
-
         if self._checkpoint.already_done(job):
             log.debug("extraction.job.skipped", key=job.key)
             return ExtractionResult(job=job, status=JobStatus.SKIPPED)
@@ -54,15 +52,18 @@ class Runner:
                 async with host_sem:
                     log.debug("http.request", url=url)
 
-                    @fetch_with_retry
-                    async def _do_fetch() -> bytes:
-                        assert isinstance(client, _httpx.AsyncClient)
-                        return await provider.fetch(client, url)
+                    if provider.paginated:
+                        # Paginated providers handle their own retry per page
+                        records = await provider.fetch_all(client, url)
+                    else:
+                        @fetch_with_retry
+                        async def _do() -> list[dict[str, object]]:
+                            return await provider.fetch_all(client, url)
 
-                    payload = await _do_fetch()
+                        records = await _do()
+
                     await asyncio.sleep(settings.http_per_host_delay)
 
-            records = provider.parse(payload)
             duration = (time.monotonic() - t0) * 1000
 
             if not records:
@@ -101,7 +102,7 @@ class Runner:
         log.info("extraction.started", total=len(job_list), provider=provider.name)
 
         async with make_client() as client:
-            tasks = [self._run_job(provider, job, client) for job in job_list]  # type: ignore[arg-type]
+            tasks = [self._run_job(provider, job, client) for job in job_list]
             results = await asyncio.gather(*tasks)
 
         summary = {s.value: 0 for s in JobStatus}
