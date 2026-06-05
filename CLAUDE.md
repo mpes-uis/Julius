@@ -11,7 +11,7 @@ Julius é um robô em Python que captura dados dos Portais da Transparência das
 
 ## 2. Estado do projeto em uma frase
 
-**Refatoração v2.0 em andamento.** Código legado preservado (ou a ser movido) em `legacy/`. Reescrita do zero seguindo o roadmap em [plan.md](plan.md).
+**Refatoração v2.0 — Fases 0–3 concluídas.** 4 providers implementados (PortalTP, Tectrilha, Agape, Alphatec), cobrindo 74/78 municípios (95%). Fase 4 (CR2/PortalFacil) adiada; Fase 5 (pipelines) é o próximo passo.
 
 ## 3. Ordem de leitura para um agente novo
 
@@ -129,4 +129,4 @@ legacy/                 # código v1 preservado
 
 ---
 
-**Última atualização:** 2026-05-22 (criação inicial, plano aprovado, antes da Fase 0).
+**Última atualização:** 2026-06-05 (Fases 0–3 concluídas; Fase 4 adiada; Fase 5 backlog em `todo.md`).

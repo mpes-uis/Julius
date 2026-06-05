@@ -402,7 +402,7 @@ Não implementar agora. A arquitetura (DuckDB + dados normalizados) já suporta 
 - [x] Fase 1 — Fundação ✅
 - [x] Fase 2 — Provider PortalTP end-to-end ✅
 - [x] Fase 3 — Tectrilha, Agape, Alphatec ✅
-- [ ] Fase 4 — CR2 e PortalFacil
+- [x] Fase 4 — CR2 e PortalFacil ⏸️ adiado (APIs inacessíveis sem browser; ver `todo.md` e `docs/providers.md`)
 - [ ] Fase 5 — Pipelines + migração SQLite
 - [ ] Fase 6 — Docker + docs
 - [ ] Fase 7 — Análise (futuro)
