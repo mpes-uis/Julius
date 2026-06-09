@@ -41,33 +41,66 @@ A ferramenta é em código aberto, todo Stack de dados e aplicativos utilizados 
 
 Depois do Julius, o uso do dado é livre. Mas deixamos como sugestões boas práticas: criar ferramentas para fiscalização e análise de gastos automatizada, análise textual de contratos para identificação de fraudes, criação de sistema para consulta de preços, identificação de práticas de cartel e aprendizado pessoal.
 
-# Como funciona?
+# Como rodar (v2)
 
-Simples, instale o docker (https://www.docker.com) no seu ambiente.
+> 🚧 O projeto está em refatoração completa (`refactor/v2`). A versão 2.0 reescreve
+> o robô do zero: empacotamento `uv`, CLI com [Typer](https://typer.tiangolo.com/),
+> extração assíncrona com `httpx`, armazenamento em [DuckDB](https://duckdb.org/) e
+> testes automatizados. O código legado (Docker + SQLite) foi preservado em
+> [legacy/](legacy/) durante a transição.
 
-Faça download do arquivo Dockerfile presente na raiz do diretório github.
+## Visão geral da arquitetura
 
-Coloque o arquivo no diretório que gostar mais.
+```mermaid
+flowchart LR
+    CLI["julius extract\n(Typer CLI)"] --> RUNNER["Runner\n(asyncio + rate limit)"]
+    RUNNER --> PROV["Providers\nPortalTP · Tectrilha · Agape · Alphatec"]
+    PROV --> API[("APIs dos Portais\nda Transparência")]
+    RUNNER --> DB[("DuckDB\ndata/julius.duckdb")]
+    RUNNER --> CHK[("Checkpoint\nidempotência")]
+```
 
-Ative seu o seu shell de linha de comando (Bash, PowerShell, CMD) no diretório em que está o dockerfile.
+Hoje o Julius cobre **74 dos 78 municípios do Espírito Santo (95%)** através de
+4 providers de API distintos. Detalhes completos — diagramas de sequência, modelo
+de dados, fluxo de extração, decisões arquiteturais — estão em
+**[docs/architecture.md](docs/architecture.md)**, e o catálogo de cada API de
+provider em **[docs/providers.md](docs/providers.md)**.
 
-Execute o seguinte comando para criar um volume compartilhado, onde poderá posteriormente salvar/cambiar arquivos com o aplicativo:
+## Instalação e uso
 
-    docker volume create dados
+Pré-requisitos: Python 3.12+ e [`uv`](https://docs.astral.sh/uv/).
 
-Crie a imagem do container a partir do dockerfile:
+```bash
+# clonar o repositório e instalar dependências
+git clone https://github.com/mpes-uis/Julius.git
+cd Julius
+uv sync
 
-    docker build -t julius-img .
-    
-E finalmente, coloque o container em operação:
+# ver os comandos disponíveis
+uv run julius --help
 
-    docker run -d --name julius julius-img
+# extrair dados de um provider para um período (ex: PortalTP, jan/2024)
+uv run julius extract --provider portaltp --from 01/2024 --to 01/2024
 
-Pronto!
+# extrair de um único município (use --dry-run para listar os jobs sem executar)
+uv run julius extract --provider portaltp --from 01/2024 --to 12/2024 --only afonso-claudio --dry-run
 
-O container criado fara do download dos códigos necessários e iniciará a execução do aplicativo. Em seu storage você poderá encontrar o banco de dados SQLite. Agora é só aguardar algumas horas e os dados estarão salvos no banco.
+# extrair de todos os providers já implementados
+uv run julius extract --all --from 01/2024 --to 12/2024
 
-Os comandos acima não são uma regra, você pode personalizar o volume, a imagem e o containter utilizando outros comandos docker que achar interessantes.
+# ver o resumo da última extração (sucesso, falhas, cobertura)
+uv run julius status
+
+# reprocessar extrações que falharam
+uv run julius retry-failed --provider portaltp
+```
+
+Os dados são gravados em `data/julius.duckdb` — um único arquivo DuckDB,
+explorável diretamente com `duckdb data/julius.duckdb` ou qualquer cliente
+compatível (ex: [DBeaver](https://dbeaver.io/), [Harlequin](https://harlequin.sh/)).
+
+Configurações (timeouts, concorrência, caminhos) são ajustáveis via `.env`
+(prefixo `JULIUS_`) — veja `julius/config.py` ou `docs/architecture.md` §5.
 
 # Desafio
 

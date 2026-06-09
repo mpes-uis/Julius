@@ -1,0 +1,536 @@
+{
+  "pagina_total": 29,
+  "pagina_atual": 1,
+  "pagina_anterior": null,
+  "pagina_proxima": 2,
+  "registro_total": 290,
+  "registro_atual": 10,
+  "registros": [
+    {
+      "id": 11042059,
+      "fornecedor_nome": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS",
+      "objeto": "Prestação de serviços de postagens celebrado entre a Empresa Brasileira de Correios e Telégrafos - EBCT. CT 9912634758",
+      "vigencia_data_inicio": "2024-03-26",
+      "vigencia_data_fim": "2025-03-26",
+      "valor": "23799.99",
+      "processo": "050573",
+      "numero_contrato": "991263",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-03-26",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042089,
+      "fornecedor_nome": "CONSORCIO CACHOEIRO INTEGRADO - CCI",
+      "objeto": "Aquisição de vale-transporte municipal, para atender a demanda dos servidores municipais, lotados em diversas secretarias desta PMCI,\nque residem longe do local de trabalho.",
+      "vigencia_data_inicio": "2024-12-30",
+      "vigencia_data_fim": "2025-12-30",
+      "valor": "1158500.00",
+      "processo": "66508",
+      "numero_contrato": "291",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042100,
+      "fornecedor_nome": "COSTA SUL TRANSPORTE E TURISMO LTDA",
+      "objeto": "Aquisição de vale-transporte intermunicipal, para atender a demanda dos servidores municipais.",
+      "vigencia_data_inicio": "2025-01-02",
+      "vigencia_data_fim": "2026-01-02",
+      "valor": "45500.00",
+      "processo": "66506",
+      "numero_contrato": "290",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042078,
+      "fornecedor_nome": "CONSORCIO CACHOEIRO INTEGRADO - CCI",
+      "objeto": "A aquisição de vale-transporte intermunicipal, para atender a demanda dos servidores municipais, lotados em diversas secretarias desta PMCI, que residem longe do local de trabalho.\n",
+      "vigencia_data_inicio": "2025-01-02",
+      "vigencia_data_fim": "2026-01-02",
+      "valor": "400000.00",
+      "processo": "67508",
+      "numero_contrato": "289",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042093,
+      "fornecedor_nome": "COOPE SERRANA - COOPERATIVA DE TRANSPORTE SUL SERRANA CAPIXABA",
+      "objeto": "Contratação de empresa para locação de máquinas e caminhões com operador por hora.",
+      "vigencia_data_inicio": "2025-01-02",
+      "vigencia_data_fim": "2026-01-02",
+      "valor": "2904687.60",
+      "processo": "007189",
+      "numero_contrato": "288",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042032,
+      "fornecedor_nome": "VIAÇÃO REAL ITA S.A",
+      "objeto": "Aquisição de vale-transporte intermunicipal, para atender a demanda dos servidores municipais lotados em diversas secretarias desta PMCI, que residem longe do local de trabalho.\n",
+      "vigencia_data_inicio": "2025-01-02",
+      "vigencia_data_fim": "2026-01-02",
+      "valor": "260000.00",
+      "processo": "62469",
+      "numero_contrato": "287",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042077,
+      "fornecedor_nome": "CONSORCIO CACHOEIRO INTEGRADO - CCI",
+      "objeto": "Contratação de empresa para aquisição carga e emissão de vale transporte cartão passe livre.",
+      "vigencia_data_inicio": "2025-01-02",
+      "vigencia_data_fim": "2025-12-31",
+      "valor": "650000.00",
+      "processo": "84613",
+      "numero_contrato": "286",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-30",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042087,
+      "fornecedor_nome": "CONSORCIO RAVENA",
+      "objeto": "Aquisição de Ar Condicionado",
+      "vigencia_data_inicio": "2024-12-27",
+      "vigencia_data_fim": "2025-12-27",
+      "valor": "968760.00",
+      "processo": "83251",
+      "numero_contrato": "285",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-27",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042094,
+      "fornecedor_nome": "OFICIAL SERVICOS LTDA",
+      "objeto": "Manutenção Preventiva e Corretiva de  Ar Condicionado (com fornecimento de peças) ",
+      "vigencia_data_inicio": "2024-12-27",
+      "vigencia_data_fim": "2025-12-27",
+      "valor": "223500.00",
+      "processo": "83251",
+      "numero_contrato": "284",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-27",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    },
+    {
+      "id": 11042072,
+      "fornecedor_nome": "GRAMAZINI GRANITOS E MARMORES THOMAZINI LTDA",
+      "objeto": "A presente contratação será de uma casa comercial no pavimento térreo, situada na Rua Apóstolo Pedro, nº 02, Bairro Rui Pinto Bandeira, CEP: 29.315-798, Cachoeiro de Itapemirim/ES, registrado na matrícula 9962, livro nº 2, data de 29 de março de 1982, no Cartório de Registro Geral de Imóveis de Cachoeiro de Itapemirim – Espírito Santo. O imóvel é situado no andar térreo, composto por sala, três quartos, dois banheiros, copa/cozinha, varanda e garagem. O imóvel visa sediar o CRAS Aeroporto.",
+      "vigencia_data_inicio": "2024-12-27",
+      "vigencia_data_fim": "2025-12-27",
+      "valor": "42000.00",
+      "processo": "069271",
+      "numero_contrato": "282",
+      "ano": 2024,
+      "fiscal": "",
+      "ata": "",
+      "licitacao": "",
+      "data_assinatura": "2024-12-27",
+      "fornecedor_documento": "27.165.588/0001-90",
+      "modalidade": "",
+      "categoria": "",
+      "situacao": "Vigente",
+      "tipo": "1",
+      "orgao_contratante": "Prefeitura Municipal de Cachoeiro de Itapemirim",
+      "data_publicacao_diario_oficial": "",
+      "data_celebracao": "",
+      "duracao": "",
+      "local_execucao": "",
+      "empenho": "",
+      "numero_diario_oficial": "",
+      "link_diario_oficial": "",
+      "entidade": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM",
+      "documentos": [],
+      "aditivos": [],
+      "bens": []
+    }
+  ],
+  "modalidades": [
+    {
+      "id": 9,
+      "nome": "Chamada Pública"
+    },
+    {
+      "id": 12,
+      "nome": "Comodato"
+    },
+    {
+      "id": 7,
+      "nome": "Compra Direta"
+    },
+    {
+      "id": 4,
+      "nome": "Concorrência"
+    },
+    {
+      "id": 5,
+      "nome": "Convite"
+    },
+    {
+      "id": 11,
+      "nome": "Credenciamento"
+    },
+    {
+      "id": 1,
+      "nome": "Dispensa"
+    },
+    {
+      "id": 3,
+      "nome": "Inexigibilidade"
+    },
+    {
+      "id": 2,
+      "nome": "Pregão Eletrônico"
+    },
+    {
+      "id": 6,
+      "nome": "Pregão Presencial"
+    },
+    {
+      "id": 8,
+      "nome": "Tomada de Preços"
+    }
+  ],
+  "situacoes": [
+    {
+      "id": 5,
+      "nome": "Cancelado"
+    },
+    {
+      "id": 8,
+      "nome": "Concluído"
+    },
+    {
+      "id": 4,
+      "nome": "Paralisado"
+    },
+    {
+      "id": 3,
+      "nome": "Rescisão"
+    },
+    {
+      "id": 2,
+      "nome": "Término de Prazo"
+    },
+    {
+      "id": 1,
+      "nome": "Vigente"
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "ADESÃO"
+    },
+    {
+      "id": 2,
+      "nome": "AQUISIÇÃO"
+    },
+    {
+      "id": 3,
+      "nome": "CESSÃO DE USO"
+    },
+    {
+      "id": 4,
+      "nome": "COMPRA DE BENS"
+    },
+    {
+      "id": 5,
+      "nome": "COMPRAS E SERVIÇOS"
+    },
+    {
+      "id": 6,
+      "nome": "CONCESSÃO"
+    },
+    {
+      "id": 7,
+      "nome": "CONCESSÃO DE EMPRÉSTIMO OU FINANCIAMENTO"
+    },
+    {
+      "id": 8,
+      "nome": "CONCESSÃO ONEROSA"
+    },
+    {
+      "id": 9,
+      "nome": "CONSIGNADO"
+    },
+    {
+      "id": 10,
+      "nome": "CONSORCIOS"
+    },
+    {
+      "id": 11,
+      "nome": "CONTRATAÇÃO"
+    },
+    {
+      "id": 12,
+      "nome": "EMPRÉSTIMO CONCEDIDO OU A CONCEDER"
+    },
+    {
+      "id": 13,
+      "nome": "EMPRÉSTIMOS RECEBIDOS OU A RECEBER"
+    },
+    {
+      "id": 14,
+      "nome": "FORNECIMENTO DE MATERIAL"
+    },
+    {
+      "id": 15,
+      "nome": "FORNECIMENTO DE SERVIÇOS"
+    },
+    {
+      "id": 16,
+      "nome": "LOCAÇÃO"
+    },
+    {
+      "id": 17,
+      "nome": "LOCAÇAO DE BENS DE TERCEIROS PARA A UG"
+    },
+    {
+      "id": 18,
+      "nome": "LOCAÇÃO DE IMÓVEL"
+    },
+    {
+      "id": 19,
+      "nome": "LOCAÇÃO DE SOFTWARE"
+    },
+    {
+      "id": 20,
+      "nome": "OBRAS"
+    },
+    {
+      "id": 21,
+      "nome": "OUTROS"
+    },
+    {
+      "id": 22,
+      "nome": "PERMISSÃO DE USO"
+    },
+    {
+      "id": 23,
+      "nome": "PRESTAÇÃO DE SERVIÇOS"
+    },
+    {
+      "id": 24,
+      "nome": "RATEIO"
+    },
+    {
+      "id": 26,
+      "nome": "SERP - Sistema Estadual de Registro de Preço - SESA"
+    }
+  ],
+  "entidades": [
+    {
+      "id": 1,
+      "nome": "PREFEITURA MUNICIPAL DE CACHOEIRO DE ITAPEMIRIM"
+    }
+  ],
+  "tipos": [
+    {
+      "id": 2,
+      "nome": "Adesão à Ata"
+    },
+    {
+      "id": 4,
+      "nome": "Ata de Registro de Preços"
+    },
+    {
+      "id": 8,
+      "nome": "Ata SERP"
+    },
+    {
+      "id": 6,
+      "nome": "Compra"
+    },
+    {
+      "id": 1,
+      "nome": "Contrato"
+    },
+    {
+      "id": 10,
+      "nome": "Contratos Emergenciais"
+    }
+  ]
+}
